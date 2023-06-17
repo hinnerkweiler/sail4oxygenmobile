@@ -17,33 +17,52 @@
                 HorizontalOptions="CenterAndExpand">
                 
                 <Button
-                    Text="FAQ"
+                    Text="Guide"
                     Margin="12,12,12,12"
                     HorizontalOptions="End"
                     Clicked="Faq_Clicked"
-                    CornerRadius="25"/>
+                    CornerRadius="24"/>
 
                 <Button
                     Text="About"
                     Margin="12,12,12,12"
                     HorizontalOptions="EndAndExpand"
                     Clicked="About_Clicked"
-                    CornerRadius="25"/>
+                    CornerRadius="24"/>
 
-                <Button
+ <!--               <Button
                     Text="Register"
                     Margin="12,12,12,12"
                     HorizontalOptions="End"
                     Clicked="Register_Clicked"
                     CornerRadius="25"/>
-
+-->
             </HorizontalStackLayout>
+
+            <Label
+                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Gray300}}"
+                Margin="24,24,24,0"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Start"
+                FontAttributes="Bold"
+                Text="1. Import the CSV from our sonde using the KOR-App."
+                FontSize="Body" />
+
+            <Label
+                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Gray300}}"
+                Margin="24,6,24,0"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Start"
+                FontAttributes="Bold"
+                Text="2. Than click below and select that CSV-File. Your Mail-App will be used to send it to GEOMAR."
+                FontSize="Body" />
+
             <Button
                 Text="Click me"
-                Padding="50,50,50,50"
+                Padding="50,30,50,30"
                 BackgroundColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue25}}"
                 TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray300}}"
-                Margin="0,100,0,60"
+                Margin="0,8,0,60"
                 SemanticProperties.Hint="Loads a CSV File and prepares a Mail to send"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
@@ -54,7 +73,6 @@
                 HorizontalOptions="Center"
                 Text="{Binding LocationText}"
                 FontSize="Small" />
-
 
             <VerticalStackLayout
                 VerticalOptions="FillAndExpand">

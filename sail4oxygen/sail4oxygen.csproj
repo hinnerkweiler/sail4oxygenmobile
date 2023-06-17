@@ -70,6 +70,6 @@
 	  <Folder Include="Views\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <MauiSplashScreen Include="Resources\Splash\s4osplash.svg" BaseSize="1024,1024" Color="#FFFFFF" />
+	  <MauiSplashScreen Include="Resources\Splash\s4osplash.svg" BaseSize="256,256" Color="#FFFFFF" />
 	</ItemGroup>
 </Project>

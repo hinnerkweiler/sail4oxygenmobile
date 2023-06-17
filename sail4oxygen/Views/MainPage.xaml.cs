@@ -28,18 +28,24 @@ public partial class MainPage : ContentPage
             return;
         }
 
-        _ = await MainPageVM.SendEMail();
+        MainPageVM.SendEMail();
     }
+
+
 
     async void About_Clicked(System.Object sender, System.EventArgs e)
     {
         await Shell.Current.GoToAsync("AboutPage");
     }
 
+
+
     async void Faq_Clicked(System.Object sender, System.EventArgs e)
     {
         await Shell.Current.GoToAsync("FaqPage");
     }
+
+
 
     async void Register_Clicked(System.Object sender, System.EventArgs e)
     {
