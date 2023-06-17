@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="sail4oxygen.Views.AboutPage"
+             Title="About sail4oxygen"
+             >
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <Label
+                Text="{Binding AboutText}"
+                TextType="Html"
+                Margin="12"
+                VerticalOptions="EndAndExpand" 
+                HorizontalOptions="EndAndExpand" />
+
+            <Button
+                Margin="8"
+                Text="Read more at sail4oxygen.org"
+                Clicked="s4oweb_Clicked"
+                HorizontalOptions="CenterAndExpand"
+                />
+
+            <Frame>
+                <Grid RowDefinitions="500,100" ColumnDefinitions="*,100"
+                        Margin="10"
+                        HorizontalOptions="Center">
+
+                    <Image
+                        Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                        Source="s4ologos.png"
+                        Aspect="AspectFit"
+                        />
+
+                    <Label
+                        Grid.Row="1" Grid.Column="0"
+                        Text="{Binding DeveloperText}"
+                        TextType="Html"
+                        Margin="12"
+                        FontSize="Micro"
+                        VerticalOptions="EndAndExpand" 
+                        HorizontalOptions="EndAndExpand" />
+
+                    <Button
+                        Grid.Row="1" Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray300}}"
+                        FontSize="Micro"
+                        Text="More…"
+                        Clicked="Github_Clicked"
+                        HorizontalOptions="CenterAndExpand"
+                        />
+                </Grid>
+            </Frame>
+            
+        </VerticalStackLayout>
+        </ScrollView>
+</ContentPage>

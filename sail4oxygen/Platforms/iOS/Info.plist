@@ -16,8 +16,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -28,5 +26,20 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Need GPS to send measurement location</string>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<array>
+		<dict>
+			<key>TemporaryFullAccuracyUsageDescription</key>
+			<string>Need full GPS to send measurement location</string>
+		</dict>
+	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.hinnerk-weiler.sail4oxygen</string>
+	<key>CFBundleVersion</key>
+	<string>31</string>
+	<key>MinimumOSVersion</key>
+	<string>11.0</string>
 </dict>
 </plist>

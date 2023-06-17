@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:sail4oxygen"
+             x:Class="sail4oxygen.Views.MainPage"
+             NavigationPage.HasNavigationBar="False"
+             Title="Send Data">
+
+    <ScrollView>
+        <VerticalStackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+
+            <HorizontalStackLayout
+                Margin="0,24"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="CenterAndExpand">
+                
+                <Button
+                    Text="FAQ"
+                    Margin="12,12,12,12"
+                    HorizontalOptions="End"
+                    Clicked="Faq_Clicked"
+                    CornerRadius="25"/>
+
+                <Button
+                    Text="About"
+                    Margin="12,12,12,12"
+                    HorizontalOptions="EndAndExpand"
+                    Clicked="About_Clicked"
+                    CornerRadius="25"/>
+
+                <Button
+                    Text="Register"
+                    Margin="12,12,12,12"
+                    HorizontalOptions="End"
+                    Clicked="Register_Clicked"
+                    CornerRadius="25"/>
+
+            </HorizontalStackLayout>
+            <Button
+                Text="Click me"
+                Padding="50,50,50,50"
+                BackgroundColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue25}}"
+                TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray300}}"
+                Margin="0,100,0,60"
+                SemanticProperties.Hint="Loads a CSV File and prepares a Mail to send"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Center" />
+
+            <Label
+                TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray300}}"
+                Margin="24"
+                HorizontalOptions="Center"
+                Text="{Binding LocationText}"
+                FontSize="Small" />
+
+
+            <VerticalStackLayout
+                VerticalOptions="FillAndExpand">
+                <Label
+                    Text="Citizen Science"
+                    SemanticProperties.HeadingLevel="Level3"
+                    FontSize="18"
+                    HorizontalOptions="Center" />
+                <Image
+                    Source="s4ob.png"
+                    SemanticProperties.Description="Sailing for Oxygen Logo"
+                    HeightRequest="100"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center" />
+            
+            </VerticalStackLayout>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
+
