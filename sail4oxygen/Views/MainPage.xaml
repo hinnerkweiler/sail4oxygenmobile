@@ -29,14 +29,6 @@
                     HorizontalOptions="EndAndExpand"
                     Clicked="About_Clicked"
                     CornerRadius="24"/>
-
- <!--               <Button
-                    Text="Register"
-                    Margin="12,12,12,12"
-                    HorizontalOptions="End"
-                    Clicked="Register_Clicked"
-                    CornerRadius="25"/>
--->
             </HorizontalStackLayout>
 
             <Label
