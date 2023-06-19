@@ -13,7 +13,12 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+                fonts.AddFont("LucidaGrande.ttf", "LucidaGrande");
+            })
+            .ConfigureEssentials(essentials =>
+            {
+                essentials.UseVersionTracking();
+            });
 
 #if DEBUG
 		builder.Logging.AddDebug();

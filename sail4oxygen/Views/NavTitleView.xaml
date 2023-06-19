@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="sail4oxygen.Views.FaqPage"
-             Title="FaqPage">
-    
-     <Shell.TitleView>
+             x:Class="sail4oxygen.Views.NavTitleView">
+
+    <VerticalStackLayout>
+        <Shell.TitleView>
         <HorizontalStackLayout
             HorizontalOptions="End">
             <Label
-                Text="S´What is"
+                Text="Welcome"
                 VerticalOptions="Center"
                 FontFamily="LucidaGrande" />
 
@@ -16,15 +16,11 @@
                    x:Name="s4oLogo"
                    VerticalOptions="Center"
                    Aspect="AspectFit"
-                   HeightRequest="80"
+                   WidthRequest="260"
+                   HeightRequest="100"
                    Margin="12,5,12,5"/>
         </HorizontalStackLayout>
     </Shell.TitleView>
-
-    <VerticalStackLayout>
-        <Label 
-            Text="FAQ Page goes here once it is ready"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
     </VerticalStackLayout>
-</ContentPage>
+</ContentView>
+

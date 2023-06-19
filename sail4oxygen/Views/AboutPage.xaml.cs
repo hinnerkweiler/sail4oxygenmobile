@@ -3,18 +3,21 @@
 public partial class AboutPage : ContentPage
 {
 	public ViewModels.AboutPageVM AboutPageVM = new();
+   
 
 	public AboutPage()
 	{
+        
 		BindingContext = AboutPageVM;
-		InitializeComponent();
-	}
+        InitializeComponent();
+
+    }
 
     async void Github_Clicked(System.Object sender, System.EventArgs e)
     {
         try
         {
-            Uri uri = new Uri("https://www.cdc.hinnerk-weiler.com");
+            Uri uri = new Uri("https://www.cdc.hinnerk-weiler.com/s4oapp");
             await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
         }
         catch (Exception ex)
@@ -27,7 +30,7 @@ public partial class AboutPage : ContentPage
     {
         try
         {
-            Uri uri = new Uri("https://sail4oxygen.org");
+            Uri uri = new Uri("https://sail4oxygen.org#Form");
             await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
         }
         catch (Exception ex)
@@ -36,4 +39,8 @@ public partial class AboutPage : ContentPage
         }
     }
 
+    async void settings_Clicked(System.Object sender, System.EventArgs e)
+    {
+        await Shell.Current.GoToAsync("Onboarding");
+    }
 }

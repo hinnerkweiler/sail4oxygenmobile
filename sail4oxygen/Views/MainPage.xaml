@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:sail4oxygen"
              x:Class="sail4oxygen.Views.MainPage"
              NavigationPage.HasNavigationBar="False"
-             Title="Send Data">
+             Title="Send Data"
+             >
 
     <ScrollView>
         <VerticalStackLayout
@@ -17,44 +18,65 @@
                 HorizontalOptions="CenterAndExpand">
                 
                 <Button
-                    Text="Guide"
+                    Text="Guide &amp; FAQ"
                     Margin="12,12,12,12"
-                    HorizontalOptions="End"
+                    
                     Clicked="Faq_Clicked"
+                    CornerRadius="24"/>
+
+                <Button
+                    Text="Reservation"
+                    Margin="12,12,12,12"
+                    x:Name="ReserveButton"
+                    Clicked="ReserveButton_Clicked"
+                    BackgroundColor="LightGray"
                     CornerRadius="24"/>
 
                 <Button
                     Text="About"
                     Margin="12,12,12,12"
-                    HorizontalOptions="EndAndExpand"
+                    
                     Clicked="About_Clicked"
                     CornerRadius="24"/>
             </HorizontalStackLayout>
 
+            <HorizontalStackLayout>
+                <Label
+                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                    Margin="24,12,0,0"
+                    HorizontalOptions="Start"
+                    HorizontalTextAlignment="Start"
+                    Text="Activate when Sonde in on Board"
+                    FontAttributes="Bold"
+                    FontSize="Body" />
+
+                <Switch
+                    HorizontalOptions="EndAndExpand"
+                    x:Name="SondeSwitch" Toggled="SondeSwitch_Toggled"/>
+            </HorizontalStackLayout>
+
             <Label
-                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Gray300}}"
+                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
                 Margin="24,24,24,0"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Start"
-                FontAttributes="Bold"
-                Text="1. Import the CSV from our sonde using the KOR-App."
+                Text="1. Import Data from our sonde using the KOR-App and save your sample to a CSV-file."
                 FontSize="Body" />
 
             <Label
-                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Gray300}}"
-                Margin="24,6,24,0"
+                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                Margin="24,12,24,0"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Start"
-                FontAttributes="Bold"
-                Text="2. Than click below and select that CSV-File. Your Mail-App will be used to send it to GEOMAR."
+                Text="2. Than click below and select that CSV-file. Your Mail-App will be launched automatically to send everything to GEOMAR."
                 FontSize="Body" />
 
             <Button
                 Text="Click me"
                 Padding="50,30,50,30"
                 BackgroundColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue25}}"
-                TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray300}}"
-                Margin="0,8,0,60"
+                TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource s4blue100}}"
+                Margin="0,24,0,40"
                 SemanticProperties.Hint="Loads a CSV File and prepares a Mail to send"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />

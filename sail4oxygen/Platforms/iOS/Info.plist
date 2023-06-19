@@ -35,6 +35,10 @@
 			<string>Need full GPS to send measurement location</string>
 		</dict>
 	</array>
+	<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>mailto</string>
+		</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.hinnerk-weiler.sail4oxygen</string>
 	<key>CFBundleVersion</key>

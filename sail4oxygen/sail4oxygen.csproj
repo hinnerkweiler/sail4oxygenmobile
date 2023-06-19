@@ -38,9 +38,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
-
-		<!-- Splash Screen -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
@@ -63,6 +60,9 @@
 	  <None Remove="Resources\Images\s4ob.svg" />
 	  <None Remove="Resources\Images\s4ologos.svg" />
 	  <None Remove="Resources\Splash\s4osplash.svg" />
+	  <None Remove="Resources\AppIcon\s4oicon.svg" />
+	  <None Remove="Resources\AppIcon\appicon.svg" />
+	  <None Remove="Resources\Fonts\LucidaGrande.ttf" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -71,5 +71,15 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiSplashScreen Include="Resources\Splash\s4osplash.svg" BaseSize="256,256" Color="#FFFFFF" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiIcon Include="Resources\AppIcon\appicon.svg" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Fonts\LucidaGrande.ttf" />
+	  <BundleResource Include="Resources\Fonts\LucidaGrande.ttf" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiFont Remove="Resources\Fonts\LucidaGrande.ttf" />
 	</ItemGroup>
 </Project>
