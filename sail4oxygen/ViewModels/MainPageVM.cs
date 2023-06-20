@@ -11,7 +11,7 @@ namespace sail4oxygen.ViewModels
         Location myLocation;
 
 		[ObservableProperty]
-		FileResult theFileToSend;
+		FileResult csvFileToSend;
 
         public string LocationText
         {
@@ -61,8 +61,8 @@ namespace sail4oxygen.ViewModels
         public async Task<bool> SendEMail()
         {
             string subject = "Sailing for Oxygen";
-            string body = "Hello friends! \n Here are our latest measurements. \n\n " + "Lat:" + MyLocation.Latitude + "\nLong:" + MyLocation.Longitude + "\nUTC" + MyLocation.Timestamp.ToString("u");
-            string[] recipients = new[] { "h.weiler@trans-ocean.org", "kojefrei@gamil.com" };
+            string body = "Hello friends! \n Here are our latest measurements. \n\n " + "Lat:  " + MyLocation.Latitude + "\nLong:  " + MyLocation.Longitude + "\nUTC  " + MyLocation.Timestamp.ToString("u");
+            string[] recipients = new[] { "h.weiler@trans-ocean.org", "kojefrei@gmail.com" };
 
             var message = new EmailMessage
             {
@@ -72,7 +72,7 @@ namespace sail4oxygen.ViewModels
                 To = new List<string>(recipients)
             };
 
-            message.Attachments.Add(new EmailAttachment(TheFileToSend.FullPath));
+            message.Attachments.Add(new EmailAttachment(CsvFileToSend.FullPath));
             message.Attachments.Add(await Models.LocationMail.FromLocation(MyLocation));
 
             await Email.Default.ComposeAsync(message);

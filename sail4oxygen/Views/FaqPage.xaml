@@ -8,7 +8,7 @@
         <HorizontalStackLayout
             HorizontalOptions="End">
             <Label
-                Text="S´What is"
+                Text="What is"
                 VerticalOptions="Center"
                 FontFamily="LucidaGrande" />
 

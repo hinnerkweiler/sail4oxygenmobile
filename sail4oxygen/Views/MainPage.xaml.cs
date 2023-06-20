@@ -1,4 +1,4 @@
-﻿using static Android.Graphics.Paint;
+﻿using System;
 
 namespace sail4oxygen.Views;
 
@@ -7,6 +7,7 @@ namespace sail4oxygen.Views;
 public partial class MainPage : ContentPage
 {
     public static ViewModels.MainPageVM MainPageVM = new();
+
 
     public MainPage()
 	{
@@ -22,25 +23,24 @@ public partial class MainPage : ContentPage
         {
             Shell.Current.GoToAsync("Onboarding");
         }
-
     }
+
+
 
 	private async void OnCounterClicked(object sender, EventArgs e)
 	{
 		MainPageVM.MyLocation = await MainPageVM.GetLocation();
 
-        MainPageVM.TheFileToSend = await MainPageVM.SelectFile(null);
+        MainPageVM.CsvFileToSend = await MainPageVM.SelectFile(null);
 
-        if ((MainPageVM.TheFileToSend != null) && (MainPageVM.TheFileToSend.FullPath != ""))
+        if ((MainPageVM.CsvFileToSend!= null) && (MainPageVM.CsvFileToSend.FullPath != ""))
         {
-            MainPageVM.SendEMail();
+            _ = MainPageVM.SendEMail();
         }
         else
         {
             await DisplayAlert("Alert", "No file was selected", "OK");
         }
-
-        
     }
 
 
