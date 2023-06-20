@@ -41,7 +41,7 @@
                 HorizontalOptions="CenterAndExpand"
                 />
 
-            <Frame>
+            <Frame Margin="12,0">
                 <Grid RowDefinitions="500,100" ColumnDefinitions="*,100"
                         Margin="10"
                         HorizontalOptions="Center">

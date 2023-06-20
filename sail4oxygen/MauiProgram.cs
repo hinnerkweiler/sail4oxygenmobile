@@ -18,6 +18,12 @@ public static class MauiProgram
             .ConfigureEssentials(essentials =>
             {
                 essentials.UseVersionTracking();
+            })
+            .ConfigureMauiHandlers(handlers =>
+            {
+#if ANDROID
+                handlers.AddHandler(typeof(Shell), typeof(sail4oxygen.Platforms.CustomShellRenderer));
+#endif
             });
 
 #if DEBUG
