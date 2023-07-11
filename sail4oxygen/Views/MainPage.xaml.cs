@@ -23,14 +23,15 @@ public partial class MainPage : ContentPage
         {
             Shell.Current.GoToAsync("Onboarding");
         }
+
+        //Activated
+
     }
 
 
 
 	private async void OnCounterClicked(object sender, EventArgs e)
 	{
-		MainPageVM.MyLocation = await MainPageVM.GetLocation();
-
         MainPageVM.CsvFileToSend = await MainPageVM.SelectFile(null);
 
         if ((MainPageVM.CsvFileToSend!= null) && (MainPageVM.CsvFileToSend.FullPath != ""))
@@ -39,7 +40,7 @@ public partial class MainPage : ContentPage
         }
         else
         {
-            await DisplayAlert("Alert", "No file was selected", "OK");
+            await DisplayAlert("Canceled!", "You did not select a file to send.", "OK");
         }
     }
 
@@ -66,17 +67,20 @@ public partial class MainPage : ContentPage
 
 
 
-    async void ReserveButton_Clicked(System.Object sender, System.EventArgs e)
+    async void OnGPSReload_Clicked(System.Object sender, System.EventArgs e)
     {
-        await DisplayAlert("Wouldn't it be good to...", "Backend is in the making. It will allow to enter a date and the App will list where sondes will be available that day (using previous reservation / return data). If anyone has a better approach, let me know.", "OK");
+        MainPageVM.MyLocation = await MainPageVM.GetLocation();
     }
 
-    async void SondeSwitch_Toggled(System.Object sender, Microsoft.Maui.Controls.ToggledEventArgs e)
+    
+    async void EditCoordinatesButton_Clicked(System.Object sender, System.EventArgs e)
     {
-        if (SondeSwitch.IsToggled)
-            await DisplayAlert("To good to be ready yet...", "Backend is in the making. Select the Sonde you have on board (or maybe scan a QR code). So we know the sonde is in use ... ", "OK");
-        else
-            await DisplayAlert("I know... but it is comming!", "Once deactivated we just ask from a list, where the sonde has been dropped ashore.", "OK");
+        MainPageVM.IsCoordinateViewVisible = false;
+    }
+
+    async void SaveCoordinatesButton_Clicked(System.Object sender, System.EventArgs e)
+    {
+        MainPageVM.IsCoordinateViewVisible = true;
     }
 }
 

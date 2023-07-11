@@ -8,17 +8,18 @@
     <ScrollView>
         <VerticalStackLayout
             Margin="8,12">
-            <Grid RowDefinitions="*" ColumnDefinitions="*,50"
+            <Grid RowDefinitions="*" ColumnDefinitions="70,*"
             HorizontalOptions="Start">
             <Label
-                    Grid.Column="0" Grid.Row="0"
+                    Grid.Column="1" Grid.Row="0"
                     Margin="12"
                     HorizontalOptions="StartAndExpand"
-                    FontSize="Small" FontAttributes="Bold"
-                    Text="This screen is only presented on a fresh install. You can come here later whenerver you like from the About-Screen!"
+                    VerticalTextAlignment="End"
+                    FontSize="Micro" FontAttributes="Bold"
+                    Text="You can come here later again from the About-Screen."
                     />
             <Button
-                    Grid.Column="1" Grid.Row="0"
+                    Grid.Column="0" Grid.Row="0"
                     Margin="0,0,10,10"
                     Padding="0"
                     HorizontalOptions="EndAndExpand"
@@ -32,27 +33,56 @@
             </Grid>
             <Label
                 Margin="12"
-                FontSize="Title"
-                FontAttributes="Italic"
-                Text="Great you are here to do some Citizen Science with us and read this catchy headline!"
+                FontSize="Medium"
+                TextType="Html"
+                Text="Great you are here to do some &lt;strong&gt;Citizen Science&lt;/strong&gt; with us and research the oceans!"
                 />
+            <Label
+                Margin="0,12"
+                FontAttributes="Bold"
+                Text="If you are already have a Confirmation Code please enter it here:"
+                />
+            <Grid RowDefinitions="*" ColumnDefinitions="*,140">
+            <VerticalStackLayout
+                Grid.Row="0" Grid.Column="0">
+                <Entry x:Name="emailfield" Placeholder="E-Mail" PlaceholderColor="{x:StaticResource Gray500}"/>
+                <Entry x:Name="confirmationcode" Placeholder="Confirmation Code" PlaceholderColor="{x:StaticResource Gray500}"/>
+            </VerticalStackLayout>
+
+            <Button
+                Grid.Row="0" Grid.Column="1"
+                Margin="6,12"
+                x:Name="authorize"
+                Clicked="authorize_Clicked"
+                Text="Authorize App"/>
+            </Grid>
+
             <Frame
                 Margin="12">
                 <VerticalStackLayout
                     >
                     <Label
-                        Margin="12"
+                        Margin="0,12,12,12"
                         FontSize="Medium"
-                        Text="Once the app is authorized you can use it and:"
+                        TextType="Html"
+                        Text="Why Authorize?"
                         />
+
                     <Label
-                        Margin="0,3"
-                        Text="1. Make a reservation for a sonde"
+                        Margin="0,3,12,12"
+                        FontSize="Small"
+                        TextType="Html"
+                        Text="Want to help us research the ocean? Just apply as a volunteer at &lt;strong&gt;&lt;em&gt;sail4oxygen.org&lt;/em&gt;&lt;/strong&gt;. Once confirmed we send you the sail4oxygen-manual and your personal authorization key to use the app to"
                         />
 
                     <Label
                         Margin="0,3"
-                        Text="2. Confirm taking the sonde on board (scan the QR Code)"
+                        Text="1. Request a sonde to take with you *) "
+                        />
+
+                    <Label
+                        Margin="0,3"
+                        Text="2. Confirm taking a sonde on board *)"
                         />
                     <Label
                         Margin="0,3"
@@ -61,38 +91,26 @@
 
                     <Label
                         Margin="0,3"
-                        Text="4. Return the Sonde at a designated port (and mark it free again)"
+                        Text="4. Mark the sonde available (in a designates marina) *)"
                         />
+
+                    <Label
+                        Margin="0,3"
+                        HorizontalTextAlignment="End"
+                        FontSize="Micro"
+                        TextType="Html"
+                        Text="*) Developer Preview: &lt;br /&gt; These features are depend on a backend that is not yet available."
+                        />
+
                     <Button
                         Margin="0,18,0,0"
                         x:Name="faq" Clicked="faq_Clicked"
                         Text="Learn more about sail4oxygen"/>
-
-                    <Button
-                        Margin="0,18,0,0"
-                        x:Name="register" Clicked="register_Clicked"
-                        Text="Register to sail4oxygen"/>
-
                 </VerticalStackLayout>
             </Frame>
-            <Label
-                Margin="0,12"
-                FontAttributes="Bold"
-                Text="If you are already registered on s4o Website and have a Confirmation Code please enter it here:"
-                />
-            <Grid RowDefinitions="*" ColumnDefinitions="*,100">
-            <VerticalStackLayout
-                Grid.Row="0" Grid.Column="0">
-            <Entry x:Name="emailfield" Placeholder="E-Mail" PlaceholderColor="{x:StaticResource Gray500}"/>
-            <Entry x:Name="confirmationcode" Placeholder="Confirmation Code" PlaceholderColor="{x:StaticResource Gray500}"/>
-            </VerticalStackLayout>
-            <Button
-                Grid.Row="0" Grid.Column="1"
-                Margin="6,12    "
-                x:Name="authorize"
-                Clicked="authorize_Clicked"
-                Text="Authorize App"/>
-            </Grid>
+
+            
+            
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

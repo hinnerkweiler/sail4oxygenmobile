@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui;
 
 namespace sail4oxygen;
 
@@ -9,21 +10,16 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("LucidaGrande.ttf", "LucidaGrande");
-            })
-            .ConfigureEssentials(essentials =>
-            {
-                essentials.UseVersionTracking();
-            })
-            .ConfigureMauiHandlers(handlers =>
-            {
-#if ANDROID
-                handlers.AddHandler(typeof(Shell), typeof(sail4oxygen.Platforms.CustomShellRenderer));
-#endif
+            //})
+            //.ConfigureEssentials(essentials =>
+            //{
+            //    essentials.UseVersionTracking();
             });
 
 #if DEBUG

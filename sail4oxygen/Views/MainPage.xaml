@@ -2,10 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:sail4oxygen"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="sail4oxygen.Views.MainPage"
              NavigationPage.HasNavigationBar="False"
-             Title="Send Data"
+             Title="Research the Oceans"
              >
+    <ContentPage.Behaviors>
+        <mct:EventToCommandBehavior Command="{Binding AppearingCommand}" EventName="Appearing" />
+    </ContentPage.Behaviors>
 
     <ScrollView>
         <VerticalStackLayout
@@ -13,7 +17,7 @@
             HorizontalOptions="FillAndExpand">
 
             <HorizontalStackLayout
-                Margin="0,24"
+                Margin="0,20"
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="CenterAndExpand">
                 
@@ -23,15 +27,6 @@
                     
                     Clicked="Faq_Clicked"
                     CornerRadius="24"/>
-
-                <Button
-                    Text="Reservation"
-                    Margin="12,12,12,12"
-                    x:Name="ReserveButton"
-                    Clicked="ReserveButton_Clicked"
-                    BackgroundColor="LightGray"
-                    CornerRadius="24"/>
-
                 <Button
                     Text="About"
                     Margin="12,12,12,12"
@@ -40,53 +35,95 @@
                     CornerRadius="24"/>
             </HorizontalStackLayout>
 
-            <HorizontalStackLayout>
-                <Label
-                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
-                    Margin="24,12,0,0"
-                    HorizontalOptions="Start"
-                    HorizontalTextAlignment="Start"
-                    Text="Activate when Sonde is on Board"
-                    FontAttributes="Bold"
-                    FontSize="Body" />
-
-                <Switch
-                    HorizontalOptions="EndAndExpand"
-                    x:Name="SondeSwitch" Toggled="SondeSwitch_Toggled"/>
-            </HorizontalStackLayout>
-
             <Label
                 TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
-                Margin="24,24,24,0"
+                Margin="24,24,0,0"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Start"
-                Text="1. Import Data from our sonde using the KOR-App and save your sample to a CSV-file."
-                FontSize="Body" />
+                Text="To upload your sample Data to GEOMAR Research Center Kiel:"
+                FontSize="Medium" />
 
             <Label
                 TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
                 Margin="24,12,24,0"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Start"
-                Text="2. Than click below and select that CSV-file. Your Mail-App will be launched automatically to send everything to GEOMAR."
-                FontSize="Body" />
+                Text="1. Import Data from a sail4oxygen-sonde using the KOR-App and export the results to a CSV-file."
+                FontSize="Small" />
+
+            <Label
+                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                Margin="24,12,24,0"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Start"
+                Text="2. Click below and select the previously created CSV-file. Your Mail-App will be launched automatically to send it to GEOMAR."
+                FontSize="Small" />
+
+            <BoxView
+                HeightRequest="1"
+                Margin="50,12,50,24"
+                Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Gray300}}"
+                />
+
+            <HorizontalStackLayout
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                x:Name="CoordinateEditor"
+                >
+                <VerticalStackLayout>
+                <Label
+                    Text="Latitude (xx,xxxxx)"
+                    FontSize="Micro"
+                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                    VerticalOptions="CenterAndExpand"/>
+                <Entry
+                    x:Name="LatitudeEntry"
+                    Placeholder="Wait for Coordinate"
+                    Text="{Binding MyLocation.Latitude , Mode=TwoWay, StringFormat='{0:00.00000}'}"
+                    FontSize="Small"
+                    VerticalOptions="CenterAndExpand"/>
+                
+                <Label
+                    Text="Longitude (xxx,xxxxx)"
+                    FontSize="Micro"
+                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                    VerticalOptions="CenterAndExpand"/>
+                <Entry
+                    x:Name="LongitudeEntry"
+                    Placeholder="Wait for Coordinate"
+                    Text="{Binding MyLocation.Longitude , Mode=TwoWay, StringFormat='{0:000.00000}'}"
+                    FontSize="Small"
+                    VerticalOptions="CenterAndExpand"/>
+                </VerticalStackLayout>
+
+                <Button
+                    Text="Reload GPS"
+                    Padding="8,8,8,8"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue25}}"
+                    TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource s4blue100}}"
+                    Margin="6,12,6,12"
+                    SemanticProperties.Hint="Reloads Coordinates from GPS"
+                    Clicked="OnGPSReload_Clicked"
+                    HorizontalOptions="Center" />
+
+            </HorizontalStackLayout>
+
 
             <Button
-                Text="Click me"
-                Padding="50,30,50,30"
+                Text="Select CSV File"
+                Padding="50,25,50,25"
                 BackgroundColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue25}}"
                 TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource s4blue100}}"
-                Margin="0,24,0,40"
+                Margin="0,24,0,20"
                 SemanticProperties.Hint="Loads a CSV File and prepares a Mail to send"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
 
-            <Label
-                TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray300}}"
-                Margin="24"
-                HorizontalOptions="Center"
-                Text="{Binding LocationText}"
-                FontSize="Small" />
+            <BoxView
+                HeightRequest="1"
+                Margin="50,12,50,24"
+                Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Gray300}}"
+                />
 
             <VerticalStackLayout
                 VerticalOptions="FillAndExpand">
@@ -101,10 +138,7 @@
                     HeightRequest="100"
                     VerticalOptions="Center"
                     HorizontalOptions="Center" />
-            
             </VerticalStackLayout>
-
-
         </VerticalStackLayout>
     </ScrollView>
 

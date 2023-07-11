@@ -15,7 +15,7 @@
 		<ApplicationTitle>sail4oxygen</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.sail4oxygen</ApplicationId>
+		<ApplicationId>com.hinnerk-weiler.sail4oxygen</ApplicationId>
 		<ApplicationIdGuid>d2654599-c272-444d-bc60-38539c35c012</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -32,9 +32,16 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
+	  <CodesignProvision>Automatic</CodesignProvision>
+	  <CodesignKey>iPhone Developer</CodesignKey>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
+	  <CodesignProvision>Automatic</CodesignProvision>
+	  <CodesignKey>iPhone Developer</CodesignKey>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	  <WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
@@ -51,6 +58,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -63,6 +71,9 @@
 	  <None Remove="Resources\AppIcon\s4oicon.svg" />
 	  <None Remove="Resources\AppIcon\appicon.svg" />
 	  <None Remove="Resources\Fonts\LucidaGrande.ttf" />
+	  <None Remove="Resources\Raw\faq.htm" />
+	  <None Remove="Resources\Images\sfoedit.svg" />
+	  <None Remove="Resources\Images\s4oedit.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -77,5 +88,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\LucidaGrande.ttf" />
+	  <BundleResource Include="Resources\Raw\faq.htm" />
 	</ItemGroup>
 </Project>

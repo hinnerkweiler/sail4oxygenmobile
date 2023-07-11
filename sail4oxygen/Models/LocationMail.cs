@@ -5,7 +5,13 @@ namespace sail4oxygen.Models
 {
 	public static class LocationMail
 	{
-		public static async Task<EmailAttachment> FromLocation(Location location)
+        //"sreissmann@geomar.de"
+#if DEBUG
+        static public string[] Recipients = new[] { "h.weiler@trans-ocean.org" };
+#else
+        static public string[] Recipients = new[] { "h.weiler@trans-ocean.org"  };
+#endif
+        public static async Task<EmailAttachment> FromLocation(Location location)
 		{
             var targetFileName = "location" + location.Timestamp.Ticks.ToString()+".txt";
             string targetFile = System.IO.Path.Combine(FileSystem.Current.CacheDirectory, targetFileName);

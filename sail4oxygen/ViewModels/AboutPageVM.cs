@@ -12,18 +12,18 @@ namespace sail4oxygen.ViewModels
 		[ObservableProperty]
 		public string aboutText;
 
-		public AboutPageVM()
+        [ObservableProperty]
+        public string privacyText;
+
+        public AboutPageVM()
 		{
-			DeveloperText = "<p>Made 2023 with \u2665 for the oceans by Hinnerk Weiler.<br/>This Software is provided as is and released under MIT License. Code and License text are available on GitHub.<p>";
-			AboutText = "<h1>Vestibulum nec convallis magna</h1>" +
-				"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget pharetra lacus, ac dapibus est. " +
-				"Mauris maximus purus ac tortor consequat, in pharetra arcu elementum. </p>" +
-				"<p>Sed malesuada, velit a auctor lacinia, erat eros luctus lectus, sed condimentum odio felis sit amet ipsum. Sed eu eros vel est congue auctor eu eu justo. </p>" +
-				"<p>Fusce suscipit, augue sed volutpat tempor, justo purus ullamcorper neque, vitae feugiat urna diam at nulla. Nullam ut justo id dui luctus eleifend. </p>" +
-                "<h3>Vestibulum nec convallis magna</h3>" + "<p>Nullam dictum dapibus lectus, id convallis risus commodo at.</p>" +
-                "<p>Nullam ut justo id dui luctus eleifend. Fusce suscipit, augue sed volutpat tempor, justo purus ullamcorper neque, vitae feugiat urna diam at nulla. </p>" +
-                "<p>Fusce suscipit, augue sed volutpat tempor, justo purus ullamcorper neque, vitae feugiat urna diam at nulla. Nullam ut justo id dui luctus eleifend. </p>" +
-                "<h3>Vestibulum nec convallis magna</h3>" + "<p>Nullam dictum dapibus lectus, id convallis risus commodo at.</p>";
+			DeveloperText = "<p>Made 2023 with \u2665 for the oceans by Hinnerk Weiler.<br />&lt;service@hinnerk-weiler.com&gt;<br />This Software is provided as is with no warranties and released under MIT License. Source code and full license text are available on the documentation page.<p>";
+
+			AboutText = "<h1>Be Part of the Research</h1>" +
+				$"<p style=\"margin:5px;\"><em>Citizen Science: Sailing for Oxygen</em> is a joint research project between the international renown german research center GEOMAR and Trans-Ocean Sailing Club. This compagnion App aims to assist you in becomming part of the research and keep you updated about the project. </p>" +
+				$"<p style=\"margin:5px;\">For more information and contact details you can visit the project Website at <strong>sail4oxygen.org</strong>. Technical support regarding this App is available using the contact details towards the end of this screen.</p>";
+
+			PrivacyText=$"<pstyle=\"margin:5px;\"><strong>Privacy Information:</strong> Transmitting a measurement reveals your location at the time of sample and the E-Mail-Address configured on your Phone to GEOMAR servers located in Germany. Registering as a participant, making a sonde reservation or confirming a sonde transmits information required to handle the given purpose. Only Information provided by you will be transmitted.";
         }
 	}
 }

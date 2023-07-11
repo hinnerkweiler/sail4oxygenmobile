@@ -6,12 +6,61 @@ namespace sail4oxygen.ViewModels
 {
 	public partial class MainPageVM : ObservableObject
 	{
+        //Setter for MyLocation updates LocationText and LatitudeString/LongitudeString and triggers OnPropertyChanged for LatitudeEntry
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(LocationText))]
+        [NotifyPropertyChangedFor(nameof(Latitude))]
+        [NotifyPropertyChangedFor(nameof(Longitude))]
         Location myLocation;
+
+        
+        public double Latitude
+        {
+            get
+            {
+                return MyLocation.Latitude;
+            }
+            set
+            {
+                MyLocation.Latitude = value;
+                OnPropertyChanged(nameof(LatitudeString));
+                OnPropertyChanged(nameof(LocationText));
+            }
+        }
+
+        public double Longitude
+        {
+            get
+            {
+                return MyLocation.Longitude;
+            }
+            set
+            {
+                MyLocation.Longitude = value;
+                OnPropertyChanged(nameof(LongitudeString));
+                OnPropertyChanged(nameof(LocationText));
+            }
+        }
+
 
 		[ObservableProperty]
 		FileResult csvFileToSend;
+
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsCoordinateEditorVisible))]
+        bool isCoordinateViewVisible = true;
+
+
+        public bool IsCoordinateEditorVisible
+        {
+            //opposite of IsCoordinateViewVisible
+            get
+            {
+                return !isCoordinateViewVisible;
+            }
+        }
+
 
         public string LocationText
         {
@@ -21,7 +70,9 @@ namespace sail4oxygen.ViewModels
             }
         }
 
+
         PickOptions filePickOptions = new();
+
 
         public string LatitudeString
         {
@@ -33,6 +84,7 @@ namespace sail4oxygen.ViewModels
                     return Math.Abs(MyLocation.Latitude).ToString("00.0##° S");
             }
         }
+
 
         public string LongitudeString
         {
@@ -54,22 +106,27 @@ namespace sail4oxygen.ViewModels
 		{
             screen.X = DeviceDisplay.Current.MainDisplayInfo.Width;
             screen.Y = DeviceDisplay.Current.MainDisplayInfo.Height;
-
         }
+
+        [CommunityToolkit.Mvvm.Input.RelayCommand]
+        async void Appearing()
+        {
+            MyLocation = await GetLocation();
+        }
+
 
 
         public async Task<bool> SendEMail()
         {
             string subject = "Sailing for Oxygen";
-            string body = "Hello friends! \n Here are our latest measurements. \n\n " + "Lat:  " + MyLocation.Latitude + "\nLong:  " + MyLocation.Longitude + "\nUTC  " + MyLocation.Timestamp.ToString("u");
-            string[] recipients = new[] { "h.weiler@trans-ocean.org", "kojefrei@gmail.com" };
+            string body = "Hello Friends, \n here are our latest measurements from \n\n " + "Lat:  " + MyLocation.Latitude + "\nLong:  " + MyLocation.Longitude + "\nUTC  " + MyLocation.Timestamp.ToString("u");
 
             var message = new EmailMessage
             {
                 Subject = subject,
                 Body = body,
                 BodyFormat = EmailBodyFormat.PlainText,
-                To = new List<string>(recipients)
+                To = new List<string>(Models.LocationMail.Recipients)
             };
 
             message.Attachments.Add(new EmailAttachment(CsvFileToSend.FullPath));
@@ -85,7 +142,7 @@ namespace sail4oxygen.ViewModels
         {
             try
             {
-                Location location = await Geolocation.Default.GetLastKnownLocationAsync();
+                Location location = await Geolocation.Default.GetLocationAsync();
 
                 if (location != null)
                     return location;
@@ -112,19 +169,51 @@ namespace sail4oxygen.ViewModels
 
         public async Task<FileResult> SelectFile(PickOptions options)
         {
+            FileResult result = null;
+
             try
             {
-                var result = await FilePicker.Default.PickAsync(filePickOptions);
-                
-                return result;
+                result = await FilePicker.Default.PickAsync(filePickOptions);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("The user canceled or something went wrong: ", ex);
             }
 
-            return null;
+            await AddLocationToCsv(result);
+
+            return result;
         }
+        
+        public async Task<bool> AddLocationToCsv(FileResult file)
+        {
+            try
+            {
+                string csvText = await File.ReadAllTextAsync(file.FullPath);
+                string[] csvLines = csvText.Split('\n');
+                string[] csvHeader = csvLines[0].Split(';');
+                string[] csvValues = csvLines[1].Split(';');
+
+                string newCsvText = csvLines[0] + ";Latitude;Longitude\n";
+
+                for (int i = 1; i < csvLines.Length; i++)
+                {
+                    newCsvText += csvLines[i] + ";" + MyLocation.Latitude + ";" + MyLocation.Longitude + "\n";
+                }
+
+                await File.WriteAllTextAsync(file.FullPath, newCsvText);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Something went wrong: ", ex);
+            }
+
+            return false;
+        } 
+
+
     }
 }
 
