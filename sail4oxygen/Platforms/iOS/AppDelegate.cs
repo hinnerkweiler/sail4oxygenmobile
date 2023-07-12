@@ -12,4 +12,3 @@ public class AppDelegate : MauiUIApplicationDelegate
         => Platform.PerformActionForShortcutItem(application, shortcutItem, completionHandler);
 
 }
-
