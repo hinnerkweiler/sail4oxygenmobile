@@ -3,16 +3,15 @@
 
 namespace sail4oxygen.Models
 {
-	public static class LocationMail
-	{
-        //"sreissmann@geomar.de"
+    public static class LocationMail
+    {
 #if DEBUG
         static public string[] Recipients = new[] { "h.weiler@trans-ocean.org" };
 #else
-        static public string[] Recipients = new[] { "h.weiler@trans-ocean.org"  };
+        static public string[] Recipients = new[] { "h.weiler@trans-ocean.org", "dm-data@geomar.de" };
 #endif
         public static async Task<EmailAttachment> FromLocation(Location location)
-		{
+	{
             var targetFileName = "location" + location.Timestamp.Ticks.ToString()+".txt";
             string targetFile = System.IO.Path.Combine(FileSystem.Current.CacheDirectory, targetFileName);
 
@@ -24,7 +23,7 @@ namespace sail4oxygen.Models
 
             return new EmailAttachment(targetFile);
             
-        }
+        }        
     }
 }
 

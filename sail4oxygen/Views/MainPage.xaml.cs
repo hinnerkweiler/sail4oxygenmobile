@@ -25,7 +25,6 @@ public partial class MainPage : ContentPage
         }
 
         //Activated
-
     }
 
 
