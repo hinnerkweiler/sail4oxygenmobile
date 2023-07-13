@@ -6,13 +6,14 @@ namespace sail4oxygen.ViewModels
 {
 	public partial class MainPageVM : ObservableObject
 	{
-        //Setter for MyLocation updates LocationText and LatitudeString/LongitudeString and triggers OnPropertyChanged for LatitudeEntry
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(LocationText))]
         [NotifyPropertyChangedFor(nameof(Latitude))]
         [NotifyPropertyChangedFor(nameof(Longitude))]
         Location myLocation;
-        
+
+
+
         public double Latitude
         {
             get
@@ -26,6 +27,8 @@ namespace sail4oxygen.ViewModels
                 OnPropertyChanged(nameof(LocationText));
             }
         }
+
+
 
         public double Longitude
         {
@@ -42,13 +45,16 @@ namespace sail4oxygen.ViewModels
         }
 
 
+
 		[ObservableProperty]
 		FileResult csvFileToSend;
+
 
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsCoordinateEditorVisible))]
         bool isCoordinateViewVisible = true;
+
 
 
         public bool IsCoordinateEditorVisible
@@ -61,6 +67,7 @@ namespace sail4oxygen.ViewModels
         }
 
 
+
         public string LocationText
         {
             get
@@ -70,7 +77,9 @@ namespace sail4oxygen.ViewModels
         }
 
 
+
         PickOptions filePickOptions = new();
+
 
 
         public string LatitudeString
@@ -83,6 +92,7 @@ namespace sail4oxygen.ViewModels
                     return Math.Abs(MyLocation.Latitude).ToString("00.0##° S");
             }
         }
+
 
 
         public string LongitudeString
@@ -117,19 +127,17 @@ namespace sail4oxygen.ViewModels
 
         public MainPageVM()
 		{
-            screen.X = DeviceDisplay.Current.MainDisplayInfo.Width;
-            screen.Y = DeviceDisplay.Current.MainDisplayInfo.Height;
-            
+
         }
 
 
 
         public FileResult HandleCsvFile(Uri fileUri)
         {
+#if DEBUG
             Console.WriteLine("********Recived from Share in VM (uri): " + fileUri.AbsoluteUri);
             Console.WriteLine("********Recived from Share in VM (path): " + fileUri.AbsolutePath);
-
-            //
+#endif
             return new FileResult(Models.SharedData.FileUri.AbsolutePath);
         }
 
@@ -161,10 +169,11 @@ namespace sail4oxygen.ViewModels
 
             await Email.Default.ComposeAsync(message);
 
-            //Models.SharedData.Cleanup();
+            //ToDo: cleanup the Shared Data string
 
             return true;
         }
+
 
 
         public async Task<Location> GetLocation()
@@ -196,10 +205,11 @@ namespace sail4oxygen.ViewModels
             return null;
         }
 
+
+
         public async Task<FileResult> SelectFile(PickOptions options)
         {
             FileResult result = null;
-            
 
             if (Models.SharedData.FileUri == null || Models.SharedData.FileUri.AbsolutePath == "")
             {
@@ -227,10 +237,11 @@ namespace sail4oxygen.ViewModels
 
             return result;
         }
-        
+
+
+
         public async Task<bool> AddLocationToCsv(Uri file)
         {
-            Console.WriteLine("******** IS FILE: "+ file.LocalPath);
             try
             {
                 string csvText = await File.ReadAllTextAsync(file.LocalPath);
@@ -251,13 +262,10 @@ namespace sail4oxygen.ViewModels
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Something went wrong: ", ex);
+                Console.WriteLine("Something went wrong: ", ex.Message);
             }
-
             return false;
         } 
-
-
     }
 }
 
