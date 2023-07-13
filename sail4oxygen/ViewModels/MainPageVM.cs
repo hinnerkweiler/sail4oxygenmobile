@@ -12,7 +12,6 @@ namespace sail4oxygen.ViewModels
         [NotifyPropertyChangedFor(nameof(Latitude))]
         [NotifyPropertyChangedFor(nameof(Longitude))]
         Location myLocation;
-
         
         public double Latitude
         {
@@ -101,12 +100,40 @@ namespace sail4oxygen.ViewModels
         [ObservableProperty]
         private Models.ScreenInfo screen = new();
 
+        public string SendButtonText
+        {
+            get
+            {
+                if (Models.SharedData.FileUri != null && Models.SharedData.FileUri.AbsolutePath != "")
+                {
+                    return "Send to GEOMAR";
+                }
+                return "Select CSV File";
+            }
+        }
+
+
+
 
         public MainPageVM()
 		{
             screen.X = DeviceDisplay.Current.MainDisplayInfo.Width;
             screen.Y = DeviceDisplay.Current.MainDisplayInfo.Height;
+            
         }
+
+
+
+        public FileResult HandleCsvFile(Uri fileUri)
+        {
+            Console.WriteLine("********Recived from Share in VM (uri): " + fileUri.AbsoluteUri);
+            Console.WriteLine("********Recived from Share in VM (path): " + fileUri.AbsolutePath);
+
+            //
+            return new FileResult(Models.SharedData.FileUri.AbsolutePath);
+        }
+
+
 
         [CommunityToolkit.Mvvm.Input.RelayCommand]
         async void Appearing()
@@ -133,6 +160,8 @@ namespace sail4oxygen.ViewModels
             message.Attachments.Add(await Models.LocationMail.FromLocation(MyLocation));
 
             await Email.Default.ComposeAsync(message);
+
+            //Models.SharedData.Cleanup();
 
             return true;
         }
@@ -170,26 +199,41 @@ namespace sail4oxygen.ViewModels
         public async Task<FileResult> SelectFile(PickOptions options)
         {
             FileResult result = null;
+            
 
-            try
+            if (Models.SharedData.FileUri == null || Models.SharedData.FileUri.AbsolutePath == "")
             {
-                result = await FilePicker.Default.PickAsync(filePickOptions);
+                try
+                {
+                    Uri fileUri = null;
+                    var file = await FilePicker.Default.PickAsync(filePickOptions);
+                    if (file != null)
+                    {
+                        fileUri = new Uri(file.FullPath);
+                        Models.SharedData.FileUri = fileUri;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("The user canceled or something went wrong: ", ex);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine("The user canceled or something went wrong: ", ex);
+                result = HandleCsvFile(Models.SharedData.FileUri);
             }
 
-            await AddLocationToCsv(result);
+            await AddLocationToCsv(Models.SharedData.FileUri);
 
             return result;
         }
         
-        public async Task<bool> AddLocationToCsv(FileResult file)
+        public async Task<bool> AddLocationToCsv(Uri file)
         {
+            Console.WriteLine("******** IS FILE: "+ file.LocalPath);
             try
             {
-                string csvText = await File.ReadAllTextAsync(file.FullPath);
+                string csvText = await File.ReadAllTextAsync(file.LocalPath);
                 string[] csvLines = csvText.Split('\n');
                 string[] csvHeader = csvLines[0].Split(';');
                 string[] csvValues = csvLines[1].Split(';');
@@ -201,7 +245,7 @@ namespace sail4oxygen.ViewModels
                     newCsvText += csvLines[i] + ";" + MyLocation.Latitude + ";" + MyLocation.Longitude + "\n";
                 }
 
-                await File.WriteAllTextAsync(file.FullPath, newCsvText);
+                await File.WriteAllTextAsync(file.LocalPath, newCsvText);
 
                 return true;
             }

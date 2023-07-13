@@ -110,7 +110,7 @@
 
 
             <Button
-                Text="Select CSV File"
+                Text="{Binding SendButtonText}"
                 Padding="50,25,50,25"
                 BackgroundColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue25}}"
                 TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource s4blue100}}"
