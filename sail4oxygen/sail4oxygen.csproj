@@ -43,6 +43,9 @@
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 	  <WarningLevel>4</WarningLevel>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiImage Include="Resources\Images\*" />
@@ -69,11 +72,11 @@
 	  <None Remove="Resources\Images\s4ologos.svg" />
 	  <None Remove="Resources\Splash\s4osplash.svg" />
 	  <None Remove="Resources\AppIcon\s4oicon.svg" />
-	  <None Remove="Resources\AppIcon\appicon.svg" />
 	  <None Remove="Resources\Fonts\LucidaGrande.ttf" />
 	  <None Remove="Resources\Raw\faq.htm" />
 	  <None Remove="Resources\Images\sfoedit.svg" />
 	  <None Remove="Resources\Images\s4oedit.png" />
+	  <None Remove="Resources\AppIcon\appicon.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -84,10 +87,10 @@
 	  <MauiSplashScreen Include="Resources\Splash\s4osplash.svg" BaseSize="1024,1024" Color="#FFFFFF" />
 	</ItemGroup>
 	<ItemGroup>
-	  <MauiIcon Include="Resources\AppIcon\appicon.svg" />
-	</ItemGroup>
-	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\LucidaGrande.ttf" />
 	  <BundleResource Include="Resources\Raw\faq.htm" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiIcon Include="Resources\AppIcon\appicon.png" />
 	</ItemGroup>
 </Project>
