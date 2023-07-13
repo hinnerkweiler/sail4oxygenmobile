@@ -107,6 +107,20 @@ namespace sail4oxygen.ViewModels
         }
 
 
+
+        public Uri CsvFile
+        {
+            get => Models.SharedData.FileUri;
+
+            set
+            {
+                Models.SharedData.FileUri = value;
+                OnPropertyChanged(nameof(SendButtonText));
+            }
+        }
+
+
+
         [ObservableProperty]
         private Models.ScreenInfo screen = new();
 
@@ -114,11 +128,7 @@ namespace sail4oxygen.ViewModels
         {
             get
             {
-                if (Models.SharedData.FileUri != null && Models.SharedData.FileUri.AbsolutePath != "")
-                {
-                    return "Send to GEOMAR";
-                }
-                return "Select CSV File";
+                return "Send CSV File to Geomar";
             }
         }
 
