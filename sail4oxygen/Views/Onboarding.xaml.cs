@@ -28,6 +28,9 @@ public partial class Onboarding : ContentPage
 
     }
 
+    
+
+
     async void authorize_Clicked(System.Object sender, System.EventArgs e)
     {
         // Save E-Mail and Registration to secure storage
@@ -39,5 +42,18 @@ public partial class Onboarding : ContentPage
     async void exit_Clicked(System.Object sender, System.EventArgs e)
     {
         await Shell.Current.GoToAsync("..");
+    }
+
+    async void installkor_Clicked(System.Object sender, System.EventArgs e)
+    {
+        try
+        {
+            Uri uri = new Uri("https://play.google.com/store/apps/details?id=com.xylem.kor");
+            await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
     }
 }

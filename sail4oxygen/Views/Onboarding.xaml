@@ -57,6 +57,23 @@
                 Text="Authorize App"/>
             </Grid>
 
+             <Label
+                Margin="0,12"
+                FontSize="Body"
+                TextType="Html"
+                Text="To get fully on board with your research set up the KOR-App is also needed to download data from a sonde. We try to solve the need for a second app with the manufactuerer in the future."
+                />
+
+            <Button
+                Grid.Row="0" Grid.Column="1"
+                Margin="6,12"
+                x:Name="installkor"
+                Clicked="installkor_Clicked"
+                Text="Install KOR on your Device"
+                />
+
+
+
             <Frame
                 Margin="12">
                 <VerticalStackLayout
