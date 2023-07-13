@@ -56,7 +56,7 @@ namespace sail4oxygen.ViewModels
             //opposite of IsCoordinateViewVisible
             get
             {
-                return !isCoordinateViewVisible;
+                return !IsCoordinateViewVisible;
             }
         }
 
