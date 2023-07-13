@@ -17,51 +17,60 @@
             HorizontalOptions="FillAndExpand">
 
             <HorizontalStackLayout
-                Margin="0,20"
+                Margin="0,6
+                "
                 VerticalOptions="FillAndExpand"
-                HorizontalOptions="CenterAndExpand">
-                
+                HorizontalOptions="EndAndExpand">
                 <Button
                     Text="Guide &amp; FAQ"
-                    Margin="12,12,12,12"
-                    
+                    Margin="8,8,8,8"
                     Clicked="Faq_Clicked"
-                    CornerRadius="24"/>
+                    />
                 <Button
                     Text="About"
-                    Margin="12,12,12,12"
-                    
+                    Margin="8,8,8,8"
                     Clicked="About_Clicked"
-                    CornerRadius="24"/>
+                    />
             </HorizontalStackLayout>
 
             <Label
                 TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
-                Margin="24,24,0,0"
+                Margin="24,6,0,0"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Start"
-                Text="To upload your sample Data to GEOMAR Research Center Kiel:"
+                Text="To upload your sample CSV-Data to GEOMAR Research Center in Kiel:"
                 FontSize="Medium" />
 
             <Label
                 TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
-                Margin="24,12,24,0"
+                Margin="24,8,24,0"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Start"
-                Text="1. Import Data from a sail4oxygen-sonde using the KOR-App and export the results to a CSV-file."
+                TextType="Html"
+                Text="1. Open the &lt;strong&gt;KOR-App&lt;/strong&gt; and import your measurement from a sonde. Than export the data to a CSV-file."
                 FontSize="Small" />
 
             <Label
                 TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
-                Margin="24,12,24,0"
+                Margin="24,8,24,0"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Start"
-                Text="2. Click below and select the previously created CSV-file. Your Mail-App will be launched automatically to send it to GEOMAR."
+                TextType="Html"
+                Text="2. Select &lt;strong&gt;sail4oxigen&lt;/strong&gt; from the share screen to come back here. &lt;strong&gt;Update Coordinates&lt;/strong&gt; and press &lt;strong&gt;Send CSV-File&lt;/strong&gt;."
                 FontSize="Small" />
+
+            <Label
+                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                Margin="24,8,24,0"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Start"
+                TextType="Html"
+                Text="Your Mail-App will be launched automatically to transmit the data. (If you are prompted to select a File no CSV-File was shared from KOR-App.)"
+                FontSize="Micro" />
 
             <BoxView
                 HeightRequest="1"
-                Margin="50,12,50,24"
+                Margin="50,12,50,12"
                 Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Gray300}}"
                 />
 
@@ -72,7 +81,8 @@
                 >
                 <VerticalStackLayout>
                 <Label
-                    Text="Latitude (xx,xxxxx)"
+                    TextType="Html"
+                    Text="Latitude &lt;em&gt;(xx,xxxxx)&lt;/em&gt;"
                     FontSize="Micro"
                     TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
                     VerticalOptions="CenterAndExpand"/>
@@ -84,7 +94,8 @@
                     VerticalOptions="CenterAndExpand"/>
                 
                 <Label
-                    Text="Longitude (xxx,xxxxx)"
+                    TextType="Html"
+                    Text="Longitude &lt;em&gt;(xxx,xxxxx)&lt;/em&gt;"
                     FontSize="Micro"
                     TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
                     VerticalOptions="CenterAndExpand"/>
