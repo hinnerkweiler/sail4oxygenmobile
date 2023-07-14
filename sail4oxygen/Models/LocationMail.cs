@@ -22,8 +22,7 @@ namespace sail4oxygen.Models
             await streamWriter.WriteAsync(location.Latitude.ToString()+","+location.Latitude.ToString()+","+location.Timestamp.ToString("u"));
 
             return new EmailAttachment(targetFile);
-            
-        }        
+        }
     }
 }
 
