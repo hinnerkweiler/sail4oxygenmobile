@@ -3,6 +3,7 @@ namespace sail4oxygen.Models
 {
 	public static class SharedData
 	{
+        public static string LastError;
         private static Uri fileUri;
         public static Uri FileUri
         {
