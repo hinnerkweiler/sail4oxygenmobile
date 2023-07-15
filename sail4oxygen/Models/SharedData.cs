@@ -21,8 +21,15 @@ namespace sail4oxygen.Models
 
         public static void FileUriFromString(string uriString)
         {
-            var uri = new Uri(uriString);
-            FileUri = uri;
+            try
+            {
+                var uri = new Uri(uriString);
+                FileUri = uri;
+            }
+            catch (Exception e)
+            {
+                LastError = e.Message;
+            }
         }
     }
     

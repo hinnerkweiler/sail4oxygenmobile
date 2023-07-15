@@ -13,15 +13,22 @@ namespace sail4oxygen.Models
         public static async Task<EmailAttachment> FromLocation(Location location)
 	{
             var targetFileName = "location" + location.Timestamp.Ticks.ToString()+".txt";
-            string targetFile = System.IO.Path.Combine(FileSystem.Current.CacheDirectory, targetFileName);
+            try
+            {
+                var targetFile = System.IO.Path.Combine(FileSystem.Current.CacheDirectory, targetFileName);
+                using FileStream outputStream = System.IO.File.OpenWrite(targetFile);
+                using StreamWriter streamWriter = new StreamWriter(outputStream);
 
+                await streamWriter.WriteAsync(location.Latitude.ToString() + "," + location.Longitude.ToString() + "," + location.Timestamp.ToString("u"));
 
-            using FileStream outputStream = System.IO.File.OpenWrite(targetFile);
-            using StreamWriter streamWriter = new StreamWriter(outputStream);
-
-            await streamWriter.WriteAsync(location.Latitude.ToString()+","+location.Latitude.ToString()+","+location.Timestamp.ToString("u"));
-
-            return new EmailAttachment(targetFile);
+                return new EmailAttachment(targetFile);
+            }
+            catch (Exception ex)
+            {
+                SharedData.LastError = ex.Message;
+                Console.WriteLine(ex.Message);
+                return null;
+            }
         }
     }
 }
