@@ -3,8 +3,11 @@ namespace sail4oxygen.Models
 {
 	public static class CSVHelper
 	{
+        const int headerRowNumber = 10;
         public static async Task<bool> AddLocation(Uri file, Location location)
         {
+            
+
             try
             {
                 string csvText = await File.ReadAllTextAsync(file.LocalPath);
