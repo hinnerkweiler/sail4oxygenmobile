@@ -31,16 +31,8 @@ public partial class MainPage : ContentPage
 
 	private async void OnCounterClicked(object sender, EventArgs e)
 	{
-        MainPageVM.CsvFileToSend = await MainPageVM.SelectFile(null);
+        _ = await MainPageVM.SelectFile(null);
 
-        if ((MainPageVM.CsvFileToSend!= null) && (MainPageVM.CsvFileToSend.FullPath != ""))
-        {
-            _ = MainPageVM.SendEMail();
-        }
-        else
-        {
-            await DisplayAlert("Canceled!", "You did not select a file to send.", "OK");
-        }
     }
 
 
