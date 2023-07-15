@@ -8,41 +8,8 @@ namespace sail4oxygen.ViewModels
 	{
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(LocationText))]
-        [NotifyPropertyChangedFor(nameof(Latitude))]
-        [NotifyPropertyChangedFor(nameof(Longitude))]
+        
         Location myLocation;
-
-
-
-        public double Latitude
-        {
-            get
-            {
-                return MyLocation.Latitude;
-            }
-            set
-            {
-                MyLocation.Latitude = value;
-                OnPropertyChanged(nameof(LatitudeString));
-                OnPropertyChanged(nameof(LocationText));
-            }
-        }
-
-
-
-        public double Longitude
-        {
-            get
-            {
-                return MyLocation.Longitude;
-            }
-            set
-            {
-                MyLocation.Longitude = value;
-                OnPropertyChanged(nameof(LongitudeString));
-                OnPropertyChanged(nameof(LocationText));
-            }
-        }
 
 
 
@@ -108,17 +75,7 @@ namespace sail4oxygen.ViewModels
 
 
 
-        public Uri CsvFile
-        {
-            get => Models.SharedData.FileUri;
-
-            set
-            {
-                Models.SharedData.FileUri = value;
-                OnPropertyChanged(nameof(SendButtonText));
-            }
-        }
-
+        
 
 
         [ObservableProperty]
@@ -218,41 +175,84 @@ namespace sail4oxygen.ViewModels
 
 
 
-        public async Task<FileResult> SelectFile(PickOptions options)
+        public async Task<bool> SelectFile(PickOptions options)
         {
-            FileResult result = null;
-
-            if (Models.SharedData.FileUri == null || Models.SharedData.FileUri.AbsolutePath == "")
+            if (ValidateLatitude(MyLocation.Latitude.ToString()) && ValidateLongitude(MyLocation.Longitude.ToString()))
             {
-                try
+                FileResult result = null;
+
+                if (Models.SharedData.FileUri == null || Models.SharedData.FileUri.AbsolutePath == "")
                 {
-                    Uri fileUri = null;
-                    var file = await FilePicker.Default.PickAsync(filePickOptions);
-                    if (file != null)
+                    try
                     {
-                        fileUri = new Uri(file.FullPath);
-                        Models.SharedData.FileUri = fileUri;
+                        Uri fileUri = null;
+                        var file = await FilePicker.Default.PickAsync(filePickOptions);
+                        if (file != null)
+                        {
+                            fileUri = new Uri(file.FullPath);
+                            Models.SharedData.FileUri = fileUri;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("The user canceled or something went wrong: ", ex.Message);
+                        await Application.Current.MainPage.DisplayAlert("Nothing sent!", $"Bummer! Can not select a File: {ex.Message}", "OK");
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine("The user canceled or something went wrong: ", ex);
+                    result = HandleCsvFile(Models.SharedData.FileUri);
                 }
+
+                if (await Models.CSVHelper.AddLocation(Models.SharedData.FileUri, MyLocation))
+                {
+                    await SendEMail();
+                    await Application.Current.MainPage.DisplayAlert("Data sent!", $"Thank you for participating. Your measurement will be available for scientists in a few seconds.", "OK");
+
+                    return true;
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Nothing sent!", $"Bummer! Something went wrong: {Models.SharedData.LastError}", "OK");
+                }
+
+                return true;
             }
             else
             {
-                result = HandleCsvFile(Models.SharedData.FileUri);
+                await Application.Current.MainPage.DisplayAlert("Nothing sent!", $"Please enter valid Coordinates for Kiel Bight", "OK");
             }
-
-            if (await Models.CSVHelper.AddLocation(Models.SharedData.FileUri,MyLocation))
-            {
-                await SendEMail();
-            }
-
-            Models.SharedData.FileUri = null;
-
-            return result;
+            return false;
         }
+
+
+
+        static public bool ValidateLatitude(string value)
+        {
+            if (double.TryParse(value, out double result))
+            {
+                if (result >= 54 && result <= 56)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+
+        static public bool ValidateLongitude(string value)
+        {
+            if (double.TryParse(value, out double result))
+            {
+                if (result >= 9 && result <= 11)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }
 
