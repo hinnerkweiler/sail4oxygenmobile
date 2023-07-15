@@ -6,8 +6,6 @@ namespace sail4oxygen.Models
         const int headerRowNumber = 10;
         public static async Task<bool> AddLocation(Uri file, Location location)
         {
-            
-
             try
             {
                 string csvText = await File.ReadAllTextAsync(file.LocalPath);
@@ -77,6 +75,7 @@ namespace sail4oxygen.Models
                         }
                         else
                         {
+                            Models.SharedData.LastError = $"File was {fileage} Minutes old and coordinates were not adjusted";
                             return false;
                         }
                     }
@@ -87,15 +86,17 @@ namespace sail4oxygen.Models
                 }
                 else
                 {
+                    Models.SharedData.LastError = "File is not a valid measurement file.";
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("VerifyCsvIsValidFile – Something went wrong: ", ex.Message);
+                Models.SharedData.LastError = "VerifyCsvIsValidFile: " + ex.Message;
+                Console.WriteLine(Models.SharedData.LastError);
             }   
 #if DEBUG
-            Console.WriteLine("VerifyCsvIsValidFile – File is not valid");
+            Console.WriteLine(Models.SharedData.LastError);
 #endif
             return false;
         }
