@@ -243,7 +243,12 @@ namespace sail4oxygen.ViewModels
                 result = HandleCsvFile(Models.SharedData.FileUri);
             }
 
-            await Models.CSVHelper.AddLocation(Models.SharedData.FileUri,MyLocation);
+            if (await Models.CSVHelper.AddLocation(Models.SharedData.FileUri,MyLocation))
+            {
+                await SendEMail();
+            }
+
+            Models.SharedData.FileUri = null;
 
             return result;
         }
