@@ -164,7 +164,10 @@ namespace sail4oxygen.ViewModels
         public async Task<bool> SendEMail()
         {
             string subject = "Sailing for Oxygen";
-            string body = "Hello Friends, \n here are our latest measurements from \n\n " + "Lat:  " + MyLocation.Latitude + "\nLong:  " + MyLocation.Longitude + "\nUTC  " + MyLocation.Timestamp.ToString("u");
+            string body = "Hello Friends, \n here are our latest measurements from \n\n " + 
+                                "Lat:  " + MyLocation.Latitude + 
+                                "\nLong:  " + MyLocation.Longitude + 
+                                "\nUTC  " + MyLocation.Timestamp.ToString("u");
 
             var message = new EmailMessage
             {
@@ -178,9 +181,7 @@ namespace sail4oxygen.ViewModels
             message.Attachments.Add(await Models.LocationMail.FromLocation(MyLocation));
 
             await Email.Default.ComposeAsync(message);
-
-            //ToDo: cleanup the Shared Data string
-
+            
             return true;
         }
 

@@ -94,11 +94,8 @@ namespace sail4oxygen.Models
             {
                 Models.SharedData.LastError = "VerifyCsvIsValidFile: " + ex.Message;
                 Console.WriteLine(Models.SharedData.LastError);
+                return false;
             }   
-#if DEBUG
-            Console.WriteLine(Models.SharedData.LastError);
-#endif
-            return false;
         }
     }
 }

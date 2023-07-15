@@ -11,7 +11,9 @@ namespace sail4oxygen.Models
 
             set
             {
+#if DEBUG
                 Console.WriteLine("*****************Set Path"+value.ToString());
+#endif
                 fileUri = value;
             }
         }
