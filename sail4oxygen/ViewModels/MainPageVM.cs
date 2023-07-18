@@ -259,13 +259,13 @@ namespace sail4oxygen.ViewModels
                 {
                     await Email.Default.ComposeAsync(await Models.Mail.Send(MyLocation, CsvFileToSend.FullPath));
 
-                    await Application.Current.MainPage.DisplayAlert("Thank You!", $"Usually once sent your measurement will be available for scientists in a few seconds.", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Thank You!", $"Once sent, your measurement will be available for scientists in a few seconds.", "OK");
 
                     Cleanup();
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Nothing sent!", $"Bummer! Something went wrong. {Models.SharedData.LastError}", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Nothing sent!", $"If you canceled sending to correct coordinates just press the Send-Button again. If this is unexpected your file was either corrupt or not a KOR Measurement. {Models.SharedData.LastError}", "OK");
                 }
                 return true;
             }

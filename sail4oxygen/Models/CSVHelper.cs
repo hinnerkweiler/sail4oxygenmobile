@@ -9,10 +9,8 @@ namespace sail4oxygen.Models
 
         const int maxMeasureAge = 30;
 
-        public static event EventHandler<string> SharedFileHandled;
-
-
-        public static async Task<bool> AddLocation(string file, Location location)
+       
+               public static async Task<bool> AddLocation(string file, Location location)
         {
             try
             {

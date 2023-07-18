@@ -23,8 +23,8 @@ namespace sail4oxygen.Models
         }
 
 
-        private static Uri? fileUri;
-        public static Uri? FileUri
+        private static Uri fileUri;
+        public static Uri FileUri
         {
             get => fileUri;
 
