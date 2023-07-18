@@ -1,5 +1,9 @@
 ﻿#sail4oxygen
 
+### 0.9.1 (Android only)
+
++ allow dot notation for decimal coordinates
+
 ### 0.9 (Android only)
 
 + changed mime type for share intent from text/comma-seperated-values to */*
