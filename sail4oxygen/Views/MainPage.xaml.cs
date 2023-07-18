@@ -2,8 +2,6 @@
 
 namespace sail4oxygen.Views;
 
-
-
 public partial class MainPage : ContentPage
 {
     public static ViewModels.MainPageVM MainPageVM = new();
@@ -15,8 +13,6 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
         Routing.RegisterRoute(nameof(AboutPage), typeof(AboutPage));
         Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
-        Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
-        Routing.RegisterRoute(nameof(FaqPage), typeof(FaqPage));
         Routing.RegisterRoute(nameof(Onboarding), typeof(Onboarding));
 
         if (VersionTracking.Default.IsFirstLaunchEver)
@@ -72,6 +68,11 @@ public partial class MainPage : ContentPage
     async void SaveCoordinatesButton_Clicked(System.Object sender, System.EventArgs e)
     {
         MainPageVM.IsCoordinateViewVisible = true;
+    }
+
+    async void OnFileRemove_Clicked(System.Object sender, System.EventArgs e)
+    {
+        MainPageVM.Cleanup();
     }
 }
 

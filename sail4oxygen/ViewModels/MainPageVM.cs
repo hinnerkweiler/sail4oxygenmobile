@@ -8,15 +8,47 @@ namespace sail4oxygen.ViewModels
 	{
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(LocationText))]
-        
+
+
+
         Location myLocation;
 
 
 
-		[ObservableProperty]
-		FileResult csvFileToSend;
+        public bool CoordinatesValid
+        {
+            get
+            {
+                if (LatitudeIsValid && LongitudeIsValid)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
 
 
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(CoordinatesValid))]
+        bool latitudeIsValid;
+
+
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(CoordinatesValid))]
+        bool longitudeIsValid;
+
+
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(FileName))]
+        [NotifyPropertyChangedFor(nameof(SendButtonText))]
+        [NotifyPropertyChangedFor(nameof(FileRemoveButtonVisible))]
+        
+		FileResult csvFileToSend = null;
+
+        
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsCoordinateEditorVisible))]
@@ -74,7 +106,15 @@ namespace sail4oxygen.ViewModels
         }
 
 
-
+        public bool FileRemoveButtonVisible
+        {
+            get
+            {
+                if (CsvFileToSend == null)
+                    return false;
+                return true;
+            }
+        }
         
 
 
@@ -85,27 +125,71 @@ namespace sail4oxygen.ViewModels
         {
             get
             {
-                return "Send CSV File to Geomar";
+                if (CsvFileToSend == null)
+                    return "Choose and Send a CSV File";
+                else
+                    return "Send selected File to Geomar";
             }
         }
 
 
 
+        public string FileName
+        {
+            get
+            {
+                if (CsvFileToSend == null)
+                    return "No CSV File selected";
+                else
+                    return CsvFileToSend.FileName;
+            }
+        }
+
+
+        
+
+
 
         public MainPageVM()
 		{
-
+            if (Models.SharedData.StartFromShare)
+            {
+                HandleCsvFileShared(null, Models.SharedData.FileUri?.AbsolutePath);
+            }
+            else
+            {
+                Models.SharedData.SharedFileHandled += HandleCsvFileShared;
+            }
         }
 
 
 
-        public FileResult HandleCsvFile(Uri fileUri)
+        public async void HandleCsvFileShared(object? sender, string filePath)
         {
+            Models.SharedData.SharedFileHandled -= HandleCsvFileShared;
+            
 #if DEBUG
-            Console.WriteLine("********Recived from Share in VM (uri): " + fileUri.AbsoluteUri);
-            Console.WriteLine("********Recived from Share in VM (path): " + fileUri.AbsolutePath);
+            Console.WriteLine("********Startet from Share ");
+            Console.WriteLine("********Recived from Share (path): " + filePath);
 #endif
-            return new FileResult(Models.SharedData.FileUri.AbsolutePath);
+            try
+            {
+                CsvFileToSend = new FileResult(filePath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                await Application.Current.MainPage.DisplayAlert("File Error", $"Bummer! Shared Data could not be read.", "OK");
+                Cleanup();
+            }
+            OnPropertyChanged(nameof(FileName));
+            OnPropertyChanged(nameof(FileRemoveButtonVisible));
+            
+#if DEBUG
+            Console.WriteLine("********Filename: "+FileName);
+#endif
+            Models.SharedData.SharedFileHandled += HandleCsvFileShared;
+
         }
 
 
@@ -114,32 +198,6 @@ namespace sail4oxygen.ViewModels
         async void Appearing()
         {
             MyLocation = await GetLocation();
-        }
-
-
-
-        public async Task<bool> SendEMail()
-        {
-            string subject = "Sailing for Oxygen";
-            string body = "Hello Friends, \n here are our latest measurements from \n\n " + 
-                                "Lat:  " + MyLocation.Latitude + 
-                                "\nLong:  " + MyLocation.Longitude + 
-                                "\nUTC  " + MyLocation.Timestamp.ToString("u");
-
-            var message = new EmailMessage
-            {
-                Subject = subject,
-                Body = body,
-                BodyFormat = EmailBodyFormat.PlainText,
-                To = new List<string>(Models.LocationMail.Recipients)
-            };
-
-            message.Attachments.Add(new EmailAttachment(CsvFileToSend.FullPath));
-            message.Attachments.Add(await Models.LocationMail.FromLocation(MyLocation));
-
-            await Email.Default.ComposeAsync(message);
-            
-            return true;
         }
 
 
@@ -169,7 +227,6 @@ namespace sail4oxygen.ViewModels
             {
                 Console.WriteLine(ex);
             }
-
             return null;
         }
 
@@ -177,20 +234,18 @@ namespace sail4oxygen.ViewModels
 
         public async Task<bool> SelectFile(PickOptions options)
         {
-            if (ValidateLatitude(MyLocation.Latitude.ToString()) && ValidateLongitude(MyLocation.Longitude.ToString()))
+            if (CoordinatesValid)
             {
-                FileResult result = null;
+                //FileResult result = null;
 
-                if (Models.SharedData.FileUri == null || Models.SharedData.FileUri.AbsolutePath == "")
+                if (CsvFileToSend == null || CsvFileToSend.FileName == "")
                 {
                     try
                     {
-                        Uri fileUri = null;
                         var file = await FilePicker.Default.PickAsync(filePickOptions);
                         if (file != null)
                         {
-                            fileUri = new Uri(file.FullPath);
-                            Models.SharedData.FileUri = fileUri;
+                            CsvFileToSend = file;
                         }
                     }
                     catch (Exception ex)
@@ -199,23 +254,19 @@ namespace sail4oxygen.ViewModels
                         await Application.Current.MainPage.DisplayAlert("Nothing sent!", $"Bummer! Can not select a File: {ex.Message}", "OK");
                     }
                 }
-                else
+                
+                if (await Models.CSVHelper.AddLocation(CsvFileToSend.FullPath, MyLocation))
                 {
-                    result = HandleCsvFile(Models.SharedData.FileUri);
-                }
+                    await Email.Default.ComposeAsync(await Models.Mail.Send(MyLocation, CsvFileToSend.FullPath));
 
-                if (await Models.CSVHelper.AddLocation(Models.SharedData.FileUri, MyLocation))
-                {
-                    await SendEMail();
-                    await Application.Current.MainPage.DisplayAlert("Data sent!", $"Thank you for participating. Your measurement will be available for scientists in a few seconds.", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Thank You!", $"Usually once sent your measurement will be available for scientists in a few seconds.", "OK");
 
-                    return true;
+                    Cleanup();
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Nothing sent!", $"Bummer! Something went wrong: {Models.SharedData.LastError}", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Nothing sent!", $"Bummer! Something went wrong. {Models.SharedData.LastError}", "OK");
                 }
-
                 return true;
             }
             else
@@ -225,34 +276,12 @@ namespace sail4oxygen.ViewModels
             return false;
         }
 
-
-
-        static public bool ValidateLatitude(string value)
+        public void Cleanup()
         {
-            if (double.TryParse(value, out double result))
-            {
-                if (result >= 54 && result <= 56)
-                {
-                    return true;
-                }
-            }
-            return false;
+            this.CsvFileToSend = null;
+            Models.SharedData.FileUri = null;
+            Models.SharedData.StartFromShare = false;
         }
-
-
-
-        static public bool ValidateLongitude(string value)
-        {
-            if (double.TryParse(value, out double result))
-            {
-                if (result >= 9 && result <= 11)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
     }
 }
 

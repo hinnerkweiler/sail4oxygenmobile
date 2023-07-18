@@ -11,35 +11,38 @@
         <mct:EventToCommandBehavior Command="{Binding AppearingCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
 
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource s4ored}, Dark={StaticResource s4ored}}" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+        </Style>
+    </ContentPage.Resources>
+
     <ScrollView>
         <VerticalStackLayout
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand">
-
-            <HorizontalStackLayout
-                Margin="0,6
-                "
-                VerticalOptions="FillAndExpand"
-                HorizontalOptions="EndAndExpand">
-                <Button
-                    Text="Guide &amp; FAQ"
+            >
+            <Grid ColumnDefinitions="*,70" RowDefinitions="*">
+                <Button Grid.Column="1" Grid.Row="0"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                    TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray300}}"
+                    Text="&#x24D8;"
+                    FontSize="55"
+                    Padding="0,6,0,0"
                     Margin="8,8,8,8"
-                    Clicked="Faq_Clicked"
-                    />
-                <Button
-                    Text="About"
-                    Margin="8,8,8,8"
+                    HorizontalOptions="End"
                     Clicked="About_Clicked"
                     />
-            </HorizontalStackLayout>
 
-            <Label
-                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
-                Margin="24,6,0,0"
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Start"
-                Text="To upload your sample CSV-Data to GEOMAR Research Center in Kiel:"
-                FontSize="Medium" />
+                <Label Grid.Column="0" Grid.Row="0"
+                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                    Margin="24,24,0,0"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Start"
+                    Text="To upload your sample CSV-Data to GEOMAR Research Center in Kiel:"
+                    FontSize="Medium" />
+            </Grid>
 
             <Label
                 TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
@@ -56,7 +59,7 @@
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Start"
                 TextType="Html"
-                Text="2. Select &lt;strong&gt;sail4oxigen&lt;/strong&gt; from the share screen to come back here. &lt;strong&gt;Update Coordinates&lt;/strong&gt; and press &lt;strong&gt;Send CSV-File&lt;/strong&gt;."
+                Text="2. Selecting &lt;strong&gt;sail4oxygen&lt;/strong&gt; from the share screen will bring you back here. &lt;strong&gt; You may want to adjust the coordinates&lt;/strong&gt; before &lt;strong&gt;Sending a CSV-File&lt;/strong&gt;."
                 FontSize="Small" />
 
             <Label
@@ -91,8 +94,16 @@
                     Placeholder="Wait for Coordinate"
                     Text="{Binding MyLocation.Latitude , Mode=TwoWay, StringFormat='{0:00.00000}'}"
                     FontSize="Small"
-                    VerticalOptions="CenterAndExpand"/>
-                
+                    VerticalOptions="CenterAndExpand">
+                    <Entry.Behaviors>
+                        <mct:TextValidationBehavior 
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            ValidStyle="{StaticResource ValidEntryStyle}"
+                            IsValid="{Binding LatitudeIsValid, Mode=TwoWay}"
+                            Flags="ValidateOnValueChanged"
+                            RegexPattern="(?:54(?:\,\d+)?|55(?:\,\d+)?)$"/>
+                    </Entry.Behaviors>
+                </Entry>
                 <Label
                     TextType="Html"
                     Text="Longitude &lt;em&gt;(xxx,xxxxx)&lt;/em&gt;"
@@ -104,7 +115,17 @@
                     Placeholder="Wait for Coordinate"
                     Text="{Binding MyLocation.Longitude , Mode=TwoWay, StringFormat='{0:000.00000}'}"
                     FontSize="Small"
-                    VerticalOptions="CenterAndExpand"/>
+                    VerticalOptions="CenterAndExpand">
+                    <Entry.Behaviors>
+                        <mct:TextValidationBehavior 
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            IsValid="{Binding LongitudeIsValid, Mode=TwoWay}"
+                            ValidStyle="{StaticResource ValidEntryStyle}"
+                            Flags="ValidateOnValueChanged"
+                            RegexPattern="(?:9(?:\,\d+)?|10(?:\,\d+)?)$"
+                            />
+                    </Entry.Behaviors>
+                </Entry>
                 </VerticalStackLayout>
 
                 <Button
@@ -119,14 +140,34 @@
 
             </HorizontalStackLayout>
 
+            <HorizontalStackLayout>
+            <Label
+                TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}"
+                Margin="55,25,0,0"
+                HorizontalOptions="Start"
+                HorizontalTextAlignment="Start"
+                Text="{Binding FileName}"
+                FontSize="Micro" />
+
+            <Button
+                Text="&#x24E7;"
+                Padding="0,21,10,10"
+                   BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                    TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray300}}"
+                Margin="15,12,0,0"
+                SemanticProperties.Hint="Selects a CSV File to send"
+                Clicked="OnFileRemove_Clicked"
+                HorizontalOptions="End"
+                IsVisible="{Binding FileRemoveButtonVisible}"/>
+            </HorizontalStackLayout>
 
             <Button
                 Text="{Binding SendButtonText}"
-                IsEnabled="{Binding SendButtonEnabled}"
+                IsEnabled="{Binding CoordinatesValid}"
                 Padding="50,25,50,25"
                 BackgroundColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue25}}"
                 TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource s4blue100}}"
-                Margin="0,24,0,20"
+                Margin="0,8,0,20"
                 SemanticProperties.Hint="Loads a CSV File and prepares a Mail to send"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />

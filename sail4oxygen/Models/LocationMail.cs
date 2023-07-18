@@ -3,14 +3,14 @@
 
 namespace sail4oxygen.Models
 {
-    public static class LocationMail
+    public static class Mail
     {
 #if DEBUG
-        static public string[] Recipients = new[] { "h.weiler@trans-ocean.org" };
+        static private string[] Recipients = new[] { "h.weiler@trans-ocean.org" };
 #else
-        static public string[] Recipients = new[] { "h.weiler@trans-ocean.org", "dm-data@geomar.de" };
+        static private string[] Recipients = new[] { "h.weiler@trans-ocean.org", "dm-data@geomar.de" };
 #endif
-        public static async Task<EmailAttachment> FromLocation(Location location)
+        private static async Task<EmailAttachment> CreateLocationAttachment(Location location)
 	{
             var targetFileName = "location" + location.Timestamp.Ticks.ToString()+".txt";
             try
@@ -29,6 +29,30 @@ namespace sail4oxygen.Models
                 Console.WriteLine(ex.Message);
                 return null;
             }
+        }
+
+
+
+        public static async Task<EmailMessage> Send(Location location, string fileToSendPath)
+        {
+            string subject = "Sailing for Oxygen";
+            string body = "Hello Friends, \n here are our latest measurements from \n\n " +
+                                "Lat:  " + location.Latitude +
+                                "\nLong:  " + location.Longitude +
+                                "\nUTC  " + location.Timestamp.ToString("u");
+
+            var message = new EmailMessage
+            {
+                Subject = subject,
+                Body = body,
+                BodyFormat = EmailBodyFormat.PlainText,
+                To = new List<string>(Recipients)
+            };
+
+            message.Attachments.Add(new EmailAttachment(fileToSendPath));
+            message.Attachments.Add(await CreateLocationAttachment(location));
+
+            return message;
         }
     }
 }

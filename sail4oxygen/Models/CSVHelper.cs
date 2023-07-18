@@ -6,19 +6,24 @@ namespace sail4oxygen.Models
 	public static class CSVHelper
 	{
         const int headerRowNumber = 10;
-        public static async Task<bool> AddLocation(Uri file, Location location)
+
+        const int maxMeasureAge = 30;
+
+        public static event EventHandler<string> SharedFileHandled;
+
+
+        public static async Task<bool> AddLocation(string file, Location location)
         {
             try
             {
-                string csvText = await File.ReadAllTextAsync(file.LocalPath);
+                string csvText = await File.ReadAllTextAsync(file);
                 string[] csvLines = csvText.Split('\n');
 
                 if (await VerifyCsvIsValidFile(csvLines))
                 {
                     string newCsvText = csvLines[0];
-                    for (int i = 0; i < csvLines.Length; i++)
+                    for (int i = 1; i < csvLines.Length-1; i++)
                     {
-                        
                         switch (i)
                         {
                             //Copy first n lines
@@ -27,16 +32,18 @@ namespace sail4oxygen.Models
                                 break;
                             //add Lat Lon in Header 
                             case headerRowNumber:
-                                newCsvText += csvLines[i] += ",Latitude,Longitude\n";
+                                var newHeaderLine = csvLines[i].Replace("\n", "").Replace("\r", "");
+                                newCsvText += newHeaderLine + ",Latitude,Longitude\n\r";
                                 break;
                             //add LatLonValue to each row past 
                             default:
-                                newCsvText += csvLines[i] += "," + location.Latitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + "," + location.Longitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + "\n";
+                                var newLine = csvLines[i].Replace("\n", "").Replace("\r", "");
+                                newCsvText += newLine + "," + location.Latitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + "," + location.Longitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + "\n\r";
                                 break;
                         }
                     }
 
-                    await File.WriteAllTextAsync(file.LocalPath, newCsvText);
+                    await File.WriteAllTextAsync(file, newCsvText);
 
                     return true;
                 }
@@ -69,9 +76,9 @@ namespace sail4oxygen.Models
 #if DEBUG
                     Console.WriteLine("VerifyCsvIsValidFile – Measurement timestamp: ", timestamp.ToString());
 #endif
-                    if (fileage.TotalMinutes > 45)
+                    if (fileage.TotalMinutes > maxMeasureAge)
                     {
-                        if (await Application.Current.MainPage.DisplayAlert("File too old", $"Your measurement is {fileage} Minutes old. Are you still nearby where you took it or have you adjusted the coordinates before sending? ", "Yes","No"))
+                        if (await Application.Current.MainPage.DisplayAlert("File too old", $"Your measurement is {Math.Round(fileage.TotalMinutes,MidpointRounding.AwayFromZero)} Minutes old. Is your Location correct?", "Yes","Change Coordinates"))
                         {
                             return true;
                         }

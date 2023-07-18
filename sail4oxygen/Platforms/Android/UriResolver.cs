@@ -27,7 +27,7 @@ namespace sail4oxygen.AndroidHelpers
                     {
                         // Create a temporary file in your app's private directory
                         var tempDir = context.GetExternalFilesDir(null);
-                        var tempFile = new Java.IO.File(tempDir, "temp_file.csv");
+                        var tempFile = new Java.IO.File(tempDir, DateTime.Now.Ticks + ".csv" );
 
                         // Copy the file from the InputStream to the temporary file
                         using (var outputStream = new FileOutputStream(tempFile))
@@ -39,17 +39,18 @@ namespace sail4oxygen.AndroidHelpers
                                 outputStream.Write(buffer, 0, bytesRead);
                             }
                         }
+#if DEBUG
                         System.Console.WriteLine("************ finished copy");
-
+#endif
                         // Get the absolute path of the temporary file
                         appFilePath = tempFile.AbsolutePath;
                     }
-                }
-                else if (ContentResolver.SchemeFile.Equals(scheme))
-                {
-                    // Get the file path directly from the URI
-                    appFilePath = uri.Path;
-                }
+                    }
+                    else if (ContentResolver.SchemeFile.Equals(scheme))
+                    {
+                        // Get the file path directly from the URI
+                        appFilePath = uri.Path;
+                    }
                 else if (ContentResolver.SchemeContent.Equals(scheme))
                 {
                     // Handle other schemes as needed
