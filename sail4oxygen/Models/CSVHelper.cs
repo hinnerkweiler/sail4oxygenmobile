@@ -70,7 +70,7 @@ namespace sail4oxygen.Models
                     //find timestamp in row 4 column 2 and check if it is file is recent
                     var measure = fileContent[headerRowNumber + 1].Split(',');
                     var timestamp = DateTime.Parse(measure[0]+ " " + measure[1], new CultureInfo("en-US"));
-                    var fileage = DateTime.Now - timestamp;
+                    var fileage = DateTime.Now.ToUniversalTime() - timestamp;
 #if DEBUG
                     Console.WriteLine("VerifyCsvIsValidFile – Measurement timestamp: ", timestamp.ToString());
 #endif
