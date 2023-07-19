@@ -76,13 +76,13 @@ namespace sail4oxygen.Models
 #endif
                     if (fileage.TotalMinutes > maxMeasureAge)
                     {
-                        if (await Application.Current.MainPage.DisplayAlert("File too old", $"Your measurement is {Math.Round(fileage.TotalMinutes,MidpointRounding.AwayFromZero)} Minutes old. Is your Location correct?", "Yes","Change Coordinates"))
+                        if (await Application.Current.MainPage.DisplayAlert(Resources.Languages.lang.FileTooOldAlertTitel, Resources.Languages.lang.FileTooOldAlertText1+ " " + Math.Round(fileage.TotalMinutes,MidpointRounding.AwayFromZero) + " " + Resources.Languages.lang.FileTooOldAlertText2, Resources.Languages.lang.ContinueSending, Resources.Languages.lang.CorrectCoordinates))
                         {
                             return true;
                         }
                         else
                         {
-                            Models.SharedData.LastError = $"Measruement is {fileage.TotalMinutes} Minutes old and coordinates were not adjusted";
+                            Models.SharedData.LastError = Resources.Languages.lang.FileTooOldLastError;
                             return false;
                         }
                     }
@@ -93,7 +93,7 @@ namespace sail4oxygen.Models
                 }
                 else
                 {
-                    Models.SharedData.LastError = "File is not a valid measurement file.";
+                    Models.SharedData.LastError = Resources.Languages.lang.WrongFileLastError;
                     return false;
                 }
             }
