@@ -8,9 +8,6 @@ namespace sail4oxygen.ViewModels
 	{
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(LocationText))]
-
-
-
         Location myLocation;
 
 
@@ -237,8 +234,6 @@ namespace sail4oxygen.ViewModels
         {
             if (CoordinatesValid)
             {
-                //FileResult result = null;
-
                 if (CsvFileToSend == null || CsvFileToSend.FileName == "")
                 {
                     try

@@ -27,7 +27,19 @@ public partial class MainPage : ContentPage
 
 	private async void OnCounterClicked(object sender, EventArgs e)
 	{
-        _ = await MainPageVM.SelectFile(null);
+        if (Models.DsgvoHandler.IsDsgvoAccepted)
+        {
+
+            _ = await MainPageVM.SelectFile(null);
+
+        }
+        else
+        {
+            if (await Application.Current.MainPage.DisplayAlert(sail4oxygen.Resources.Languages.lang.PrivacyAlertTitle, sail4oxygen.Resources.Languages.lang.PrivacyAlertText, sail4oxygen.Resources.Languages.lang.PrivacyAlertChangesetting, sail4oxygen.Resources.Languages.lang.cancel))
+            {
+                await Shell.Current.GoToAsync("Onboarding");
+            }
+        }
 
     }
 

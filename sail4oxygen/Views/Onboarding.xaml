@@ -38,19 +38,26 @@
                 TextType="Html"
                 Text="{x:Static lang:lang.OnboardingGreetingText}"
                 />
-            <Grid RowDefinitions="*" ColumnDefinitions="*,70">
+            <Label
+                Margin="12"
+                FontSize="Medium"
+                TextType="Html"
+                Text="{x:Static lang:lang.OnboardingDsgvoTitle}"
+                />
+            <Grid RowDefinitions="*" ColumnDefinitions="70,*"
+                  >
                 <Label
-                    Grid.Column="0" Grid.Row="0"
+                    Grid.Column="1" Grid.Row="0"
                     Margin="12"
-                    FontSize="Medium"
+                    FontSize="Body"
                     TextType="Html"
                     Text="{x:Static lang:lang.OnboardingDSGVOInfo}"
                 />
                 <CheckBox 
-                    Grid.Column="1" Grid.Row="0"
-                    x:Name="DsgvoCheckBox" 
+                    Grid.Column="0" Grid.Row="0"
+                    x:Name="dsgvoCheckBox" 
                     Margin="12" 
-                    Text="{x:Static lang:lang.OnboardingDsgvoCheckbox}"
+                    CheckedChanged="dsgvoCheckBox_Toggled"
                 />
             </Grid>
             
@@ -92,7 +99,7 @@
                 />
 
 
-
+<!--
             <Frame
                 Margin="12">
                 <VerticalStackLayout
@@ -145,7 +152,7 @@
                 </VerticalStackLayout>
             </Frame>
 
-            
+-->
             
         </VerticalStackLayout>
     </ScrollView>
