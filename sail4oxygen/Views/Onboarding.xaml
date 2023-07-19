@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lang="clr-namespace:sail4oxygen.Resources.Languages"
              x:Class="sail4oxygen.Views.Onboarding"
-             Title="Onboarding"
+             Title="{x:Static lang:lang.OnboardingPageTitle}"
              Shell.NavBarIsVisible="False">
     
     <ScrollView>
@@ -16,7 +17,7 @@
                     HorizontalOptions="StartAndExpand"
                     VerticalTextAlignment="End"
                     FontSize="Micro" FontAttributes="Bold"
-                    Text="You can come here later again from the About-Screen."
+                    Text="{x:Static lang:lang.OnboardingPageComeBackInfo}"
                     />
             <Button
                     Grid.Column="0" Grid.Row="0"
@@ -35,12 +36,12 @@
                 Margin="12"
                 FontSize="Medium"
                 TextType="Html"
-                Text="Great you are here to do some &lt;strong&gt;Citizen Science&lt;/strong&gt; with us and research the oceans!"
+                Text="{x:Static lang:lang.OnboardinggreetingText}"
                 />
             <Label
                 Margin="0,12"
                 FontAttributes="Bold"
-                Text="If you are already have a Confirmation Code please enter it here:"
+                Text="{x:Static lang:lang.OnboardingHaveAuthCode}"
                 />
             <Grid RowDefinitions="*" ColumnDefinitions="*,140">
             <VerticalStackLayout
@@ -54,14 +55,14 @@
                 Margin="6,12"
                 x:Name="authorize"
                 Clicked="authorize_Clicked"
-                Text="Authorize App"/>
+                Text="{x:Static lang:lang.OnboardingHAuthButton}"/>
             </Grid>
 
              <Label
                 Margin="0,12"
                 FontSize="Body"
                 TextType="Html"
-                Text="To get fully on board with your research set up the KOR-App is also needed to download data from a sonde. We try to solve the need for a second app with the manufactuerer in the future."
+                Text="{x:Static lang:lang.OnboardingKORInfo}"
                 />
 
             <Button
@@ -69,7 +70,7 @@
                 Margin="6,12"
                 x:Name="installkor"
                 Clicked="installkor_Clicked"
-                Text="Install KOR on your Device"
+                Text="{x:Static lang:lang.OnboardingKORButton}"
                 />
 
 
@@ -89,26 +90,26 @@
                         Margin="0,3,12,12"
                         FontSize="Small"
                         TextType="Html"
-                        Text="Want to help us research the ocean? Just apply as a volunteer at &lt;strong&gt;&lt;em&gt;sail4oxygen.org&lt;/em&gt;&lt;/strong&gt;. Once confirmed we send you the sail4oxygen-manual and your personal authorization key to use the app to"
+                        Text="{x:Static lang:lang.OnboardingApplyInfo1}"
                         />
 
                     <Label
                         Margin="0,3"
-                        Text="1. Request a sonde to take with you *) "
+                        Text="{x:Static lang:lang.OnboardingApplyInfo2}"
                         />
 
                     <Label
                         Margin="0,3"
-                        Text="2. Confirm taking a sonde on board *)"
+                        Text="{x:Static lang:lang.OnboardingApplyInfo3}"
                         />
                     <Label
                         Margin="0,3"
-                        Text="3. Transfer your sampled data to GEOMAR"
+                        Text="{x:Static lang:lang.OnboardingApplyInfo4}"
                         />
 
                     <Label
                         Margin="0,3"
-                        Text="4. Mark the sonde available (in a designates marina) *)"
+                        Text="{x:Static lang:lang.OnboardingApplyInfo5}"
                         />
 
                     <Label
@@ -116,13 +117,13 @@
                         HorizontalTextAlignment="End"
                         FontSize="Micro"
                         TextType="Html"
-                        Text="*) Developer Preview: &lt;br /&gt; These features are depend on a backend that is not yet available."
+                        Text="{x:Static lang:lang.OnboardingApplyInfo6}"
                         />
 
                     <Button
                         Margin="0,18,0,0"
-                        x:Name="faq" Clicked="faq_Clicked"
-                        Text="Learn more about sail4oxygen"/>
+                        x:Name="faq" Clicked="register_Clicked"
+                        Text="{x:Static lang:lang.AboutPageReadMore}"/>
                 </VerticalStackLayout>
             </Frame>
 
