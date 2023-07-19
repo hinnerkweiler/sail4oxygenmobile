@@ -17,9 +17,9 @@ namespace sail4oxygen.ViewModels
 
         public AboutPageVM()
 		{
-			DeveloperText = Resources.Languages.DeveloperNote;
-			AboutText = Resources.Languages.AboutText;
-			PrivacyText=Resources.Languages.PrivacyText;
+			DeveloperText = Resources.Languages.lang.DeveloperNote;
+			AboutText = Resources.Languages.lang.AboutText;
+			PrivacyText=Resources.Languages.lang.PrivacyText;
         }
 	}
 }
