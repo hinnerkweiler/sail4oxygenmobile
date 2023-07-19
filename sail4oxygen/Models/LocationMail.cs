@@ -6,9 +6,9 @@ namespace sail4oxygen.Models
     public static class Mail
     {
 #if DEBUG
-        static private string[] Recipients = new[] { "h.weiler@trans-ocean.org" };
+        static private string[] Recipients = new[] { Resources.PrivateData.BelugaData.mailtodev };
 #else
-        static private string[] Recipients = new[] { "dm-data@geomar.de" };
+        static private string[] Recipients = new[] { Resources.PrivateData.BelugaData.mailtoprod };
 #endif
         private static async Task<EmailAttachment> CreateLocationAttachment(Location location)
 	{
