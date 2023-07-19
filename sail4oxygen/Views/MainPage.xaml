@@ -138,7 +138,6 @@
                     SemanticProperties.Hint="{x:Static lang:lang.MainPageGPSReloadHint}"
                     Clicked="OnGPSReload_Clicked"
                     HorizontalOptions="Center" />
-
             </HorizontalStackLayout>
 
             <HorizontalStackLayout>
