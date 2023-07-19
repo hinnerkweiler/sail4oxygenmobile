@@ -126,9 +126,9 @@ namespace sail4oxygen.ViewModels
             get
             {
                 if (CsvFileToSend == null)
-                    return Resources.Languages.SendButtonTextSelectFile;
+                    return Resources.Languages.lang.SendButtonTextSelectFile;
                 else
-                    return Resources.Languages.SendButtonTextSendFile;
+                    return Resources.Languages.lang.SendButtonTextSendFile;
             }
         }
 
@@ -139,7 +139,7 @@ namespace sail4oxygen.ViewModels
             get
             {
                 if (CsvFileToSend == null)
-                    return Resources.Languages.NoCsvFile;
+                    return Resources.Languages.lang.NoCsvFile;
                 else
                     return CsvFileToSend.FileName;
             }
