@@ -266,4 +266,9 @@
     <value>Continue without consent</value>
     <comment/>
   </data>
+  <data name="OnboardingDsgvoTitle" xml:space="preserve">
+    <value>Please confirm:</value>
+    <comment/>
+  </data>
+  
 </root>
