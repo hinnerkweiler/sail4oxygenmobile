@@ -2,6 +2,8 @@
 
 ### 0.10 (Android only)
 
++ Validate measurement age againts UTC
+
 + Translations base file and defaults for englisch
 
 + Informed consent required: App will ask for consent to send mails revealing email address and location to geomar.  If this consent is not given it will prevent the user from accessing the sending files. This way we sould net be required to maintain a record of consent.
