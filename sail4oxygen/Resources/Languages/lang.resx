@@ -1,131 +1,312 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>2.0</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <data name="MainPageTitle" xml:space="preserve">
-        <value>Research the Oceans</value>
-        <comment>Title for Textbar </comment>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
-    <data name="MainPageIntro1" xml:space="preserve">
-        <value>To upload your sample CSV-Data to GEOMAR Research Center in Kiel:</value>
-        <comment>Explaination</comment>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
     </data>
-    <data name="MainPageIntro2" xml:space="preserve">
-        <value>1. Open the &amp;lt;strong&amp;gt;KOR-App&amp;lt;/strong&amp;gt; and import your measurement from a sonde. Than export the data to a CSV-file.</value>
-    </data>
-    <data name="MainPageIntro3" xml:space="preserve">
-        <value>2. Selecting &amp;lt;strong&amp;gt;sail4oxygen&amp;lt;/strong&amp;gt; from the share screen will bring you back here. &amp;lt;strong&amp;gt; You may want to adjust the coordinates&amp;lt;/strong&amp;gt; before &amp;lt;strong&amp;gt;Sending a CSV-File&amp;lt;/strong&amp;gt;.</value>
-    </data>
-    <data name="MainPageIntro4" xml:space="preserve">
-        <value>Your Mail-App will be launched automatically to transmit the data. (If you are prompted to select a File no CSV-File was shared from KOR-App.)</value>
-    </data>
-    <data name="MainPageLatitudeTitle" xml:space="preserve">
-        <value>Latitude &amp;lt;em&amp;gt;(xx,xxxxx)&amp;lt;/em&amp;gt;</value>
-    </data>
-    <data name="MainPageLatitudePlaceholder" xml:space="preserve">
-        <value>Waiting for GPS...</value>
-    </data>
-    <data name="MainPageLongitudeTitle" xml:space="preserve">
-        <value>Longitude &amp;lt;em&amp;gt;(xxx,xxxxx)&amp;lt;/em&amp;gt;</value>
-    </data>
-    <data name="MainPageLongitudePlaceholder" xml:space="preserve">
-        <value>...</value>
-    </data>
-    <data name="MainPageGPSReload" xml:space="preserve">
-        <value>Reload GPS</value>
-    </data>
-    <data name="MainPageGPSReloadHint" xml:space="preserve">
-        <value>Reloads Coordinates from GPS</value>
-    </data>
-    <data name="MainPageFileRemoveHint" xml:space="preserve">
-        <value>Click to remove File and Select a new one.</value>
-    </data>
-    <data name="MainPageSendButtonHint" xml:space="preserve">
-        <value>Loads a CSV File and prepares a Mail to send</value>
-    </data>
-    <data name="MainPage.LogoHint" xml:space="preserve">
-        <value>Sailing for Oxygen Logo</value>
-    </data>
-    <data name="FileTooOldAlertTitel" xml:space="preserve">
-        <value>Check Location</value>
-    </data>
-    <data name="FileTooOldAlertText1" xml:space="preserve">
-        <value>Your measurements are</value>
-    </data>
-    <data name="FileTooOldAlertText2" xml:space="preserve">
-        <value>Minutes old. Please manually correct your coordinates if you have sailed away from the measurement spot since than.</value>
-    </data>
-    <data name="Yes" xml:space="preserve">
-        <value>Yes</value>
-    </data>
-    <data name="ContinueSending" xml:space="preserve">
-        <value>Continue Sending</value>
-    </data>
-    <data name="CorrectCoordinates" xml:space="preserve">
-        <value>Check Coordinates</value>
-    </data>
-    <data name="FileTooOldLastError" xml:space="preserve">
-        <value>- File old. Please adjust coordinates.</value>
-    </data>
-    <data name="WrongFileLastError" xml:space="preserve">
-        <value>- File was not readable or wrong format.</value>
-    </data>
-    <data name="DeveloperNote" xml:space="preserve">
-        <value>&lt;p&gt; &amp;#xA9 2023 Hinnerk Weiler&lt;p&gt;Carefully crafted with \u2665 for the oceans. Developer contact and technical support: h.weiler@trans-ocean.org. This Software was developed in best intentions and is provided as is with no warranties. Source code and full license Information is available on the developer page.&lt;/p&gt;</value>
-    </data>
-    <data name="AboutPageTitle" xml:space="preserve">
-        <value>About the App</value>
-    </data>
-    <data name="AboutText" xml:space="preserve">
-        <value>&lt;h1&gt;Be part of the research&lt;/h1&gt;&lt;p&gt;&lt;em&gt;Citizen Science:Sailing for Oxygen&lt;/em&gt; is a joint project initiated by the german research center GEOMAR and Trans-Ocean sailing club. This companion app assists you in becoming part of the project and helps you transmit your samples to scientists worldwide.&lt;/p&gt;&lt;p&gt;For more information please visit the project website &lt;strong&gt;sail4oxygen.org&lt;/strong&gt;. Technical Support is available via developer contact details and the end of this screen.&lt;/p&gt;</value>
-    </data>
-    <data name="PrivacyText" xml:space="preserve">
-        <value>&lt;p&gt;&lt;strong&gt;Privacy Note:&lt;/strong&gt; In order to transmit your data to GEOMAR we use E-Mail. Your Message will reveal your location at time of sampling data and your personal email address on our servers. The public available data will be anonymised and does not contain any personal information. Responsible for data privacy of stored Data is the GEOMAR Research center &lt;datenschutz@geomar.de&gt;. &lt;/p&gt;</value>
-    </data>
-    <data name="DeveloperPageButtonText" xml:space="preserve">
-        <value>More …</value>
-    </data>
-    <data name="AboutPageReadMore" xml:space="preserve">
-        <value>Learn more at sail4oxygen.org</value>
-    </data>
-    <data name="OpenSettingsPage" xml:space="preserve">
-        <value>Settings</value>
-    </data>
-    <data name="OnboardingPageTitle" xml:space="preserve">
-        <value>Welcome</value>
-    </data>
-    <data name="OnboardingPageComeBackInfo" xml:space="preserve">
-        <value>You can come back here any time later from the About page.</value>
-    </data>
-    <data name="OnboardingGreetingText" xml:space="preserve">
-        <value>Great you are here to do some &amp;lt;strong&amp;gt;Citizen Science&amp;lt;/strong&amp;gt; with us and research the oceans!</value>
-    </data>
-    <data name="OnboardingAuthCode" xml:space="preserve">
-        <value>If you are already have a Confirmation Code please enter it here:</value>
-    </data>
-    <data name="OnboardingKORInfo" xml:space="preserve">
-        <value>To get fully on board with your research set up the KOR-App is also needed to download data from a sonde. We try to solve the need for a second app with the manufactuerer in the future.</value>
-    </data>
-    <data name="OnboardingKORButton" xml:space="preserve">
-        <value>Install KOR on your Device</value>
-    </data>
-    <data name="OnboardingApplyInfo1" xml:space="preserve">
-        <value>Want to help us research the ocean? Just apply as a volunteer at &amp;lt;strong&amp;gt;&amp;lt;em&amp;gt;sail4oxygen.org&amp;lt;/em&amp;gt;&amp;lt;/strong&amp;gt;. Once confirmed we send you the sail4oxygen-manual and your personal authorization key to use the app to</value>
-    </data>
-    <data name="OnboardingApplyInfo2" xml:space="preserve">
-        <value>1. Request a sonde to take with you *)</value>
-    </data>
-    <data name="OnboardingAuthButton" xml:space="preserve">
-        <value>Authorize App</value>
-    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MainPageTitle" xml:space="preserve">
+    <value>Research the Oceans</value>
+    <comment>Title for Textbar </comment>
+  </data>
+  <data name="MainPageIntro1" xml:space="preserve">
+    <value>To upload your sample CSV-Data to GEOMAR Research Center in Kiel:</value>
+    <comment>Explaination</comment>
+  </data>
+  <data name="MainPageIntro2" xml:space="preserve">
+    <value>[object Object]</value>
+    <comment/>
+  </data>
+  <data name="MainPageIntro3" xml:space="preserve">
+    <value>[object Object]</value>
+    <comment/>
+  </data>
+  <data name="MainPageIntro4" xml:space="preserve">
+    <value>Your Mail-App will be launched automatically to transmit the data. (If you are prompted to select a File no CSV-File was shared from KOR-App.)</value>
+    <comment/>
+  </data>
+  <data name="MainPageLatitudeTitle" xml:space="preserve">
+    <value>[object Object]</value>
+    <comment/>
+  </data>
+  <data name="MainPageLatitudePlaceholder" xml:space="preserve">
+    <value>Waiting for GPS...</value>
+    <comment/>
+  </data>
+  <data name="MainPageLongitudeTitle" xml:space="preserve">
+    <value>[object Object]</value>
+    <comment/>
+  </data>
+  <data name="MainPageLongitudePlaceholder" xml:space="preserve">
+    <value>...</value>
+    <comment/>
+  </data>
+  <data name="MainPageGPSReload" xml:space="preserve">
+    <value>Reload GPS</value>
+    <comment/>
+  </data>
+  <data name="MainPageGPSReloadHint" xml:space="preserve">
+    <value>Reloads Coordinates from GPS</value>
+    <comment/>
+  </data>
+  <data name="MainPageFileRemoveHint" xml:space="preserve">
+    <value>Click to remove File and Select a new one.</value>
+    <comment/>
+  </data>
+  <data name="MainPageSendButtonHint" xml:space="preserve">
+    <value>Loads a CSV File and prepares a Mail to send</value>
+    <comment/>
+  </data>
+  <data name="MainPage.LogoHint" xml:space="preserve">
+    <value>Sailing for Oxygen Logo</value>
+    <comment/>
+  </data>
+  <data name="FileTooOldAlertTitel" xml:space="preserve">
+    <value>Check Location</value>
+    <comment/>
+  </data>
+  <data name="FileTooOldAlertText1" xml:space="preserve">
+    <value>Your measurements are</value>
+    <comment/>
+  </data>
+  <data name="FileTooOldAlertText2" xml:space="preserve">
+    <value>Minutes old. Please manually correct your coordinates if you have sailed away from the measurement spot since than.</value>
+    <comment/>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+    <comment/>
+  </data>
+  <data name="ContinueSending" xml:space="preserve">
+    <value>Continue Sending</value>
+    <comment/>
+  </data>
+  <data name="CorrectCoordinates" xml:space="preserve">
+    <value>Check Coordinates</value>
+    <comment/>
+  </data>
+  <data name="FileTooOldLastError" xml:space="preserve">
+    <value>- File old. Please adjust coordinates.</value>
+    <comment/>
+  </data>
+  <data name="WrongFileLastError" xml:space="preserve">
+    <value>- File was not readable or wrong format.</value>
+    <comment/>
+  </data>
+  <data name="DeveloperNote" xml:space="preserve">
+    <value>&lt;p&gt;&amp;#xA9 2023 Hinnerk Weiler&lt;/p&gt;Carefully crafted with &amp;#9829 for the oceans. Developer contact and technical support:&lt;br /&gt;h.weiler@trans-ocean.org. This Software was developed in best intentions and is provided as is with no warranties. Source code and full license Information is available on the developer page.&lt;/p&gt;</value>
+    <comment/>
+  </data>
+  <data name="AboutPageTitle" xml:space="preserve">
+    <value>About the App</value>
+    <comment/>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>&lt;h1&gt;Be part of the research&lt;/h1&gt;&lt;p&gt;&lt;em&gt;Citizen Science:Sailing for Oxygen&lt;/em&gt; is a joint project initiated by the german research center GEOMAR and Trans-Ocean sailing club. This companion app assists you in becoming part of the project and helps you transmit your samples to scientists worldwide.&lt;/p&gt;&lt;p&gt;For more information please visit the project website &lt;strong&gt;sail4oxygen.org&lt;/strong&gt;. Technical Support is available via developer contact details and the end of this screen.&lt;/p&gt;</value>
+    <comment/>
+  </data>
+  <data name="PrivacyText" xml:space="preserve">
+    <value>&lt;p&gt;&lt;strong&gt;Privacy Note:&lt;/strong&gt; In order to transmit your data to GEOMAR we use E-Mail. Your Message will reveal your location at time of sampling data and your personal email address on our servers. The public available data will be anonymised and does not contain any personal information. Responsible for data privacy of stored Data is the GEOMAR Research center &lt;datenschutz@geomar.de&gt;. &lt;/p&gt;</value>
+    <comment/>
+  </data>
+  <data name="DeveloperPageButtonText" xml:space="preserve">
+    <value>More …</value>
+    <comment/>
+  </data>
+  <data name="AboutPageReadMore" xml:space="preserve">
+    <value>Learn more at sail4oxygen.org</value>
+    <comment/>
+  </data>
+  <data name="OpenSettingsPage" xml:space="preserve">
+    <value>Settings</value>
+    <comment/>
+  </data>
+  <data name="OnboardingPageTitle" xml:space="preserve">
+    <value>Welcome</value>
+    <comment/>
+  </data>
+  <data name="OnboardingPageComeBackInfo" xml:space="preserve">
+    <value>You can come back here any time later from the About page.</value>
+    <comment/>
+  </data>
+  <data name="OnboardingGreetingText" xml:space="preserve">
+    <value>[object Object]</value>
+    <comment/>
+  </data>
+  <data name="OnboardingAuthCode" xml:space="preserve">
+    <value>If you are already have a confirmation code please enter it here:</value>
+    <comment/>
+  </data>
+  <data name="OnboardingKORInfo" xml:space="preserve">
+    <value>To fully get on board with your research please set up the KOR-App you also will needed the KOR App to download data from our sonde. We are in touch to solve this dependency with the manufactuerer for future versions.</value>
+    <comment/>
+  </data>
+  <data name="OnboardingKORButton" xml:space="preserve">
+    <value>Install KOR on your Device</value>
+    <comment/>
+  </data>
+  <data name="OnboardingApplyInfo1" xml:space="preserve">
+    <value>[object Object]</value>
+    <comment/>
+  </data>
+  <data name="OnboardingAuthButton" xml:space="preserve">
+    <value>Authorize App</value>
+    <comment/>
+  </data>
+  <data name="SendButtonTextSelectFile" xml:space="preserve">
+    <value>Manually select a CSV file</value>
+    <comment/>
+  </data>
+  <data name="SendButtonTextSendFile" xml:space="preserve">
+    <value>Send selected file to GEOMAR</value>
+    <comment/>
+  </data>
+  <data name="NoCsvFile" xml:space="preserve">
+    <value>No file selected. Export one from KOR App.</value>
+    <comment/>
+  </data>
+  <data name="NoFileAlertTitle" xml:space="preserve">
+    <value>No file selected</value>
+    <comment/>
+  </data>
+  <data name="NoFileAlertText" xml:space="preserve">
+    <value>file not opened. Either you canceled the selection or file permission was not granted.</value>
+    <comment/>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>OK</value>
+    <comment/>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>Thank You!</value>
+    <comment/>
+  </data>
+  <data name="SendMessageAlertText" xml:space="preserve">
+    <value>You just did science! Your measurement sould be available to scientists at the GEOMAR Beluga-Portal in a few minutes.</value>
+    <comment/>
+  </data>
+  <data name="NoFileSent" xml:space="preserve">
+    <value>Something wrong?</value>
+    <comment/>
+  </data>
+  <data name="NoFileSentMessage" xml:space="preserve">
+    <value>Did not send your message! </value>
+    <comment/>
+  </data>
+  <data name="OnboardingDSGVOInfo" xml:space="preserve">
+    <value>&lt;em&gt;Wehen transmitting measurements I agree sending my sample data via email to the GEOMAR Research Center, revealing my email address and location at time of measurement. See sail4oxygen.org for further information.</value>
+    <comment/>
+  </data>
 </root>
