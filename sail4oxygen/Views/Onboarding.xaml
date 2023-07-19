@@ -36,30 +36,48 @@
                 Margin="12"
                 FontSize="Medium"
                 TextType="Html"
-                Text="{x:Static lang:lang.OnboardinggreetingText}"
+                Text="{x:Static lang:lang.OnboardingGreetingText}"
                 />
+            <Grid RowDefinitions="*" ColumnDefinitions="*,70">
+                <Label
+                    Grid.Column="0" Grid.Row="0"
+                    Margin="12"
+                    FontSize="Medium"
+                    TextType="Html"
+                    Text="{x:Static lang:lang.OnboardingDSGVOInfo}"
+                />
+                <CheckBox 
+                    Grid.Column="1" Grid.Row="0"
+                    x:Name="DsgvoCheckBox" 
+                    Margin="12" 
+                    Text="{x:Static lang:lang.OnboardingDsgvoCheckbox}"
+                />
+            </Grid>
+            
+            <!--
             <Label
                 Margin="0,12"
                 FontAttributes="Bold"
-                Text="{x:Static lang:lang.OnboardingHaveAuthCode}"
+                Text="{x:Static lang:lang.OnboardingAuthCode}"
                 />
+            
             <Grid RowDefinitions="*" ColumnDefinitions="*,140">
-            <VerticalStackLayout
-                Grid.Row="0" Grid.Column="0">
-                <Entry x:Name="emailfield" Placeholder="E-Mail" PlaceholderColor="{x:StaticResource Gray500}"/>
-                <Entry x:Name="confirmationcode" Placeholder="Confirmation Code" PlaceholderColor="{x:StaticResource Gray500}"/>
-            </VerticalStackLayout>
+                <VerticalStackLayout
+                    Grid.Row="0" Grid.Column="0">
+                    <Entry x:Name="emailfield" Placeholder="E-Mail" PlaceholderColor="{x:StaticResource Gray500}"/>
+                    <Entry x:Name="confirmationcode" Placeholder="Confirmation Code" PlaceholderColor="{x:StaticResource Gray500}"/>
+                </VerticalStackLayout>
 
-            <Button
-                Grid.Row="0" Grid.Column="1"
-                Margin="6,12"
-                x:Name="authorize"
-                Clicked="authorize_Clicked"
-                Text="{x:Static lang:lang.OnboardingHAuthButton}"/>
+                <Button
+                    Grid.Row="0" Grid.Column="1"
+                    Margin="6,12"
+                    x:Name="authorize"
+                    Clicked="authorize_Clicked"
+                    Text="{x:Static lang:lang.OnboardingAuthButton}"/>
             </Grid>
-
+            -->
              <Label
-                Margin="0,12"
+                Margin="12"
                 FontSize="Body"
                 TextType="Html"
                 Text="{x:Static lang:lang.OnboardingKORInfo}"
