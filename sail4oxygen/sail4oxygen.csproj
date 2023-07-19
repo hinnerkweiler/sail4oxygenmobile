@@ -77,11 +77,13 @@
 	  <None Remove="Resources\Images\sfoedit.svg" />
 	  <None Remove="Resources\Images\s4oedit.png" />
 	  <None Remove="Resources\AppIcon\appicon.png" />
+	  <None Remove="Resources\Languages\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
 	  <Folder Include="ViewModels\" />
 	  <Folder Include="Views\" />
+	  <Folder Include="Resources\Languages\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiSplashScreen Include="Resources\Splash\s4osplash.svg" BaseSize="1024,1024" Color="#FFFFFF" />
@@ -92,5 +94,19 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiIcon Include="Resources\AppIcon\appicon.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Resources\Languages\lng.Designer.cs">
+	    <DependentUpon>lang.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Languages\lang.Designer.cs">
+	    <DependentUpon>lang.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\Languages\lang.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>lang.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	</ItemGroup>
 </Project>
