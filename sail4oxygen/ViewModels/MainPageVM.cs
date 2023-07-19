@@ -126,9 +126,9 @@ namespace sail4oxygen.ViewModels
             get
             {
                 if (CsvFileToSend == null)
-                    return "Choose and Send a CSV File";
+                    return Resources.Languages.SendButtonTextSelectFile;
                 else
-                    return "Send selected File to Geomar";
+                    return Resources.Languages.SendButtonTextSendFile;
             }
         }
 
@@ -139,7 +139,7 @@ namespace sail4oxygen.ViewModels
             get
             {
                 if (CsvFileToSend == null)
-                    return "No CSV File selected";
+                    return Resources.Languages.NoCsvFile;
                 else
                     return CsvFileToSend.FileName;
             }
@@ -227,6 +227,7 @@ namespace sail4oxygen.ViewModels
             {
                 Console.WriteLine(ex);
             }
+            //toDo: Advise to use UI to enter coordinates 
             return null;
         }
 
@@ -251,7 +252,7 @@ namespace sail4oxygen.ViewModels
                     catch (Exception ex)
                     {
                         Console.WriteLine("The user canceled or something went wrong: ", ex.Message);
-                        await Application.Current.MainPage.DisplayAlert("Nothing sent!", $"Bummer! Can not select a File: {ex.Message}", "OK");
+                        await Application.Current.MainPage.DisplayAlert(Resources.Languages.lang.NoFileAlertTitle,  Resources.Languages.lang.NoFileAlertText + " " + ex.Message, Resources.Languages.lang.ok);
                     }
                 }
                 
@@ -259,13 +260,13 @@ namespace sail4oxygen.ViewModels
                 {
                     await Email.Default.ComposeAsync(await Models.Mail.Send(MyLocation, CsvFileToSend.FullPath));
 
-                    await Application.Current.MainPage.DisplayAlert("Thank You!", $"Once sent, your measurement will be available for scientists in a few seconds.", "OK");
+                    await Application.Current.MainPage.DisplayAlert(Resources.Languages.lang.ThankYou, Resources.Languages.lang.SendMessageAlertText, Resources.Languages.lang.ok);
 
                     Cleanup();
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Nothing sent!", $"If you canceled sending to correct coordinates just press the Send-Button again. If this is unexpected your file was either corrupt or not a KOR Measurement. {Models.SharedData.LastError}", "OK");
+                    await Application.Current.MainPage.DisplayAlert(Resources.Languages.lang.NoFileSent, Resources.Languages.lang.NoFileSentMessage + " " + Models.SharedData.LastError, Resources.Languages.lang.ok);
                 }
                 return true;
             }
@@ -275,6 +276,8 @@ namespace sail4oxygen.ViewModels
             }
             return false;
         }
+
+
 
         public void Cleanup()
         {

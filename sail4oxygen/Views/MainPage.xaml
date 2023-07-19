@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:sail4oxygen"
+             xmlns:lang="clr-namespace:sail4oxygen.Resources.Languages"
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="sail4oxygen.Views.MainPage"
              NavigationPage.HasNavigationBar="False"
-             Title="Research the Oceans"
+             Title="{x:Static lang:lang.MainPageTitle}"
              >
     <ContentPage.Behaviors>
         <mct:EventToCommandBehavior Command="{Binding AppearingCommand}" EventName="Appearing" />
@@ -40,7 +41,7 @@
                     Margin="24,24,0,0"
                     HorizontalOptions="Center"
                     HorizontalTextAlignment="Start"
-                    Text="To upload your sample CSV-Data to GEOMAR Research Center in Kiel:"
+                    Text="{x:Static lang:lang.MainPageIntro1}"
                     FontSize="Medium" />
             </Grid>
 
@@ -50,7 +51,7 @@
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Start"
                 TextType="Html"
-                Text="1. Open the &lt;strong&gt;KOR-App&lt;/strong&gt; and import your measurement from a sonde. Than export the data to a CSV-file."
+                Text="{x:Static lang:lang.MainPageIntro2}"
                 FontSize="Small" />
 
             <Label
@@ -59,7 +60,7 @@
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Start"
                 TextType="Html"
-                Text="2. Selecting &lt;strong&gt;sail4oxygen&lt;/strong&gt; from the share screen will bring you back here. &lt;strong&gt; You may want to adjust the coordinates&lt;/strong&gt; before &lt;strong&gt;Sending a CSV-File&lt;/strong&gt;."
+                Text="{x:Static lang:lang.MainPageIntro3}"
                 FontSize="Small" />
 
             <Label
@@ -68,7 +69,7 @@
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Start"
                 TextType="Html"
-                Text="Your Mail-App will be launched automatically to transmit the data. (If you are prompted to select a File no CSV-File was shared from KOR-App.)"
+                Text="{x:Static lang:lang.MainPageIntro4}"
                 FontSize="Micro" />
 
             <BoxView
@@ -85,13 +86,13 @@
                 <VerticalStackLayout>
                 <Label
                     TextType="Html"
-                    Text="Latitude &lt;em&gt;(xx,xxxxx)&lt;/em&gt;"
+                    Text="{x:Static lang:lang.MainPageLatitudeTitle}"
                     FontSize="Micro"
                     TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
                     VerticalOptions="CenterAndExpand"/>
                 <Entry
                     x:Name="LatitudeEntry"
-                    Placeholder="Wait for Coordinate"
+                    Placeholder="{x:Static lang:lang.MainPageLatitudePlaceholder}"
                     Text="{Binding MyLocation.Latitude , Mode=TwoWay, StringFormat='{0:00.00000}'}"
                     FontSize="Small"
                     VerticalOptions="CenterAndExpand">
@@ -106,13 +107,13 @@
                 </Entry>
                 <Label
                     TextType="Html"
-                    Text="Longitude &lt;em&gt;(xxx,xxxxx)&lt;/em&gt;"
+                    Text="{x:Static lang:lang.MainPageLongitudeTitle}"
                     FontSize="Micro"
                     TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
                     VerticalOptions="CenterAndExpand"/>
                 <Entry
                     x:Name="LongitudeEntry"
-                    Placeholder="Wait for Coordinate"
+                    Placeholder="{x:Static lang:lang.MainPageLongitudePlaceholder}"
                     Text="{Binding MyLocation.Longitude , Mode=TwoWay, StringFormat='{0:000.00000}'}"
                     FontSize="Small"
                     VerticalOptions="CenterAndExpand">
@@ -129,12 +130,12 @@
                 </VerticalStackLayout>
 
                 <Button
-                    Text="Reload GPS"
+                    Text="{x:Static lang:lang.MainPageGPSReload}"
                     Padding="8,8,8,8"
                     BackgroundColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue25}}"
                     TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource s4blue100}}"
                     Margin="6,12,6,12"
-                    SemanticProperties.Hint="Reloads Coordinates from GPS"
+                    SemanticProperties.Hint="{x:Static lang:lang.MainPageGPSReloadHint}"
                     Clicked="OnGPSReload_Clicked"
                     HorizontalOptions="Center" />
 
@@ -155,7 +156,7 @@
                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
                     TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray300}}"
                 Margin="15,12,0,0"
-                SemanticProperties.Hint="Selects a CSV File to send"
+                SemanticProperties.Hint="{x:Static lang:lang.MainPageFileRemoveHint}"
                 Clicked="OnFileRemove_Clicked"
                 HorizontalOptions="End"
                 IsVisible="{Binding FileRemoveButtonVisible}"/>
@@ -168,7 +169,7 @@
                 BackgroundColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue25}}"
                 TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource s4blue100}}"
                 Margin="0,8,0,20"
-                SemanticProperties.Hint="Loads a CSV File and prepares a Mail to send"
+                SemanticProperties.Hint="{x:Static lang:lang.MainPageSendButtonHint}"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
 
@@ -187,7 +188,6 @@
                     HorizontalOptions="Center" />
                 <Image
                     Source="s4ob.png"
-                    SemanticProperties.Description="Sailing for Oxygen Logo"
                     HeightRequest="100"
                     VerticalOptions="Center"
                     HorizontalOptions="Center" />
