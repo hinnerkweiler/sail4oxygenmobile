@@ -8,7 +8,7 @@ namespace sail4oxygen.Models
 #if DEBUG
         static private string[] Recipients = new[] { "h.weiler@trans-ocean.org" };
 #else
-        static private string[] Recipients = new[] { "h.weiler@trans-ocean.org", "dm-data@geomar.de" };
+        static private string[] Recipients = new[] { "dm-data@geomar.de" };
 #endif
         private static async Task<EmailAttachment> CreateLocationAttachment(Location location)
 	{
