@@ -64,11 +64,6 @@ public class MainActivity : MauiAppCompatActivity
 
             Models.SharedData.StartFromShare = true;
             Models.SharedData.FileUri = appFilePath;
-            
-                
-
-            
-
         }
     }
     
