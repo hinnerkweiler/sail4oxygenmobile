@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lang="clr-namespace:sail4oxygen.Resources.Languages"
              x:Class="sail4oxygen.Views.AboutPage"
-             Title="About"
+             Title="{x:Static lang:lang.AboutPageTitle}"
              >
 
     <Shell.TitleView>
         <HorizontalStackLayout
             HorizontalOptions="End">
             <Label
-                Text="About the App"
+                Text="{x:Static lang:lang.AboutPageTitle}"
                 VerticalOptions="Center"
                 FontFamily="LucidaGrande" />
 
@@ -36,10 +37,17 @@
 
             <Button
                 Margin="8"
-                Text="Read more at sail4oxygen.org"
+                Text="{x:Static lang:lang.AboutPageReadMore}"
                 Clicked="s4oweb_Clicked"
                 HorizontalOptions="CenterAndExpand"
                 />
+
+            <Label
+                Text="{Binding PrivacyText}"
+                TextType="Html"
+                Margin="12"
+                VerticalOptions="EndAndExpand" 
+                HorizontalOptions="EndAndExpand" />
 
             <Frame Margin="12,0">
                 <Grid RowDefinitions="500,160" ColumnDefinitions="*,100"
@@ -66,7 +74,7 @@
                         BackgroundColor="Transparent"
                         TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray300}}"
                         FontSize="Micro"
-                        Text="More…"
+                        Text="{x:Static lang:lang.DeveloperPageButtonText}"
                         Clicked="Github_Clicked"
                         HorizontalOptions="CenterAndExpand"
                         />
@@ -75,7 +83,7 @@
 
             <Button
                 Margin="8,24,24,8"
-                Text="Change Settings"
+                Text="{x:Static lang:lang.OpenSettingsPage}"
                 x:Name="settings"
                 Clicked="settings_Clicked"
                 HorizontalOptions="CenterAndExpand"
