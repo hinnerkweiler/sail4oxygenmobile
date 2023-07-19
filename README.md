@@ -1,6 +1,6 @@
 # sail4oxygen ReadMe
 
-* Great projects often start with a terrible underestimation: "We might need kind of a registration page at one point. Probably a Google-Form would do it", was how I came into the Citizen Science: Sailing for Oxygen Project and here am I writing the Readme for a mobile app… *
+_Great projects often start with a terrible underestimation: "We might need kind of a registration page at one point. Probably a Google-Form would do it", was how I came into the Citizen Science: Sailing for Oxygen Project and here am I writing the Readme for a mobile app…_
 
 For more information about Citizen Science: Sailing for Oxygen, the project behind this app, go to [sail4oxygen.org](https://sail4oxygen.org) (german) or see the [official press release in english](https://www.geomar.de/en/news/article/fishing-data-for-science)
 
