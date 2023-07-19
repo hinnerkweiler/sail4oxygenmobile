@@ -12,37 +12,36 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-
   <data name="MainPageTitle" xml:space="preserve">
-    <value>Research the Oceans</value>
+    <value>Erforsche die Meere</value>
     <comment>Title for Textbar </comment>
   </data>
   <data name="MainPageIntro1" xml:space="preserve">
-    <value>To upload your sample CSV-Data to GEOMAR Research Center in Kiel:</value>
+    <value>Um eine Messung an das GEOMAR Forschungszentrum in Kiel zu senden:</value>
     <comment>Explaination</comment>
   </data>
   <data name="MainPageIntro2" xml:space="preserve">
-    <value>1. Open the &lt;strong&gt;KOR-App&lt;/strong&gt; and import your measurement from a sonde. Export your results to a CSV and select &lt;strong&gt;GEOMAR&lt;/strong&gt; from the list.</value>
+    <value>1. Öffne die &lt;strong&gt;KOR-App&lt;/strong&gt; und importiere die letzte Messung von der Sonde. Exportiere die Ergebnisse als CSV-Tabelle und wähle als Ziel &lt;strong&gt;GEOMAR–sail4oxygen&lt;/strong&gt; aus der Liste.</value>
     <comment/>
   </data>
   <data name="MainPageIntro3" xml:space="preserve">
-    <value>2. You will be guided back here. If needed correct the coordinates before sending your data to GEOMAR.</value>
+    <value>2. Du wirst hier her zurückgeführt. Bitte vor dem Versenden ans GEOMAR unbedingt die Koordinaten prüfen und ggf. berichtigen.</value>
     <comment/>
   </data>
   <data name="MainPageIntro4" xml:space="preserve">
-    <value>Your Mail-App will launched automatically to transmit the data. (If you are prompted to select a File before sending no valid CSV-File was shared from KOR-App.)</value>
+    <value>Deine E-Mail-App wird automatisch starten, um die Messdaten zu verschicken. (Falls Du aufgefordert wirst eine Datei zu wählen, wurde keine gültige CSV-Datei von der KOR-App ausgewählt.)</value>
     <comment/>
   </data>
   <data name="MainPageLatitudeTitle" xml:space="preserve">
-    <value>Latitude (xx,xxxxx)</value>
+    <value>Breite (xx,xxxxx)</value>
     <comment/>
   </data>
   <data name="MainPageLatitudePlaceholder" xml:space="preserve">
-    <value>Waiting for GPS...</value>
+    <value>Warte auf GPS...</value>
     <comment/>
   </data>
   <data name="MainPageLongitudeTitle" xml:space="preserve">
-    <value>Longitude (xx,xxxxx)</value>
+    <value>Länge (xx,xxxxx)</value>
     <comment/>
   </data>
   <data name="MainPageLongitudePlaceholder" xml:space="preserve">
@@ -50,19 +49,19 @@
     <comment/>
   </data>
   <data name="MainPageGPSReload" xml:space="preserve">
-    <value>Reload GPS</value>
+    <value>GPS aktualisieren</value>
     <comment/>
   </data>
   <data name="MainPageGPSReloadHint" xml:space="preserve">
-    <value>Reloads Coordinates from GPS</value>
+    <value>Setzt die GPS Daten auf die aktuellen Koordinaten</value>
     <comment/>
   </data>
   <data name="MainPageFileRemoveHint" xml:space="preserve">
-    <value>Click to remove File and Select a new one.</value>
+    <value>Anklicken, um das gewählte Feile aus der Auswahl zu löschen.</value>
     <comment/>
   </data>
   <data name="MainPageSendButtonHint" xml:space="preserve">
-    <value>Loads a CSV File and prepares a Mail to send</value>
+    <value>Lädt eine CSV Datei und bereitet sie zum versenden per Mail ans GEOMAR vor.</value>
     <comment/>
   </data>
   <data name="MainPage.LogoHint" xml:space="preserve">
@@ -70,15 +69,15 @@
     <comment/>
   </data>
   <data name="FileTooOldAlertTitel" xml:space="preserve">
-    <value>Check Location</value>
+    <value>Koordinaten prüfen</value>
     <comment/>
   </data>
   <data name="FileTooOldAlertText1" xml:space="preserve">
-    <value>Your measurements are</value>
+    <value>Deine Messung ist</value>
     <comment/>
   </data>
   <data name="FileTooOldAlertText2" xml:space="preserve">
-    <value>Minutes old. Please manually correct your coordinates if you have sailed away from the measurement spot since than.</value>
+    <value>Minuten alt. Prüfe bitte die Koordinaten und aktualisiere sie, falls Du inzwischen nicht mehr am Messpunkt bist.</value>
     <comment/>
   </data>
   <data name="Yes" xml:space="preserve">
@@ -86,59 +85,59 @@
     <comment/>
   </data>
   <data name="ContinueSending" xml:space="preserve">
-    <value>Continue Sending</value>
+    <value>Fortfahren &amp; Senden</value>
     <comment/>
   </data>
   <data name="CorrectCoordinates" xml:space="preserve">
-    <value>Check Coordinates</value>
+    <value>Koordinaten prüfen</value>
     <comment/>
   </data>
   <data name="FileTooOldLastError" xml:space="preserve">
-    <value>- File old. Please adjust coordinates.</value>
+    <value>- Messung alt, bitte Koordinaten prüfen.</value>
     <comment/>
   </data>
   <data name="WrongFileLastError" xml:space="preserve">
-    <value>- File was not readable or wrong format.</value>
+    <value>- Datei konnte nicht gelesen werden.</value>
     <comment/>
   </data>
   <data name="DeveloperNote" xml:space="preserve">
-    <value>&lt;p&gt;&amp;#xA9 2023 Hinnerk Weiler&lt;/p&gt;Carefully crafted with &amp;#9829 for the oceans. Developer contact and technical support:&lt;br /&gt;h.weiler@trans-ocean.org. This Software was developed in best intentions and is provided as is with no warranties. Source code and full license Information is available on the developer page.&lt;/p&gt;</value>
+    <value>&lt;p&gt;&amp;#xA9 2023 Hinnerk Weiler&lt;/p&gt;Programmiert mit &amp;#9829 zum Meer. Kontakt und technischer Support:&lt;br /&gt;h.weiler@trans-ocean.org. Diese Software wurde in bester Absicht sorgältig entwickelt. Eine Garantie oder Gewährleistung für Schäden aus der Verwendung kann jedoch nicht übernommen werden. Source Code and weitere Information sind auf der Entwicklerseite zu finden. Feedback ist willkommen! &lt;/p&gt;</value>
     <comment/>
   </data>
   <data name="AboutPageTitle" xml:space="preserve">
-    <value>About the App</value>
+    <value>Über die App</value>
     <comment/>
   </data>
   <data name="AboutText" xml:space="preserve">
-    <value>&lt;h1&gt;Be part of the research&lt;/h1&gt;&lt;p&gt;&lt;em&gt;Citizen Science:Sailing for Oxygen&lt;/em&gt; is a joint project initiated by the german research center GEOMAR and Trans-Ocean sailing club. This companion app assists you in becoming part of the project and helps you transmit your samples to scientists worldwide.&lt;/p&gt;&lt;p&gt;For more information please visit the project website &lt;strong&gt;sail4oxygen.org&lt;/strong&gt;. Technical Support is available via developer contact details and the end of this screen.&lt;/p&gt;</value>
+    <value>&lt;h1&gt;Werde Teil der Forschung&lt;/h1&gt;&lt;p&gt;&lt;em&gt;Citizen Science:Sailing for Oxygen&lt;/em&gt; ist ein gemeinsames Wissenschaftsprojekt von GEOMAR Helmholtz-Zentrum für Ozeanforschung in Kiel und dem Trans-Ocean Segelverein. Diese App hilft beim übertragen von Messdaten an das GEOMAR und macht Deine Messungen für Wissenschaftler zugänglich. Du bist damit ein wesentlicher Teil des Projekts.&lt;/p&gt;&lt;p&gt;For more information please visit the project website &lt;strong&gt;sail4oxygen.org&lt;/strong&gt;. Technical Support is available via developer contact details and the end of this screen.&lt;/p&gt;</value>
     <comment/>
   </data>
   <data name="PrivacyText" xml:space="preserve">
-    <value>&lt;p&gt;&lt;strong&gt;Privacy Note:&lt;/strong&gt; In order to transmit your data to GEOMAR we use E-Mail. Your Message will reveal your location at time of sampling data and your personal email address on our servers. The public available data will be anonymised and does not contain any personal information. Responsible for data privacy of stored Data is the GEOMAR Research center &lt;datenschutz@geomar.de&gt;. &lt;/p&gt;</value>
+    <value>&lt;p&gt;&lt;strong&gt;Datenschutzhinweis:&lt;/strong&gt; Um Deine Messung an das GEOMAR zu übertragen nutzen wir E-Mail. Deine Nachricht wird im GEOMAR gespeichert und verarbeitet. Sie enthält neben Deiner E-Mail-Adresse Angaben über die Position und den Zeitpunkt Deiner Messung. Öffentlich zugänglich werden nur anonyme Messdaten sein. Verantwortlich für den Umgang mit Deinen Daten ist das GEOMAR. Fragen dazu beantwortet &lt;datenschutz@geomar.de&gt;. &lt;/p&gt;</value>
     <comment/>
   </data>
   <data name="DeveloperPageButtonText" xml:space="preserve">
-    <value>More …</value>
+    <value>Mehr …</value>
     <comment/>
   </data>
   <data name="AboutPageReadMore" xml:space="preserve">
-    <value>Learn more at sail4oxygen.org</value>
+    <value>Lerne mehr auf sail4oxygen.org</value>
     <comment/>
   </data>
   <data name="OpenSettingsPage" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
     <comment/>
   </data>
   <data name="OnboardingPageTitle" xml:space="preserve">
-    <value>Welcome</value>
+    <value>Willkommen</value>
     <comment/>
   </data>
   <data name="OnboardingPageComeBackInfo" xml:space="preserve">
-    <value>You can come back here any time later from the About page.</value>
+    <value>Du kannst später über die Einstellungen auf der about Seite wieder hier her kommen.</value>
     <comment/>
   </data>
   <data name="OnboardingGreetingText" xml:space="preserve">
-    <value>Great having you on board to do &lt;strong&gt;Citizen Science&lt;/strong&gt; and help us to understand the oceans!</value>
+    <value>Großartig, dass Du uns beim &lt;strong&gt;Citizen Science&lt;/strong&gt; helfen möchtest.</value>
     <comment/>
   </data>
   <data name="OnboardingAuthCode" xml:space="preserve">
@@ -146,11 +145,11 @@
     <comment/>
   </data>
   <data name="OnboardingKORInfo" xml:space="preserve">
-    <value>To fully get on board with your research please set up the KOR-App you also will needed the KOR App to download data from our sonde. We are in touch to solve this dependency with the manufactuerer for future versions.</value>
+    <value>Für das Auslesen einer Messung zwird zusätzlich die KOR-Sonden-App benötigt. Wir arbeiten mit dem Hersteller daran, die Notwendigkeit einer zweiten App künftig zu umgehen.</value>
     <comment/>
   </data>
   <data name="OnboardingKORButton" xml:space="preserve">
-    <value>Install KOR on your Device</value>
+    <value>Installiere die KOR-APP aus dem Play-Store</value>
     <comment/>
   </data>
   <data name="OnboardingApplyInfo1" xml:space="preserve">
@@ -162,23 +161,23 @@
     <comment/>
   </data>
   <data name="SendButtonTextSelectFile" xml:space="preserve">
-    <value>Manually select a CSV file</value>
+    <value>Auswählen einer KOR-Messung</value>
     <comment/>
   </data>
   <data name="SendButtonTextSendFile" xml:space="preserve">
-    <value>Send selected file to GEOMAR</value>
+    <value>Senden ans GEOMAR</value>
     <comment/>
   </data>
   <data name="NoCsvFile" xml:space="preserve">
-    <value>No file selected. Export one from KOR App.</value>
+    <value>Keine gültige Datei gewählt. Exportiere ein CSV aus der KOR-App.</value>
     <comment/>
   </data>
   <data name="NoFileAlertTitle" xml:space="preserve">
-    <value>No file selected</value>
+    <value>Keine Datei gewählt</value>
     <comment/>
   </data>
   <data name="NoFileAlertText" xml:space="preserve">
-    <value>file not opened. Either you canceled the selection or file permission was not granted.</value>
+    <value>Eine Datei wurde nicht geöffnet.</value>
     <comment/>
   </data>
   <data name="ok" xml:space="preserve">
@@ -186,56 +185,57 @@
     <comment/>
   </data>
   <data name="cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Abbrechen</value>
     <comment/>
   </data>
   <data name="ThankYou" xml:space="preserve">
-    <value>Thank You!</value>
+    <value>Vielen Dank!</value>
     <comment/>
   </data>
   <data name="SendMessageAlertText" xml:space="preserve">
-    <value>You just did science! Your measurement sould be available to scientists at the GEOMAR Beluga-Portal in a few minutes.</value>
+    <value>Du hast gerade Wissenschaft betrieben! Deine Messung sollte in wenigen Minuten für Forschende weltweit über das GEOMAR Beluga-Portal verfügbar sein.</value>
     <comment/>
   </data>
   <data name="NoFileSent" xml:space="preserve">
-    <value>Something wrong?</value>
+    <value>Stimmt etwas nicht?</value>
     <comment/>
   </data>
   <data name="NoFileSentMessage" xml:space="preserve">
-    <value>Did not send your message! </value>
+    <value>Deine Nachricht wurde noch nicht gesendet! </value>
     <comment/>
   </data>
   <data name="OnboardingDSGVOInfo" xml:space="preserve">
-    <value>&lt;em&gt;Wehen transmitting measurements I agree sending my sample data via email to the GEOMAR Research Center, revealing my email address and location at time of measurement. See sail4oxygen.org for further information.</value>
+    <value>Ich stimme zu, dass meine Messdaten vom GEOMAR Forschungszentrum veröffentlicht werden. Mir ist bewusst, dass Meine E-Mailadresse und der Zeitpunkt meiner Messung mit dem Ort gespeichert werden. Siehe sail4oxygen.org für weitere Informationen.</value>
     <comment/>
   </data>
   <data name="PrivacyAlertTitle" xml:space="preserve">
-    <value>DSGVO Consent</value>
+    <value>Einverständnis</value>
     <comment/>
   </data>
   <data name="PrivacyAlertText" xml:space="preserve">
-    <value>You will not be able to send measurements without consent to our privacy disclaimer.</value>
+    <value>Du kannst ohne Zustimmung zur Datenspeicherung und Veröffentlichung keine Messdaten verschicken.</value>
     <comment/>
   </data>
     <data name="PrivacyAlertChangesetting" xml:space="preserve">
-    <value>Change Setting</value>
+    <value>Einstellungen</value>
     <comment/>
   </data>
   <data name="PrivacyAlertReturn" xml:space="preserve">
-    <value>Go Back</value>
+    <value>Zurück</value>
     <comment/>
   </data>
   <data name="PrivacyAlertOK" xml:space="preserve">
-    <value>Continue without consent</value>
+    <value>Später entscheiden</value>
     <comment/>
   </data>
   <data name="OnboardingDsgvoTitle" xml:space="preserve">
-    <value>Please confirm:</value>
+    <value>Bitte bestätigen</value>
     <comment/>
   </data>
   <data name="IntentTitle" xml:space="preserve">
-    <value> Send to GEOMAR </value>
+    <value> Ans GEOMAR senden </value>
     <comment/>
   </data>
   
 </root>
+
