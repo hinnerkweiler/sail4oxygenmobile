@@ -2,12 +2,21 @@
 
 public partial class Onboarding : ContentPage
 {
-	public double TitleHeight = 80d;
+    ViewModels.OnboardingPageVM viewModel = new();
+
+
+
+    public double TitleHeight = 80d;
+
+
 
     public Onboarding()
 	{
+        BindingContext = viewModel;
 		InitializeComponent();
 	}
+
+
 
     async void register_Clicked(System.Object sender, System.EventArgs e)
     {
@@ -24,6 +33,7 @@ public partial class Onboarding : ContentPage
     }    
 
 
+
     async void authorize_Clicked(System.Object sender, System.EventArgs e)
     {
         await DisplayAlert("Registration", "", "OK");
@@ -32,17 +42,9 @@ public partial class Onboarding : ContentPage
 
 
 
-    async void dsgvoCheckBox_Toggled(System.Object sender, System.EventArgs e)
-    {
-        Models.DsgvoHandler.IsDsgvoAccepted = dsgvoCheckBox.IsChecked;
-    
-    }
-
-
-
     async void exit_Clicked(System.Object sender, System.EventArgs e)
     {
-        if (Models.DsgvoHandler.IsDsgvoAccepted == false)
+        if (!viewModel.DsgvoBoxChecked)
         {
             if (await DisplayAlert(sail4oxygen.Resources.Languages.lang.PrivacyAlertTitle, sail4oxygen.Resources.Languages.lang.PrivacyAlertText, sail4oxygen.Resources.Languages.lang.PrivacyAlertOK, sail4oxygen.Resources.Languages.lang.PrivacyAlertReturn))
             {
