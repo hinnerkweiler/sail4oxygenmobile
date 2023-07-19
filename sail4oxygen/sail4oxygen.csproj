@@ -78,12 +78,14 @@
 	  <None Remove="Resources\Images\s4oedit.png" />
 	  <None Remove="Resources\AppIcon\appicon.png" />
 	  <None Remove="Resources\Languages\" />
+	  <None Remove="Resources\PrivateData\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
 	  <Folder Include="ViewModels\" />
 	  <Folder Include="Views\" />
 	  <Folder Include="Resources\Languages\" />
+	  <Folder Include="Resources\PrivateData\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiSplashScreen Include="Resources\Splash\s4osplash.svg" BaseSize="1024,1024" Color="#FFFFFF" />
@@ -99,11 +101,22 @@
 	  <Compile Update="Resources\Languages\lng.Designer.cs">
 	    <DependentUpon>lang.resx</DependentUpon>
 	  </Compile>
+	  <Compile Update="Resources\Languages\lang.de.Designer.cs">
+	    <DependentUpon>lang.de.resx</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\Languages\lang.Designer.cs">
 	    <DependentUpon>lang.resx</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 	<ItemGroup>
+	  <EmbeddedResource Update="Resources\PrivateData\BelugaData.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>BelugaData.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Languages\lang.de.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>lang.de.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	  <EmbeddedResource Update="Resources\Languages\lang.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>lang.Designer.cs</LastGenOutput>

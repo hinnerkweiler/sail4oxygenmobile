@@ -140,27 +140,29 @@
                     HorizontalOptions="Center" />
             </HorizontalStackLayout>
 
-            <HorizontalStackLayout>
-            <Label
-                TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}"
-                Margin="55,25,0,11"
-                HorizontalOptions="Start"
-                HorizontalTextAlignment="Start"
-                Text="{Binding FileName}"
-                FontSize="Micro" />
+            <Grid RowDefinitions="*" ColumnDefinitions="*,45">
+                <Label
+                    Grid.Row="0" Grid.Column="0"
+                    TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}"
+                    Margin="45,25,45,11"
+                    HorizontalOptions="Start"
+                    HorizontalTextAlignment="Start"
+                    Text="{Binding FileName}"
+                    FontSize="Micro" />
 
-            <Button
-                Text="&#x24E7;"
-                Padding="0,10,10,10"
-                   BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
-                    TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray300}}"
-                Margin="15,12,0,0"
-                SemanticProperties.Hint="{x:Static lang:lang.MainPageFileRemoveHint}"
-                Clicked="OnFileRemove_Clicked"
-                HorizontalOptions="End"
-                IsVisible="{Binding FileRemoveButtonVisible}"/>
-            </HorizontalStackLayout>
-
+                <Button
+                    Grid.Row="0" Grid.Column="1"
+                    Text="&#x24E7;"
+                    Padding="0,10,10,10"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                        TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray300}}"
+                    Margin="15,12,0,0"
+                    SemanticProperties.Hint="{x:Static lang:lang.MainPageFileRemoveHint}"
+                    Clicked="OnFileRemove_Clicked"
+                    HorizontalOptions="End"
+                    IsVisible="{Binding FileRemoveButtonVisible}"/>
+            </Grid>
+            
             <Button
                 Text="{Binding SendButtonText}"
                 IsEnabled="{Binding CoordinatesValid}"
