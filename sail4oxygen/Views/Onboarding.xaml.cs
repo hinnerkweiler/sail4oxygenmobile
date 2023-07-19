@@ -32,9 +32,27 @@ public partial class Onboarding : ContentPage
 
 
 
+    async void dsgvoCheckBox_Toggled(System.Object sender, System.EventArgs e)
+    {
+        Models.DsgvoHandler.IsDsgvoAccepted = dsgvoCheckBox.IsChecked;
+    
+    }
+
+
+
     async void exit_Clicked(System.Object sender, System.EventArgs e)
     {
-        await Shell.Current.GoToAsync("..");
+        if (Models.DsgvoHandler.IsDsgvoAccepted == false)
+        {
+            if (await DisplayAlert(sail4oxygen.Resources.Languages.lang.PrivacyAlertTitle, sail4oxygen.Resources.Languages.lang.PrivacyAlertText, sail4oxygen.Resources.Languages.lang.PrivacyAlertOK, sail4oxygen.Resources.Languages.lang.PrivacyAlertReturn))
+            {
+                await Shell.Current.GoToAsync("..");
+            }
+        }
+        else
+        {
+            await Shell.Current.GoToAsync("..");
+        }
     }
 
 

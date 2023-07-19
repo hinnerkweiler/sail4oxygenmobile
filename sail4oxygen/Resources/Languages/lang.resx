@@ -230,6 +230,10 @@
     <value>OK</value>
     <comment/>
   </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment/>
+  </data>
   <data name="ThankYou" xml:space="preserve">
     <value>Thank You!</value>
     <comment/>
@@ -258,8 +262,12 @@
     <value>You will not be able to send measurements without consent to our privacy disclaimer.</value>
     <comment/>
   </data>
+    <data name="PrivacyAlertChangesetting" xml:space="preserve">
+    <value>Change Setting</value>
+    <comment/>
+  </data>
   <data name="PrivacyAlertReturn" xml:space="preserve">
-    <value>OK</value>
+    <value>Go Back</value>
     <comment/>
   </data>
   <data name="PrivacyAlertOK" xml:space="preserve">
