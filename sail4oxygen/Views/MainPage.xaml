@@ -192,6 +192,76 @@
                     HeightRequest="100"
                     VerticalOptions="Center"
                     HorizontalOptions="Center" />
+                <ListView
+                    x:Name="NewsListView"
+                    ItemsSource="{Binding News.FirstArticles}"
+                    VerticalOptions="FillAndExpand"
+                    HasUnevenRows="True"
+                    Margin="0,0,0,0"
+                    SeparatorVisibility="None"
+                    SelectionMode="None"
+                    >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Margin="5,5">
+                                <Grid ColumnDefinitions="110,*" RowDefinitions="*">
+                                    <VerticalStackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" >
+                                        <Image
+                                            Source="{Binding FeaturedImageSource}"
+                                            HeightRequest="100"
+                                            WidthRequest="100"
+                                            Aspect="AspectFill"
+                                            
+                                            />
+                                        <Label
+                                            Text="{Binding RelativeDateTime}"
+                                            Margin="0,0,12,0"
+                                            LineBreakMode="WordWrap"
+                                            HorizontalTextAlignment="End"
+                                            FontSize="Micro"
+                                            TextType="Html"
+                                            TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                                            />
+                                    </VerticalStackLayout>
+
+
+                                    <VerticalStackLayout Grid.Column="1" Grid.Row="0">
+                                        <Label
+                                            Text="{Binding Headline}"
+                                            Margin="12,0,12,12"
+                                            LineBreakMode="WordWrap"
+                                            TextType="Html"
+                                            FontSize="Medium"
+                                            TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                                            />
+
+                                        <Label
+                                            Text="{Binding TheAbstract}"
+                                            LineBreakMode="WordWrap"
+                                            Margin="12,0"
+                                            FontSize="Small"
+                                            TextType="Html"
+                                            TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                                            />
+                                        
+                                        <Button
+                                            Text="{x:Static lang:lang.DeveloperPageButtonText}"
+                                            IsEnabled="{Binding CoordinatesValid}"
+                                            Padding="50,0,50,0"
+                                            BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                                            TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray300}}"
+                                            Margin="0,8,0,20"
+                                            Clicked="OnCounterClicked"
+                                            HorizontalOptions="Center" />
+                                    </VerticalStackLayout>
+                                    
+                                </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

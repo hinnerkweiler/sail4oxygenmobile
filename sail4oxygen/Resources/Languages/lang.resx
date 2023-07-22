@@ -237,5 +237,24 @@
     <value> Send to GEOMAR </value>
     <comment/>
   </data>
-  
+  <data name="justnow" xml:space="preserve">
+    <value> just now </value>
+    <comment/>
+  </data>
+  <data name="minutesago" xml:space="preserve">
+    <value> {0} minutes ago </value>
+    <comment/>
+  </data>
+  <data name="hourssago" xml:space="preserve">
+    <value> {0 }hours ago </value>
+    <comment/>
+  </data>
+  <data name="daysago" xml:space="preserve">
+    <value> {0} days ago </value>
+    <comment/>
+  </data>
+  <data name="NoDate" xml:space="preserve">
+    <value>No Date</value>
+    <comment/>
+  </data>
 </root>

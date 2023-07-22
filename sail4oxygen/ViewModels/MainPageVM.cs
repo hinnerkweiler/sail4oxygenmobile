@@ -143,7 +143,9 @@ namespace sail4oxygen.ViewModels
         }
 
 
-        
+        [ObservableProperty]
+        private Models.NewsItems news = new Models.NewsItems("https://www.trans-ocean.org/DesktopModules/DNNArticle/DNNArticleRSS.aspx?portalid=0&moduleid=426&tabid=226&categoryid=-1&cp=True&uid=-1&Language=de-DE");
+
 
 
 

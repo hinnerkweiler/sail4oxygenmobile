@@ -236,6 +236,26 @@
     <value> Ans GEOMAR senden </value>
     <comment/>
   </data>
+  <data name="justnow" xml:space="preserve">
+    <value> von gerade eben</value>
+    <comment/>
+  </data>
+  <data name="minutesago" xml:space="preserve">
+    <value> vor {0} Minuten</value>
+    <comment/>
+  </data>
+  <data name="hourssago" xml:space="preserve">
+    <value> vor {0} Stunden</value>
+    <comment/>
+  </data>
+  <data name="daysago" xml:space="preserve">
+    <value> vor {0} Tagen</value>
+    <comment/>
+  </data>
+  <data name="NoDate" xml:space="preserve">
+    <value>Kein Datum gefunden</value>
+    <comment/>
+  </data>
   
 </root>
 
