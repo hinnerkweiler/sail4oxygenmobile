@@ -19,8 +19,6 @@ public partial class MainPage : ContentPage
         {
             Shell.Current.GoToAsync("Onboarding");
         }
-
-        //Activated
     }
 
 
@@ -85,6 +83,16 @@ public partial class MainPage : ContentPage
     async void OnFileRemove_Clicked(System.Object sender, System.EventArgs e)
     {
         MainPageVM.Cleanup();
+    }
+
+    public void NewsListView_ItemTapped(System.Object sender, Microsoft.Maui.Controls.ItemTappedEventArgs e)
+    {
+        MainPageVM.ItemTapped(e.Item as Models.NewsItem);
+    }
+
+    void NewsListView_ItemSelected(System.Object sender, Microsoft.Maui.Controls.SelectedItemChangedEventArgs e)
+    {
+        Models.NewsItem item = e.SelectedItem as Models.NewsItem;
     }
 }
 

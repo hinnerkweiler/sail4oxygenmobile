@@ -1,5 +1,14 @@
 ﻿#sail4oxygen
 
+### 0.11.0 (Android only) 
+
++ adding RSS Reader to display latest sail4oxygen news
+
+### 0.10.2 (Android only)
+
++ change share intent to only respond to MIME Type "text/csv"
+
+
 ### 0.10 (Android only)
 
 + Validate measurement age againts UTC

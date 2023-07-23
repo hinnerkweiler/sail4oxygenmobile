@@ -1,6 +1,6 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
-using static Android.Graphics.ImageDecoder;
+
 
 namespace sail4oxygen.Models
 {

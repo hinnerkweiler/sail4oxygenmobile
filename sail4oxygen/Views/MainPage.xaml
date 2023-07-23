@@ -20,7 +20,6 @@
             <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         </Style>
     </ContentPage.Resources>
-
     <ScrollView>
         <VerticalStackLayout
             >
@@ -195,6 +194,8 @@
                 <ListView
                     x:Name="NewsListView"
                     ItemsSource="{Binding News.FirstArticles}"
+                    ItemTapped="NewsListView_ItemTapped"
+                    ItemSelected="NewsListView_ItemSelected"
                     VerticalOptions="FillAndExpand"
                     HasUnevenRows="True"
                     Margin="0,0,0,0"
@@ -244,18 +245,7 @@
                                             TextType="Html"
                                             TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
                                             />
-                                        
-                                        <Button
-                                            Text="{x:Static lang:lang.DeveloperPageButtonText}"
-                                            IsEnabled="{Binding CoordinatesValid}"
-                                            Padding="50,0,50,0"
-                                            BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
-                                            TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray300}}"
-                                            Margin="0,8,0,20"
-                                            Clicked="OnCounterClicked"
-                                            HorizontalOptions="Center" />
-                                    </VerticalStackLayout>
-                                    
+                                   </VerticalStackLayout>
                                 </Grid>
                                 </Frame>
                             </ViewCell>
@@ -265,6 +255,6 @@
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
-
+    
 </ContentPage>
 

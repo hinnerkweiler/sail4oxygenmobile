@@ -147,8 +147,6 @@ namespace sail4oxygen.ViewModels
         private Models.NewsItems news = new Models.NewsItems("https://www.trans-ocean.org/DesktopModules/DNNArticle/DNNArticleRSS.aspx?portalid=0&moduleid=426&tabid=226&categoryid=-1&cp=True&uid=-1&Language=de-DE");
 
 
-
-
         public MainPageVM()
 		{
             if (Models.SharedData.StartFromShare)
@@ -159,6 +157,8 @@ namespace sail4oxygen.ViewModels
             {
                 Models.SharedData.SharedFileHandled += HandleCsvFileShared;
             }
+
+
         }
 
 
@@ -199,6 +199,12 @@ namespace sail4oxygen.ViewModels
             MyLocation = await GetLocation();
         }
 
+        [CommunityToolkit.Mvvm.Input.RelayCommand]
+        public async void ItemTapped(Models.NewsItem item)
+        {
+            await Browser.Default.OpenAsync(item.Url);
+        }
+            
 
 
         public async Task<Location> GetLocation()
