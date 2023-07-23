@@ -59,6 +59,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -74,17 +75,16 @@
 	  <None Remove="Resources\Images\sfoedit.svg" />
 	  <None Remove="Resources\Images\s4oedit.png" />
 	  <None Remove="Resources\Languages\" />
-	  <None Remove="Resources\PrivateData\" />
 	  <None Remove="Resources\AppIcon\appicon.svg" />
 	  <None Remove="Resources\Images\noimage.png" />
 	  <None Remove="Resources\Images\appicon.svg" />
+	  <None Remove="Resources\Images\help.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
 	  <Folder Include="ViewModels\" />
 	  <Folder Include="Views\" />
 	  <Folder Include="Resources\Languages\" />
-	  <Folder Include="Resources\PrivateData\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiSplashScreen Include="Resources\Splash\s4osplash.svg" BaseSize="1024,1024" Color="#FFFFFF" />
@@ -92,6 +92,7 @@
 	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\LucidaGrande.ttf" />
 	  <BundleResource Include="Resources\Raw\faq.htm" />
+	  <BundleResource Include="Resources\Images\help.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Resources\Languages\lng.Designer.cs">
@@ -105,10 +106,6 @@
 	  </Compile>
 	</ItemGroup>
 	<ItemGroup>
-	  <EmbeddedResource Update="Resources\PrivateData\BelugaData.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>BelugaData.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
 	  <EmbeddedResource Update="Resources\Languages\lang.de.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>lang.de.Designer.cs</LastGenOutput>
@@ -120,6 +117,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiIcon Include="Resources\AppIcon\appicon.svg" />
-	  <MauiIcon Include="Resources\Images\backgroundlight.svg" BaseSize="1024,1024" Color="#FFFFFF" />
+	  <MauiIcon Include="Resources\Images\backgroundlight.svg" BaseSize="200,200" Color="#FFFFFF" />
 	</ItemGroup>
 </Project>

@@ -5,11 +5,8 @@ namespace sail4oxygen.Models
 {
     public static class Mail
     {
-#if DEBUG
-        static private string[] Recipients = new[] { Resources.PrivateData.BelugaData.mailtodev };
-#else
-        static private string[] Recipients = new[] { Resources.PrivateData.BelugaData.mailtoprod };
-#endif
+        static private string[] Recipients = new[] { PrivatData.RecipientList };
+
         private static async Task<EmailAttachment> CreateLocationAttachment(Location location)
 	{
             var targetFileName = "location" + location.Timestamp.Ticks.ToString()+".txt";

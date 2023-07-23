@@ -19,6 +19,7 @@ namespace sail4oxygen.Models
 		private Uri url;
 
 		[ObservableProperty]
+		[NotifyPropertyChangedFor(nameof(FeaturedImageSource))]
 		private Uri featuredImageUrl;
 
 		[ObservableProperty]
@@ -53,7 +54,7 @@ namespace sail4oxygen.Models
 			
 
 		}
-				
+
 
 		public ImageSource FeaturedImageSource
 		{
@@ -80,16 +81,26 @@ namespace sail4oxygen.Models
             }
 		}
 
+
         public NewsItem()
 		{
 		}
+
 
 		public NewsItem(string title, string description, string source, string datestring)
         {
 			this.Headline = title;
 			this.TheAbstract = description;
 			this.Url = uriFromString(source);
-			this.Date = dateTimeFromString(datestring);
+            this.Date = dateTimeFromString(datestring);
+        }
+
+
+
+		public async Task UpdateImage()
+		{
+			this.FeaturedImageUrl = await Models.RssHelper.GetImagefromProxy(this.Url);
+			OnPropertyChanged("RssImage");
         }
 
         public NewsItem(string title, string description, string source, string image, string datestring)
@@ -100,6 +111,8 @@ namespace sail4oxygen.Models
 			this.FeaturedImageUrl = uriFromString(image);
 			this.Date = dateTimeFromString(datestring);
         }
+
+
 
 		private static DateTime dateTimeFromString(string dateTimeString)
 		{
@@ -119,6 +132,9 @@ namespace sail4oxygen.Models
 
 		private static Uri uriFromString(string source)
 		{
+#if DEBUG
+			Console.WriteLine($"********* Converting UrlString: {source}");
+#endif
 			if (!String.IsNullOrEmpty(source) && source.StartsWith("http"))
 			{
 				try
@@ -127,7 +143,7 @@ namespace sail4oxygen.Models
 				}
 				catch (Exception ex)
 				{
-					Console.WriteLine($"Could vonvert Sting to Url: {source} ==> {ex.Message}");
+					Console.WriteLine($"Could vonvert String to Url: {source} ==> {ex.Message}");
 				}
 			}
             return new Uri("https://sail4oxygen.org");

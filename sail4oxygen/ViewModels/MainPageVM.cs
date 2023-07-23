@@ -1,5 +1,9 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System;
+using System.Threading.Tasks;
+
 
 
 namespace sail4oxygen.ViewModels
@@ -144,7 +148,7 @@ namespace sail4oxygen.ViewModels
 
 
         [ObservableProperty]
-        private Models.NewsItems news = new Models.NewsItems("https://www.trans-ocean.org/DesktopModules/DNNArticle/DNNArticleRSS.aspx?portalid=0&moduleid=426&tabid=226&categoryid=-1&cp=True&uid=-1&Language=de-DE");
+        private Models.NewsItems news = new Models.NewsItems();
 
 
         public MainPageVM()
