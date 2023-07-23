@@ -1,8 +1,15 @@
 ﻿#sail4oxygen
 
-### 0.11.0 (Android only) 
+## 0.11.0 (Android only)
+### Public Beta – Please join on Google Play-Store!
+
++ minor fixes and code cleanup
 
 + adding RSS Reader to display latest sail4oxygen news
+
++ visuals
+
++ (Dependency Newtonsoft.Json added)
 
 ### 0.10.2 (Android only)
 
