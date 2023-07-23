@@ -8,6 +8,31 @@
              NavigationPage.HasNavigationBar="False"
              Title="{x:Static lang:lang.MainPageTitle}"
              >
+    
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Button
+                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray300}}"
+                Text="&#x24D8;"
+                FontSize="Large"
+                Padding="0,0,0,0"
+                Margin="12,12,0,6"
+                HorizontalOptions="StartAndExpand"
+                Clicked="About_Clicked"
+                />
+            <Image
+                Source="s4ob.png"
+                x:Name="s4oLogo"
+                HorizontalOptions="End"
+                Aspect="AspectFit"
+                HeightRequest="70"
+                Margin="0,0,0,0"
+                />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+
     <ContentPage.Behaviors>
         <mct:EventToCommandBehavior Command="{Binding AppearingCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
@@ -23,54 +48,57 @@
     <ScrollView>
         <VerticalStackLayout
             >
-            <Grid ColumnDefinitions="*,70" RowDefinitions="*">
-                <Button Grid.Column="1" Grid.Row="0"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
-                    TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray300}}"
-                    Text="&#x24D8;"
-                    FontSize="55"
-                    Padding="0,6,0,0"
-                    Margin="8,8,8,8"
-                    HorizontalOptions="End"
-                    Clicked="About_Clicked"
-                    />
-
+                <Image Source="backgroundlight.svg" Margin="24,24,24,0"/>
                 <Label Grid.Column="0" Grid.Row="0"
                     TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
                     Margin="24,24,0,0"
-                    HorizontalOptions="Center"
+                    HorizontalOptions="End"
                     HorizontalTextAlignment="Start"
-                    Text="{x:Static lang:lang.MainPageIntro1}"
+                    Text="{x:Static lang:lang.MainPageIntro}"
                     FontSize="Medium" />
-            </Grid>
 
-            <Label
-                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
-                Margin="24,8,24,0"
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Start"
-                TextType="Html"
-                Text="{x:Static lang:lang.MainPageIntro2}"
-                FontSize="Small" />
 
-            <Label
-                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
-                Margin="24,8,24,0"
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Start"
-                TextType="Html"
-                Text="{x:Static lang:lang.MainPageIntro3}"
-                FontSize="Small" />
+            <mct:Expander IsExpanded="{Binding IsLearnMoreExpanded}">
+                <mct:Expander.Header>
+                    <Label Grid.Column="0" Grid.Row="0"
+                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                    Margin="24,6,24,8"
+                    TextType="Html"
+                    HorizontalOptions="End"
+                    HorizontalTextAlignment="Start"
+                    Text="{Binding LearnMoreHeaderText}"
+                    FontSize="Small" />    
+                </mct:Expander.Header>
+            
+                <VerticalStackLayout>
+                    <Label
+                        TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                        Margin="24,8,24,0"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Start"
+                        TextType="Html"
+                        Text="{x:Static lang:lang.MainPageIntro2}"
+                        FontSize="Small" />
 
-            <Label
-                TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
-                Margin="24,8,24,0"
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Start"
-                TextType="Html"
-                Text="{x:Static lang:lang.MainPageIntro4}"
-                FontSize="Micro" />
+                    <Label
+                        TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                        Margin="24,8,24,0"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Start"
+                        TextType="Html"
+                        Text="{x:Static lang:lang.MainPageIntro3}"
+                        FontSize="Small" />
 
+                    <Label
+                        TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                        Margin="24,8,24,0"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Start"
+                        TextType="Html"
+                        Text="{x:Static lang:lang.MainPageIntro4}"
+                        FontSize="Micro" />
+                </VerticalStackLayout>
+            </mct:Expander>
             <BoxView
                 HeightRequest="1"
                 Margin="50,12,50,12"
@@ -209,6 +237,7 @@
                                 <Grid ColumnDefinitions="110,*" RowDefinitions="*">
                                     <VerticalStackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" >
                                         <Image
+                                            x:Name="RssImage"
                                             Source="{Binding FeaturedImageSource}"
                                             HeightRequest="100"
                                             WidthRequest="100"

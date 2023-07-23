@@ -16,8 +16,12 @@
     <value>Erforsche die Meere</value>
     <comment>Title for Textbar </comment>
   </data>
+  <data name="MainPageIntro" xml:space="preserve">
+    <value>Daten an das GEOMAR Forschungzentum in Kiel senden</value>
+    <comment>Explaination</comment>
+  </data>
   <data name="MainPageIntro1" xml:space="preserve">
-    <value>Um eine Messung an das GEOMAR Forschungszentrum in Kiel zu senden:</value>
+    <value>Anleitung</value>
     <comment>Explaination</comment>
   </data>
   <data name="MainPageIntro2" xml:space="preserve">

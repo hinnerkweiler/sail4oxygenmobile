@@ -55,7 +55,25 @@ namespace sail4oxygen.ViewModels
         [NotifyPropertyChangedFor(nameof(IsCoordinateEditorVisible))]
         bool isCoordinateViewVisible = true;
 
+        public string LearnMoreHeaderText
+        {
+            get
+            {
+                if (IsLearnMoreExpanded)
+                {
+                    return "&#x2304;  " + Resources.Languages.lang.MainPageIntro1;
+                }
+                else
+                {
+                    return "&gt;  " + Resources.Languages.lang.MainPageIntro1;
 
+                }
+            }
+        }
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(LearnMoreHeaderText))]
+        bool isLearnMoreExpanded = false;
 
         public bool IsCoordinateEditorVisible
         {

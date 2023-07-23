@@ -4,15 +4,14 @@
              xmlns:lang="clr-namespace:sail4oxygen.Resources.Languages"
              x:Class="sail4oxygen.Views.AboutPage"
              Title="{x:Static lang:lang.AboutPageTitle}"
+             Shell.BackgroundColor="{AppThemeBinding Light={StaticResource s4blue25}, Dark={StaticResource Gray300}}"
              >
 
     <Shell.TitleView>
         <HorizontalStackLayout
-            HorizontalOptions="End">
-            <Label
-                Text="{x:Static lang:lang.AboutPageTitle}"
-                VerticalOptions="Center"
-                FontFamily="LucidaGrande" />
+            HorizontalOptions="End"
+            >
+            
 
             <Image Source="s4ob.png"
                    x:Name="s4oLogo"

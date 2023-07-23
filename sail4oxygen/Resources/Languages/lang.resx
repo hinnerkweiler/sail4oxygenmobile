@@ -17,8 +17,12 @@
     <value>Research the Oceans</value>
     <comment>Title for Textbar </comment>
   </data>
+  <data name="MainPageIntro" xml:space="preserve">
+    <value>Upload Data to GEOMAR Research Center in Kiel</value>
+    <comment>Explaination</comment>
+  </data>
   <data name="MainPageIntro1" xml:space="preserve">
-    <value>To upload your sample CSV-Data to GEOMAR Research Center in Kiel:</value>
+    <value>Learn more </value>
     <comment>Explaination</comment>
   </data>
   <data name="MainPageIntro2" xml:space="preserve">
