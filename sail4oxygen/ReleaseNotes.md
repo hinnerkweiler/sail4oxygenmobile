@@ -1,5 +1,9 @@
 ﻿#sail4oxygen
 
+## 0.11.1 (Android only)
+
++ Register for MimeType */* as KOR ssem to not export text/csv correctly
+
 ## 0.11.0 (Android only)
 ### Public Beta – Please join on Google Play-Store!
 
