@@ -104,6 +104,12 @@
 	  <Compile Update="Resources\Languages\lang.Designer.cs">
 	    <DependentUpon>lang.resx</DependentUpon>
 	  </Compile>
+	  <Compile Update="Resources\Languages\lang.Designer.cs">
+	    <DependentUpon>lang.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Languages\lang.de.Designer.cs">
+	    <DependentUpon>lang.de.resx</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 	<ItemGroup>
 	  <EmbeddedResource Update="Resources\Languages\lang.de.resx">
