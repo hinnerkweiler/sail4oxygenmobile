@@ -261,4 +261,8 @@
     <value>No Date!</value>
     <comment/>
   </data>
+  <data name="FileWriteLastError" xml:space="preserve">
+    <value>Could not write Temporary File.</value>
+    <comment/>
+  </data>
 </root>

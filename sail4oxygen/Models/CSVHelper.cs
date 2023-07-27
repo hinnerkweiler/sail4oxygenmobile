@@ -40,8 +40,15 @@ namespace sail4oxygen.Models
                                 break;
                         }
                     }
+                    try
+                    {
+                        await File.WriteAllTextAsync(file, newCsvText);
 
-                    await File.WriteAllTextAsync(file, newCsvText);
+                    }
+                    catch (Exception ex)
+                    {
+                        Models.SharedData.LastError = Resources.Languages.lang.FileWriteLastError + "  (" + ex.Message + ")";
+                    }
 
                     return true;
                 }

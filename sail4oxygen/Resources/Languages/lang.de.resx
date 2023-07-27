@@ -260,6 +260,9 @@
     <value>Kein Datum gefunden!</value>
     <comment/>
   </data>
-  
+  <data name="FileWriteLastError" xml:space="preserve">
+    <value>Temporäre Datei konnte nicht geschrieben werden.</value>
+    <comment/>
+  </data>
 </root>
 
