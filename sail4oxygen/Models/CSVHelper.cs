@@ -50,7 +50,7 @@ namespace sail4oxygen.Models
             }
             catch (Exception ex)
             {
-                Console.WriteLine("CsvHelper.AddLocation – Something went wrong: ", ex.Message);
+                Console.WriteLine("CsvHelper.AddLocation – Something went wrong: " + ex.Message);
             }
 #if DEBUG
             Console.WriteLine("CsvHelper.Addlocation – Something went wrong");
@@ -67,12 +67,12 @@ namespace sail4oxygen.Models
                     (fileContent[headerRowNumber].IndexOf(',') > -1))
                 {
                     //recent measurement
-                    //find timestamp in row 4 column 2 and check if it is file is recent
+                    //find timestamp in row 4 column 2 and check if file is recent
                     var measure = fileContent[headerRowNumber + 1].Split(',');
                     var timestamp = DateTime.Parse(measure[0]+ " " + measure[1], new CultureInfo("en-US"));
                     var fileage = DateTime.Now.ToUniversalTime() - timestamp;
 #if DEBUG
-                    Console.WriteLine("VerifyCsvIsValidFile – Measurement timestamp: ", timestamp.ToString());
+                    Console.WriteLine("VerifyCsvIsValidFile – Measurement timestamp: " + timestamp.ToString());
 #endif
                     if (fileage.TotalMinutes > maxMeasureAge)
                     {
