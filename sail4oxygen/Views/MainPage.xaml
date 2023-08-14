@@ -70,7 +70,9 @@
                     FontSize="Small" />    
                 </mct:Expander.Header>
             
-                <VerticalStackLayout>
+                <VerticalStackLayout
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}"
+                    Padding="0,12">
                     <Label
                         TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
                         Margin="24,8,24,0"
@@ -88,8 +90,9 @@
                         TextType="Html"
                         Text="{x:Static lang:lang.MainPageIntro3}"
                         FontSize="Small" />
-
+                    <Grid ColumnDefinitions="*,120" RowDefinitions="*">
                     <Label
+                        Grid.Row="0" Grid.Column="0"
                         TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
                         Margin="24,8,24,0"
                         HorizontalOptions="Center"
@@ -97,6 +100,20 @@
                         TextType="Html"
                         Text="{x:Static lang:lang.MainPageIntro4}"
                         FontSize="Micro" />
+                    <Button
+                        Grid.Row="0" Grid.Column="1"
+                        Text="{x:Static lang:lang.OpenManualPdf}"
+                        FontSize="Micro"
+                        Padding="3,3,3,3"
+                        BorderColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray200}}"
+                        BorderWidth="1"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource s4blue100}}"
+                        TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue100}}"
+                        Margin="6,6,12,12"
+                        x:Name="GetPdfManualButton"
+                        Clicked="GetPdfManualButton_Clicked"
+                        HorizontalOptions="Center" />
+                    </Grid>
                 </VerticalStackLayout>
             </mct:Expander>
             <BoxView

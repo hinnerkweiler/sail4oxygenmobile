@@ -14,10 +14,18 @@ public partial class MainPage : ContentPage
         Routing.RegisterRoute(nameof(AboutPage), typeof(AboutPage));
         Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
         Routing.RegisterRoute(nameof(Onboarding), typeof(Onboarding));
+        Routing.RegisterRoute(nameof(ManualPage), typeof(ManualPage));
+
+        Models.FaqHelper.Init();
 
         if (VersionTracking.Default.IsFirstLaunchEver)
         {
             Shell.Current.GoToAsync("Onboarding");
+        }
+
+        if (VersionTracking.Default.IsFirstLaunchForCurrentVersion)
+        {
+            _ = Models.FaqHelper.CopyReleaseItemToAppFolder(Models.FaqHelper.PdfManualFileName);
         }
     }
 
@@ -94,6 +102,12 @@ public partial class MainPage : ContentPage
     {
         Models.NewsItem item = e.SelectedItem as Models.NewsItem;
     }
+
+    async void GetPdfManualButton_Clicked(System.Object sender, System.EventArgs e)
+    {
+        await Shell.Current.GoToAsync("ManualPage");
+    }
+
 }
 
 

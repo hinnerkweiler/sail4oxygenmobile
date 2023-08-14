@@ -264,5 +264,9 @@
     <value>Temporäre Datei konnte nicht geschrieben werden.</value>
     <comment/>
   </data>
+    <data name="OpenManualPdf" xml:space="preserve">
+    <value>Vollst. Anleitung (PDF)</value>
+    <comment/>
+  </data>
 </root>
 
