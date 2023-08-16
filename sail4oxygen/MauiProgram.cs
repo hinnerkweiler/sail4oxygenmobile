@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
+using Syncfusion.Maui.Core.Hosting;
 
 namespace sail4oxygen;
 
@@ -23,12 +24,12 @@ public static class MauiProgram
                      essentials.AddAppAction(new AppAction("id2", "Tekeover Sonde", icon: "calendar"));
                      essentials.AddAppAction(new AppAction("id3", "App Info", icon: "information"));
             });
-
+		builder.ConfigureSyncfusionCore();
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
-
-		return builder.Build();
+		Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Models.PrivatData.SyncfusionKey);
+        return builder.Build();
 	}
 }
 

@@ -71,7 +71,6 @@
 	  <None Remove="Resources\Splash\s4osplash.svg" />
 	  <None Remove="Resources\AppIcon\s4oicon.svg" />
 	  <None Remove="Resources\Fonts\LucidaGrande.ttf" />
-	  <None Remove="Resources\Raw\faq.htm" />
 	  <None Remove="Resources\Images\sfoedit.svg" />
 	  <None Remove="Resources\Images\s4oedit.png" />
 	  <None Remove="Resources\Languages\" />
@@ -79,6 +78,8 @@
 	  <None Remove="Resources\Images\noimage.png" />
 	  <None Remove="Resources\Images\appicon.svg" />
 	  <None Remove="Resources\Images\help.svg" />
+	  <None Remove="Resources\Raw\non.htm" />
+	  <None Remove="Resources\Raw\exo3_manual_de.pdf" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -91,8 +92,8 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\LucidaGrande.ttf" />
-	  <BundleResource Include="Resources\Raw\faq.htm" />
 	  <BundleResource Include="Resources\Images\help.svg" />
+	  <BundleResource Include="Resources\Raw\non.htm" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Resources\Languages\lng.Designer.cs">
@@ -124,5 +125,14 @@
 	<ItemGroup>
 	  <MauiIcon Include="Resources\AppIcon\appicon.svg" />
 	  <MauiIcon Include="Resources\Images\backgroundlight.svg" BaseSize="200,200" Color="#FFFFFF" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\exo3_manual_de.pdf" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\non.htm">
+	    <LogicalName>non.htm</LogicalName>
+	  </MauiAsset>
 	</ItemGroup>
 </Project>

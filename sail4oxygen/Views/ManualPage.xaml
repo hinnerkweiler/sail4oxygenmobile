@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:sail4oxygen"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.PdfViewer;assembly=Syncfusion.Maui.PdfViewer"
              x:Class="sail4oxygen.Views.ManualPage"
              Title="ManualPage">
 
@@ -8,7 +10,7 @@
         <HorizontalStackLayout
             HorizontalOptions="End">
             <Label
-                Text="What is"
+                Text=""
                 VerticalOptions="Center"
                 FontFamily="LucidaGrande" />
 
@@ -21,7 +23,6 @@
         </HorizontalStackLayout>
     </Shell.TitleView>
 
-    <VerticalStackLayout>
-        <WebView Source="Resources/Raw/manualde.pdf"/>
-    </VerticalStackLayout>
+    <syncfusion:SfPdfViewer DocumentSource="{Binding PdfDocumentStream}"/>
+    
 </ContentPage>
