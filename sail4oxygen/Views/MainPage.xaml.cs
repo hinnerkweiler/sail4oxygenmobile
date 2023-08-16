@@ -35,9 +35,7 @@ public partial class MainPage : ContentPage
 	{
         if (Models.DsgvoHandler.IsDsgvoAccepted)
         {
-
             _ = await MainPageVM.SelectFile(null);
-
         }
         else
         {
