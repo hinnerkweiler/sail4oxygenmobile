@@ -46,17 +46,7 @@ namespace sail4oxygen.Models
 			}
 		}
 
-		//download the pdf from server and store it in app folder
-		public async static Task<FileResult> DownloadManual()
-		{
-			return await DownloadPdf(url: PrivatData.PdfManualUrl, name: PdfManualFileName, mimeType: "application/pdf");
-		}
-
-		//public async static Task<FileResult> DownloadFaq()
-		//{
-		//    return await DownloadPdf(url: PrivatData.PdfFaqUrl, name: PdfManualFileName, mimeType: "application/pdf");
-		//}
-
+		
 		public static void Init()
 		{
 			if (!File.Exists(Path.Combine(FileSystem.Current.AppDataDirectory, PdfManualFileName)))
