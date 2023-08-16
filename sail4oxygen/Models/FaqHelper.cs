@@ -94,13 +94,26 @@ namespace sail4oxygen.Models
 #endif
         }
 
+		public async static Task GetManualFromServer()
+		{
+			if (ManualDownloaded < DateTime.Now.AddDays(-1))
+			{
+				await DownloadPdf(url: PrivatData.PdfManualUrl, name: PdfManualFileName, mimeType: "application/pdf");
+			}
+		}
+
         private async static Task<FileResult> DownloadPdf(string url, string name, string mimeType)
 		{
 			string filePath = Path.Combine(FileSystem.AppDataDirectory, name);
+            
 
+		
             try
 			{
-				using (var client = new HttpClient())
+				using (var client = new HttpClient
+						{
+							Timeout = TimeSpan.FromSeconds(5)
+						})
 				{
 					using (var stream = await client.GetStreamAsync(url))
 					{
@@ -110,15 +123,15 @@ namespace sail4oxygen.Models
 						}
 					}
 				}
+
+				Preferences.Set("FaqDownloaded", DateTime.Now.ToString());
+				return new FileResult(filePath, "application/pdf");
 			}
 			catch (Exception ex)
 			{
 				System.Console.WriteLine("Could not Download FAQ File: " + ex.Message);
 			}
-
-			Preferences.Set("FaqDownloaded", DateTime.Now.ToString());
-
-			return new FileResult(filePath, "application/pdf");
+			return null;
 		}
 	}
 }
