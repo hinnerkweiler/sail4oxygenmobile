@@ -18,6 +18,7 @@ namespace sail4oxygen.Models
             try
             {
                 HttpClient client = new HttpClient();
+				client.Timeout = new TimeSpan(0, 0, 5);
                 var request = new HttpRequestMessage(HttpMethod.Get, rssUrl);
                 rssFeedString = await client.SendAsync(request).Result.Content.ReadAsStringAsync();
 				client.Dispose();
