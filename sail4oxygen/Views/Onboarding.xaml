@@ -153,7 +153,20 @@
             </Frame>
 
 -->
-            
+        <Label
+                        Margin="0,3"
+                        HorizontalTextAlignment="End"
+                        FontSize="Micro"
+                        TextType="Html"
+                        Text="{Binding VersionInfo}"
+                        />
+        <Label
+                        Margin="0,3"
+                        HorizontalTextAlignment="End"
+                        FontSize="Micro"
+                        TextType="Html"
+                        Text="{Binding ManualDate}"
+                        />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

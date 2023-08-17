@@ -2,13 +2,13 @@
 
 public partial class AboutPage : ContentPage
 {
-	public ViewModels.AboutPageVM AboutPageVM = new();
+    public ViewModels.AboutPageVM AboutPageVM = new();
    
 
-	public AboutPage()
-	{
+    public AboutPage()
+    {
         
-		BindingContext = AboutPageVM;
+        BindingContext = AboutPageVM;
         InitializeComponent();
 
     }
@@ -41,6 +41,7 @@ public partial class AboutPage : ContentPage
 
     async void settings_Clicked(System.Object sender, System.EventArgs e)
     {
+        _ = Models.FaqHelper.UpdateAssets();
         await Shell.Current.GoToAsync("Onboarding");
     }
 }

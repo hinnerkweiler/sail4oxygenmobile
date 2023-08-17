@@ -179,10 +179,7 @@ namespace sail4oxygen.ViewModels
             {
                 Models.SharedData.SharedFileHandled += HandleCsvFileShared;
             }
-
-
         }
-
 
 
         public async void HandleCsvFileShared(object? sender, string filePath)
