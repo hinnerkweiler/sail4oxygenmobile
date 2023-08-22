@@ -268,5 +268,13 @@
     <value>Vollst. Anleitung (PDF)</value>
     <comment/>
   </data>
+  <data name="BoatName" xml:space="preserve">
+    <value>Dein Bootsname:</value>
+    <comment/>
+  </data>
+  <data name="HideBoatname" xml:space="preserve">
+    <value>Bootsnamen nicht öffentlich anzeigen </value>
+    <comment/>
+  </data>
 </root>
 

@@ -269,4 +269,12 @@
     <value>Full Manual (PDF)</value>
     <comment/>
   </data>
+  <data name="BoatName" xml:space="preserve">
+    <value>Your Boat's Name:</value>
+    <comment/>
+  </data>
+  <data name="HideBoatname" xml:space="preserve">
+    <value>Hide my boat's name:</value>
+    <comment/>
+  </data>
 </root>
