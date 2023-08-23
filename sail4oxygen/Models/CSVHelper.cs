@@ -10,7 +10,7 @@ namespace sail4oxygen.Models
         const int maxMeasureAge = 30;
 
        
-               public static async Task<bool> AddLocation(string file, Location location)
+        public static async Task<bool> AddLocation(string file, Location location)
         {
             try
             {
@@ -31,12 +31,12 @@ namespace sail4oxygen.Models
                             //add Lat Lon in Header 
                             case headerRowNumber:
                                 var newHeaderLine = csvLines[i].Replace("\n", "").Replace("\r", "");
-                                newCsvText += newHeaderLine + ",Latitude,Longitude\n\r";
+                                newCsvText += newHeaderLine + ",Latitude,Longitude,Boatname\n\r";
                                 break;
                             //add LatLonValue to each row past 
                             default:
                                 var newLine = csvLines[i].Replace("\n", "").Replace("\r", "");
-                                newCsvText += newLine + "," + location.Latitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + "," + location.Longitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + "\n\r";
+                                newCsvText += newLine + "," + location.Latitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + "," + location.Longitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) +"," + PreferencesHelper.BoatName + "\n\r";
                                 break;
                         }
                     }
