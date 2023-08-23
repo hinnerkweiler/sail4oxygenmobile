@@ -1,43 +1,65 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 
 namespace sail4oxygen.ViewModels
-{
-
-
+{ 
     public partial class OnboardingPageVM : ObservableObject
     {
-        public bool BoatNameNotHidden
+        public string NameRegex = @"^[\wøæåØÆÅäöüÄÖÜ0-9\s\-+]*$";
+
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(BoatnameValidationMessage))]
+        bool nameIsValid;
+
+        public string BoatnameValidationMessage
         {
-            get => !BoatNameHidden;
+            get
+            {
+                if (NameIsValid)
+                {
+                    return Resources.Languages.lang.ok;
+                }
+                else
+                {
+                    return Resources.Languages.lang.BoatNameInvalidMessage;
+                }
+            }
         }
 
 
+        public bool BoatNameNotHidden
+        {
+            get => !Models.PreferencesHelper.BoatNameHidden;
+        }
+
+        private string boatNameCache;
         public string BoatName
         {
             get
             {
-                return Preferences.Get("BoatName", "Anonym");
+                return Models.PreferencesHelper.BoatName;
             }
+                
             set
             {
-                //ToDo: Sanitizing??
-                Preferences.Set("BoatName", value);
-                OnPropertyChanged(nameof(BoatName));
+            if (Regex.IsMatch(value, NameRegex))
+                Models.PreferencesHelper.BoatName = value;
             }
         }
 
-
+       
         public bool BoatNameHidden
         {
             get
             {
-                return Preferences.Get("BoatNameHidden", false);
+                return Models.PreferencesHelper.BoatNameHidden;
             }
             set
             {
-                Preferences.Set("BoatNameHidden", value);
+                Models.PreferencesHelper.BoatNameHidden = value;
                 OnPropertyChanged(nameof(BoatNameHidden));
                 OnPropertyChanged(nameof(BoatName));
             }
@@ -74,7 +96,6 @@ namespace sail4oxygen.ViewModels
 
         public OnboardingPageVM()
         {
-
         }
     }
 }

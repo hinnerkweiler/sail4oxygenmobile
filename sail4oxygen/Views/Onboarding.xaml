@@ -2,9 +2,19 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:lang="clr-namespace:sail4oxygen.Resources.Languages"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="sail4oxygen.Views.Onboarding"
              Title="{x:Static lang:lang.OnboardingPageTitle}"
              Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource s4ored}, Dark={StaticResource s4ored}}" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+        </Style>
+    </ContentPage.Resources>
     
     <ScrollView>
         <VerticalStackLayout
@@ -61,79 +71,32 @@
                 />
             </Grid>
 
-            
-
-                
-            
-            <!--
-            <Label
-                Margin="0,12"
-                FontAttributes="Bold"
-                Text="{x:Static lang:lang.OnboardingAuthCode}"
-                />
-            
-            <Grid RowDefinitions="*" ColumnDefinitions="*,140">
-                <VerticalStackLayout
-                    Grid.Row="0" Grid.Column="0">
-                    <Entry x:Name="emailfield" Placeholder="E-Mail" PlaceholderColor="{x:StaticResource Gray500}"/>
-                    <Entry x:Name="confirmationcode" Placeholder="Confirmation Code" PlaceholderColor="{x:StaticResource Gray500}"/>
-                </VerticalStackLayout>
-
-                <Button
-                    Grid.Row="0" Grid.Column="1"
-                    Margin="6,12"
-                    x:Name="authorize"
-                    Clicked="authorize_Clicked"
-                    Text="{x:Static lang:lang.OnboardingAuthButton}"/>
-            </Grid>
-            -->
-
             <Label
                 Margin="0,6"
                 FontAttributes="Bold"
                 Text="{x:Static lang:lang.BoatName}" />
-                <Grid RowDefinitions="*" ColumnDefinitions="auto,*">
-                    <CheckBox 
-                        Grid.Column="0" Grid.Row="0"
-                        x:Name="BoatNameCheckBox" 
-                        Margin="3"
-                        IsChecked="{Binding BoatNameHidden}" />
-                    <Label
-                        Grid.Column="1" Grid.Row="0"
-                        Margin="3"
-                        FontSize="Body"
-                        TextType="Html"
-                        VerticalOptions="Center"
-                        Text="{x:Static lang:lang.HideBoatname}" />
-                </Grid>
 
-                <Entry x:Name="boatname" Placeholder="Name"
-                    Text="{Binding BoatName}"
-                    IsEnabled="{Binding BoatNameNotHidden}"
-                    PlaceholderColor="{x:StaticResource Gray500}">
-                    <Entry.Behaviors>
-                        <mct:TextValidationBehavior 
-                            InvalidStyle="{StaticResource InvalidEntryStyle}"
-                            ValidStyle="{StaticResource ValidEntryStyle}"
-                            IsValid="{Binding BoatNameIsValid, Mode=TwoWay}"
-                            Flags="ValidateOnValueChanged"
-                            RegexPattern="[a-zA-ZäöüÄÖÜßøæåØÆÅ0-9\s\-_]+" />
-                    </Entry.Behaviors>
-                </Entry>
-        <Label
-                        Margin="0,3"
-                        HorizontalTextAlignment="End"
-                        FontSize="Micro"
-                        TextType="Html"
-                        Text="{Binding VersionInfo}"
-                        />
-        <Label
-                        Margin="0,3"
-                        HorizontalTextAlignment="End"
-                        FontSize="Micro"
-                        TextType="Html"
-                        Text="{Binding ManualDate}"
-                        />
+            <Entry x:Name="boatname" Placeholder="Name"
+                Text="{Binding BoatName}"
+                PlaceholderColor="{x:StaticResource Gray500}">
+                <Entry.Behaviors>
+                    <mct:TextValidationBehavior 
+                        InvalidStyle="{StaticResource InvalidEntryStyle}"
+                        ValidStyle="{StaticResource ValidEntryStyle}"
+                        IsValid="{Binding NameIsValid, Mode=TwoWay}"
+                        Flags="ValidateOnValueChanged"
+                        RegexPattern="^[\wøæåØÆÅäöüÄÖÜ0-9\s\-+]*$" />
+                </Entry.Behaviors>
+            </Entry>
+
+            <Label
+                    Margin="0,3"
+                    HorizontalTextAlignment="End"
+                    FontSize="Micro"
+                    TextType="Html"
+                    x:Name="BoatNameValidationLabel"
+                    Text="{Binding BoatnameValidationMessage}"
+                    />
 
              <Label
                 Margin="12"
@@ -150,102 +113,22 @@
                 Text="{x:Static lang:lang.OnboardingKORButton}"
                 />
 
-
-<!--
-            <Frame
-                Margin="12">
-                <VerticalStackLayout
-                    >
-                    <Label
-                        Margin="0,12,12,12"
-                        FontSize="Medium"
-                        TextType="Html"
-                        Text="Why Authorize?"
-                        />
-
-                    <Label
-                        Margin="0,3,12,12"
-                        FontSize="Small"
-                        TextType="Html"
-                        Text="{x:Static lang:lang.OnboardingApplyInfo1}"
-                        />
-
-                    <Label
-                        Margin="0,3"
-                        Text="{x:Static lang:lang.OnboardingApplyInfo2}"
-                        />
-
-                    <Label
-                        Margin="0,3"
-                        Text="{x:Static lang:lang.OnboardingApplyInfo3}"
-                        />
-                    <Label
-                        Margin="0,3"
-                        Text="{x:Static lang:lang.OnboardingApplyInfo4}"
-                        />
-
-                    <Label
-                        Margin="0,3"
-                        Text="{x:Static lang:lang.OnboardingApplyInfo5}"
-                        />
-
-                    <Label
-                        Margin="0,3"
-                        HorizontalTextAlignment="End"
-                        FontSize="Micro"
-                        TextType="Html"
-                        Text="{x:Static lang:lang.OnboardingApplyInfo6}"
-                        />
-
-                    <Button
-                        Margin="0,18,0,0"
-                        x:Name="faq" Clicked="register_Clicked"
-                        Text="{x:Static lang:lang.AboutPageReadMore}"/>
-                </VerticalStackLayout>
-            </Frame>
-
--->
-        <Label
-                Margin="0,12"
-                FontAttributes="Bold"
-                Text="{x:Static lang:lang.BoatName}"
-                />
-                <Grid RowDefinitions="*" ColumnDefinitions="auto,*">
-                    <CheckBox 
-                        Grid.Column="0" Grid.Row="0"
-                        x:Name="BoatNameCheckBox" 
-                        Margin="5"
-                        IsChecked="{Binding BoatNameHidden}"
+            <Label
+                    Margin="0,3"
+                    HorizontalTextAlignment="End"
+                    FontSize="Micro"
+                    TextType="Html"
+                    Text="{Binding VersionInfo}"
                     />
-                    <Label
-                        Grid.Column="1" Grid.Row="0"
-                        Margin="5"
-                        FontSize="Body"
-                        TextType="Html"
-                        VerticalOptions="Center"
-                        Text="{x:Static lang:lang.HideBoatname}"
+
+            <Label
+                    Margin="0,3"
+                    HorizontalTextAlignment="End"
+                    FontSize="Micro"
+                    TextType="Html"
+                    Text="{Binding ManualDate}"
                     />
-                </Grid>
 
-                <Entry x:Name="boatname" Placeholder="Name"
-                    Text="{Binding BoatName}"
-                    IsEnabled="{Binding BoatNameNotHidden}"
-                    PlaceholderColor="{x:StaticResource Gray500}"/>
-
-        <Label
-                        Margin="0,3"
-                        HorizontalTextAlignment="End"
-                        FontSize="Micro"
-                        TextType="Html"
-                        Text="{Binding VersionInfo}"
-                        />
-        <Label
-                        Margin="0,3"
-                        HorizontalTextAlignment="End"
-                        FontSize="Micro"
-                        TextType="Html"
-                        Text="{Binding ManualDate}"
-                        />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
