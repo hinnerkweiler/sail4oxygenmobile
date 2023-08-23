@@ -87,6 +87,54 @@
                     Text="{x:Static lang:lang.OnboardingAuthButton}"/>
             </Grid>
             -->
+
+            <Label
+                Margin="0,6"
+                FontAttributes="Bold"
+                Text="{x:Static lang:lang.BoatName}" />
+                <Grid RowDefinitions="*" ColumnDefinitions="auto,*">
+                    <CheckBox 
+                        Grid.Column="0" Grid.Row="0"
+                        x:Name="BoatNameCheckBox" 
+                        Margin="3"
+                        IsChecked="{Binding BoatNameHidden}" />
+                    <Label
+                        Grid.Column="1" Grid.Row="0"
+                        Margin="3"
+                        FontSize="Body"
+                        TextType="Html"
+                        VerticalOptions="Center"
+                        Text="{x:Static lang:lang.HideBoatname}" />
+                </Grid>
+
+                <Entry x:Name="boatname" Placeholder="Name"
+                    Text="{Binding BoatName}"
+                    IsEnabled="{Binding BoatNameNotHidden}"
+                    PlaceholderColor="{x:StaticResource Gray500}">
+                    <Entry.Behaviors>
+                        <mct:TextValidationBehavior 
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            ValidStyle="{StaticResource ValidEntryStyle}"
+                            IsValid="{Binding BoatNameIsValid, Mode=TwoWay}"
+                            Flags="ValidateOnValueChanged"
+                            RegexPattern="[a-zA-ZäöüÄÖÜßøæåØÆÅ0-9\s\-_]+" />
+                    </Entry.Behaviors>
+                </Entry>
+        <Label
+                        Margin="0,3"
+                        HorizontalTextAlignment="End"
+                        FontSize="Micro"
+                        TextType="Html"
+                        Text="{Binding VersionInfo}"
+                        />
+        <Label
+                        Margin="0,3"
+                        HorizontalTextAlignment="End"
+                        FontSize="Micro"
+                        TextType="Html"
+                        Text="{Binding ManualDate}"
+                        />
+
              <Label
                 Margin="12"
                 FontSize="Body"
