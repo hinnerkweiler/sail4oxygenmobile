@@ -20,9 +20,7 @@ public static class MauiProgram
             })
             .ConfigureEssentials(essentials =>
             {
-                     essentials.AddAppAction(new AppAction("website", "Go to sail4oxygen.org", icon: "messages"));
-                     essentials.AddAppAction(new AppAction("id2", "Tekeover Sonde", icon: "calendar"));
-                     essentials.AddAppAction(new AppAction("id3", "App Info", icon: "information"));
+                     essentials.AddAppAction(new AppAction("id1", "Takeover Sonde", icon: "calendar"));
             });
 		builder.ConfigureSyncfusionCore();
 #if DEBUG
