@@ -1,6 +1,14 @@
 ﻿#sail4oxygen
 
-## 0.12.0 8 (Android only)
+## 0.12.1 (Android only)
+
++ fixing an issue where no warnig is displayed when coordinates are invalid.
+
++ adding a field to enter a boat name in the preferences screen
+
++ enlarging the legally allowed coordinates 
+
+## 0.12.0 (Android only)
 
 + added latest Manual as PDF
 

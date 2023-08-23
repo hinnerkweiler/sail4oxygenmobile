@@ -300,7 +300,6 @@ namespace sail4oxygen.ViewModels
         }
 
 
-
         public void Cleanup()
         {
             this.CsvFileToSend = null;
