@@ -167,7 +167,7 @@
                             IsValid="{Binding LongitudeIsValid, Mode=TwoWay}"
                             ValidStyle="{StaticResource ValidEntryStyle}"
                             Flags="ValidateOnValueChanged"
-                            RegexPattern="(?:9(?:[\,\.]\d+)?|10(?:[\,\.]\d+)?)$"
+                            RegexPattern="(?:9(?:[\,\.]\d+)?|10(?:[\,\.]\d+)?|11(?:[\,\.]\d+)?)$"
                             />
                     </Entry.Behaviors>
                 </Entry>
