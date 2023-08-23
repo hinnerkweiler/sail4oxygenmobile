@@ -406,3 +406,4 @@ ASALocalRun/
 *.[dD]esigner.cs
 sail4oxygen/Resources/PrivateData/*
 sail4oxygen/Models/PrivatData*
+.vscode/settings.json
