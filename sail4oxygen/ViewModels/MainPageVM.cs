@@ -294,7 +294,7 @@ namespace sail4oxygen.ViewModels
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Nothing sent!", $"Please enter valid Coordinates for Kiel Bight", "OK");
+                await Application.Current.MainPage.DisplayAlert("Nothing sent!", Resources.Languages.lang.LocationInvalidMessage, Resources.Languages.lang.ok);
             }
             return false;
         }

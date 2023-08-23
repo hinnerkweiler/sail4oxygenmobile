@@ -276,5 +276,13 @@
     <value>Bootsnamen nicht öffentlich anzeigen </value>
     <comment/>
   </data>
+  <data name="BoatNameInvalidMessage" xml:space="preserve">
+    <value>Es sind nur Buchstaben, Zahlen, Leerzeichen und Bindestriche erlaubt. </value>
+    <comment/>
+  </data>
+    <data name="LocationInvalidMessage" xml:space="preserve">
+    <value>Koordinaten außerhalb des Forschungsgebietes</value>
+    <comment/>
+  </data>
 </root>
 

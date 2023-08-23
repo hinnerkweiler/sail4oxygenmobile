@@ -277,4 +277,12 @@
     <value>Hide my boat's name:</value>
     <comment/>
   </data>
+  <data name="BoatNameInvalidMessage" xml:space="preserve">
+    <value>Only characters, Numbers, Spaces and dashes are allowed. </value>
+    <comment/>
+  </data>
+    <data name="LocationInvalidMessage" xml:space="preserve">
+    <value>Coordinates seem outside research area</value>
+    <comment/>
+  </data>
 </root>
