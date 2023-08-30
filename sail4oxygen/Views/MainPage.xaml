@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:sail4oxygen"
+             xmlns:models="clr-namespace:sail4oxygen.Models"
              xmlns:lang="clr-namespace:sail4oxygen.Resources.Languages"
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="sail4oxygen.Views.MainPage"
@@ -44,6 +45,7 @@
         <Style x:Key="ValidEntryStyle" TargetType="Entry">
             <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         </Style>
+        <models:ConverterHelper x:Key="ConverterHelper" />
     </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout
@@ -137,7 +139,7 @@
                 <Entry
                     x:Name="LatitudeEntry"
                     Placeholder="{x:Static lang:lang.MainPageLatitudePlaceholder}"
-                    Text="{Binding MyLocation.Latitude , Mode=TwoWay, StringFormat='{0:00.00000}'}"
+                    Text="{Binding MyLocation.Latitude , Mode=TwoWay, StringFormat='{0:00.00000}', Converter={StaticResource ConverterHelper}}"
                     FontSize="Small"
                     VerticalOptions="CenterAndExpand">
                     <Entry.Behaviors>
@@ -158,7 +160,7 @@
                 <Entry
                     x:Name="LongitudeEntry"
                     Placeholder="{x:Static lang:lang.MainPageLongitudePlaceholder}"
-                    Text="{Binding MyLocation.Longitude, Mode=TwoWay, StringFormat='{0:000.00000}'}"
+                    Text="{Binding MyLocation.Longitude, Mode=TwoWay, StringFormat='{0:000.00000}', Converter={StaticResource ConverterHelper}}"
                     FontSize="Small"
                     VerticalOptions="CenterAndExpand">
                     <Entry.Behaviors>
@@ -170,6 +172,7 @@
                             RegexPattern="(?:9(?:[\,\.]\d+)?|10(?:[\,\.]\d+)?|11(?:[\,\.]\d+)?)$"
                             />
                     </Entry.Behaviors>
+                    
                 </Entry>
                 </VerticalStackLayout>
 
