@@ -16,7 +16,7 @@ namespace sail4oxygen.Models
                 using FileStream outputStream = System.IO.File.OpenWrite(targetFile);
                 using StreamWriter streamWriter = new StreamWriter(outputStream);
 
-                await streamWriter.WriteAsync(location.Latitude.ToString() + "," + location.Longitude.ToString() + "," + location.Timestamp.ToString("u"));
+                await streamWriter.WriteAsync(location.Latitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + "," + location.Longitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + "," + location.Timestamp.ToString("u"));
 
                 return new EmailAttachment(targetFile);
             }
