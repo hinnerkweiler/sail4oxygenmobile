@@ -40,7 +40,7 @@
 
     <ContentPage.Resources>
         <Style x:Key="InvalidEntryStyle" TargetType="Entry">
-            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource s4ored}, Dark={StaticResource s4ored}}" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource s4ored}, Dark={StaticResource brightred}}" />
         </Style>
         <Style x:Key="ValidEntryStyle" TargetType="Entry">
             <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
@@ -110,7 +110,7 @@
                         BorderColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray200}}"
                         BorderWidth="1"
                         BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource s4blue100}}"
-                        TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue100}}"
+                        TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Secondary}}"
                         Margin="6,6,12,12"
                         x:Name="GetPdfManualButton"
                         Clicked="GetPdfManualButton_Clicked"
