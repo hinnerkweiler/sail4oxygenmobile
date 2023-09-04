@@ -35,6 +35,7 @@
     <Color x:Key="s4blue25">#b4c7e3</Color>
     <Color x:Key="s4blue100">#0060a0</Color>
     <Color x:Key="s4ored">#ed1c24</Color>
+    <Color x:Key="brightred">#f0c090</Color>
     <Color x:Key="Cyan100Accent">#28C2D1</Color>
     <Color x:Key="Cyan200Accent">#7BDDEF</Color>
     <Color x:Key="Cyan300Accent">#C3F2F4</Color>
