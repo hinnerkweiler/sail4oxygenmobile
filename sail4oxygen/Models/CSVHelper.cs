@@ -36,7 +36,7 @@ namespace sail4oxygen.Models
                             //add LatLonValue to each row past 
                             default:
                                 var newLine = csvLines[i].Replace("\n", "").Replace("\r", "");
-                                newCsvText += newLine + "," + location.Latitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + "," + location.Longitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) +"," + PreferencesHelper.BoatName + "\n\r";
+                                newCsvText += newLine + "," + location.Latitude.ToString("0.000000", new System.Globalization.CultureInfo("en-US")) + "," + location.Longitude.ToString("0.000000", new System.Globalization.CultureInfo("en-US")) +"," + PreferencesHelper.BoatName + "\r\n";
                                 break;
                         }
                     }
