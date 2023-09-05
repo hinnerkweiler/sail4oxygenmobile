@@ -8,24 +8,25 @@
              x:Class="sail4oxygen.Views.MainPage"
              NavigationPage.HasNavigationBar="False"
              Title="{x:Static lang:lang.MainPageTitle}"
+             Shell.BackgroundColor="{AppThemeBinding Light={StaticResource s4blue25}, Dark={StaticResource Gray300}}"
              >
     
     <Shell.TitleView>
         <HorizontalStackLayout>
             <Button
-                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
-                TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray300}}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray300}}"
+                TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray100}}"
                 Text="&#x24D8;"
-                FontSize="Large"
+                FontSize="Title"
                 Padding="0,0,0,0"
                 Margin="12,12,0,6"
-                HorizontalOptions="StartAndExpand"
+                HorizontalOptions="Start"
                 Clicked="About_Clicked"
                 />
             <Image
                 Source="s4ob.png"
                 x:Name="s4oLogo"
-                HorizontalOptions="End"
+                HorizontalOptions="EndAndExpand"
                 Aspect="AspectFit"
                 HeightRequest="70"
                 Margin="0,0,0,0"
@@ -252,7 +253,8 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame Margin="5,5">
+                                <Frame Margin="5,5"
+                                       BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}">
                                 <Grid ColumnDefinitions="110,*" RowDefinitions="*">
                                     <VerticalStackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" >
                                         <Image
