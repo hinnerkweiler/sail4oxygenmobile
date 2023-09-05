@@ -82,6 +82,7 @@
 	  <None Remove="Resources\Images\help.svg" />
 	  <None Remove="Resources\Raw\non.htm" />
 	  <None Remove="Resources\Raw\exo3_manual_de.pdf" />
+	  <None Remove="Resources\Images\backgrounddark.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -96,6 +97,7 @@
 	  <BundleResource Include="Resources\Fonts\LucidaGrande.ttf" />
 	  <BundleResource Include="Resources\Images\help.svg" />
 	  <BundleResource Include="Resources\Raw\non.htm" />
+	  <BundleResource Include="Resources\Images\backgrounddark.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Resources\Languages\lng.Designer.cs">
