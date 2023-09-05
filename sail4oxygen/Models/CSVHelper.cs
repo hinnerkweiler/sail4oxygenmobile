@@ -71,7 +71,8 @@ namespace sail4oxygen.Models
                 //correct file content
                 if (fileContent[1].StartsWith("Kor MEASUREMENT DATA FILE EXPORT") && 
                     fileContent[headerRowNumber].StartsWith("Date (MM/DD/YYYY)") && 
-                    (fileContent[headerRowNumber].IndexOf(',') > -1))
+                    (fileContent[headerRowNumber].IndexOf(',') > -1 ) &&
+                    (!Regex.IsMatch(fileContent[headerRowNumber+1], @"""(\d+,\d+)""")))  // all decimals must be in en-US format
                 {
                     //recent measurement
                     //find timestamp in row 4 column 2 and check if file is recent
