@@ -31,11 +31,19 @@ namespace sail4oxygen.Models
                                 break;
                             //add Lat Lon in Header 
                             case headerRowNumber:
-                                newCsvText += csvLines[i].Replace("\n", "").Replace("\r", "") + ",Latitude,Longitude,Boatname\r\n" + ",Latitude,Longitude,Boatname\r\n";
+                                newCsvText += csvLines[i].
+                                    Replace("\n", "").
+                                    Replace("\r", "") +
+                                    ",Latitude,Longitude,Boatname\r\n";
                                 break;
                             //add LatLonValue to each row past 
                             default:
-                                newCsvText += csvLines[i].Replace("\n", "").Replace("\r", "") + "," + location.Latitude.ToString("0.000000", new System.Globalization.CultureInfo("en-US")) + "," + location.Longitude.ToString("0.000000", new System.Globalization.CultureInfo("en-US")) +"," + PreferencesHelper.BoatName + "\r\n";
+                                newCsvText += csvLines[i].
+                                    Replace("\n", "").
+                                    Replace("\r", "") +
+                                    "," + location.Latitude.ToString("0.000000", new System.Globalization.CultureInfo("en-US")) +
+                                    "," + location.Longitude.ToString("0.000000", new System.Globalization.CultureInfo("en-US")) +
+                                    "," + PreferencesHelper.BoatName + "\r\n";
                                 break;
                         }
                     }
