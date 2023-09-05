@@ -281,8 +281,20 @@
     <value>Only characters, Numbers, Spaces and dashes are allowed. </value>
     <comment/>
   </data>
-    <data name="LocationInvalidMessage" xml:space="preserve">
+  <data name="LocationInvalidMessage" xml:space="preserve">
     <value>Coordinates seem outside research area</value>
+    <comment/>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+    <comment/>
+  </data>
+  <data name="SendingNoteTitle" xml:space="preserve">
+    <value>Sending to GEOMAR.</value>
+    <comment/>
+  </data>
+  <data name="SendingNote" xml:space="preserve">
+    <value>The Message will be send to GEOMAR. If prompted select the App you normally use to send E-Mails.</value>
     <comment/>
   </data>
 </root>

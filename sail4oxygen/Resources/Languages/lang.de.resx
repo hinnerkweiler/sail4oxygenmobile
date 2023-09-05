@@ -284,5 +284,17 @@
     <value>Koordinaten außerhalb des Forschungsgebietes</value>
     <comment/>
   </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Weiter</value>
+    <comment/>
+  </data>
+  <data name="SendingNoteTitle" xml:space="preserve">
+    <value>Ans GEOMAR senden</value>
+    <comment/>
+  </data>
+  <data name="SendingNote" xml:space="preserve">
+    <value>Die Messung wird jetzt per E-Mail ans GEOMAR verschickt. Falls eine Aufforderung zur Auswahl einer App erscheint, bitte die App benutzen, mit der normalerweise E-Mails verschickt werden.</value>
+    <comment/>
+  </data>
 </root>
 
