@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace sail4oxygen.Models
 {
@@ -31,7 +32,7 @@ namespace sail4oxygen.Models
                             //add Lat Lon in Header 
                             case headerRowNumber:
                                 var newHeaderLine = csvLines[i].Replace("\n", "").Replace("\r", "");
-                                newCsvText += newHeaderLine + ",Latitude,Longitude,Boatname\n\r";
+                                newCsvText += newHeaderLine + ",Latitude,Longitude,Boatname\r\n";
                                 break;
                             //add LatLonValue to each row past 
                             default:
