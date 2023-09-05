@@ -1,5 +1,14 @@
 ﻿#sail4oxygen
 
+## 0.12.2-rc1 (Android only)
+
++ UX: better visuals with brighter colors when using dark mode
++ UX: white stancil image in dark mode
++ UX: Display a message when sending data to select the e-mail app if share-sheet is displayed
++ bugfix: fixing manually entered coordinates in wired combinations (e.g. en-DE) and force writing coordintes in en-US culture to CSV
++ bugfix: detect and abort if CSV has been opened/saved with other apps that have altered measurement data to phone's locale (e.g. 9.12 -> "9,12")
+
+
 ## 0.12.1 (Android only)
 
 + fixing an issue where no warnig is displayed when coordinates are invalid.
