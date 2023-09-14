@@ -14,7 +14,7 @@
     <Shell.TitleView>
         <HorizontalStackLayout>
             <Button
-                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray300}}"
+                BackgroundColor="{AppThemeBinding Light={StaticResource s4blue25}, Dark={StaticResource Gray300}}"
                 TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray100}}"
                 Text="&#x24D8;"
                 FontSize="Title"
