@@ -15,6 +15,7 @@ public partial class MainPage : ContentPage
         Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
         Routing.RegisterRoute(nameof(Onboarding), typeof(Onboarding));
         Routing.RegisterRoute(nameof(ManualPage), typeof(ManualPage));
+        Routing.RegisterRoute(nameof(MapPage), typeof(MapPage));
 
         Models.FaqHelper.Init();
 
