@@ -297,4 +297,8 @@
     <value>The Message will be send to GEOMAR. If prompted select the App you normally use to send E-Mails.</value>
     <comment/>
   </data>
+  <data name="ManualGPSChange" xml:space="preserve">
+    <value>Select manually</value>
+    <comment/>
+  </data>
 </root>
