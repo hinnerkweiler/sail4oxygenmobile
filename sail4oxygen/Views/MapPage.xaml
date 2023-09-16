@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:map="clr-namespace:Syncfusion.Maui.Maps;assembly=Syncfusion.Maui.Maps"
+             x:Class="sail4oxygen.Views.MapPage"
+             Title=""
+             Shell.BackgroundColor="{AppThemeBinding Light={StaticResource s4blue25}, Dark={StaticResource Gray300}}"
+             >
+
+    <Shell.TitleView>
+        <HorizontalStackLayout
+            HorizontalOptions="End">
+            <Label
+                Text="Where is"
+                VerticalOptions="Center"
+                FontFamily="LucidaGrande" />
+
+            <Image Source="s4ob.png"
+                   x:Name="s4oLogo"
+                   VerticalOptions="Center"
+                   Aspect="AspectFit"
+                   HeightRequest="80"
+                   Margin="12,5,12,5"/>
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <Grid RowDefinitions="*,20" ColumnDefinitions="*">
+        <map:SfMaps Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+            <map:SfMaps.Layer HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                <map:MapTileLayer UrlTemplate="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                  EnableZoomingAnimation="True"
+                                  EnableCenterAnimation="True"
+                                  Markers="{Binding PortList}"
+                                  >
+                    <map:MapTileLayer.Center>
+                        <map:MapLatLng Latitude = "54.6751"
+                                 Longitude="10.5421">
+                        </map:MapLatLng>
+                    </map:MapTileLayer.Center>
+                    <map:MapTileLayer.ZoomPanBehavior>
+                        <map:MapZoomPanBehavior ZoomLevel = "8"
+                                                EnablePanning="True"
+                                                EnableDoubleTapZooming="True"/>
+                    </map:MapTileLayer.ZoomPanBehavior>
+                </map:MapTileLayer>
+            </map:SfMaps.Layer>    
+        </map:SfMaps>
+
+        <Label Text="(c) Openstreetmap contributors" FontSize="Micro" Grid.Row="1" Grid.Column="0"></Label>
+    </Grid>
+</ContentPage>
