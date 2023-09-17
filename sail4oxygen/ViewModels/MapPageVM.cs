@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Syncfusion.Maui.Maps;
 
 namespace sail4oxygen.ViewModels
 {
 	public partial class MapPageVM : ObservableObject
 	{
 		[ObservableProperty]
-		ObservableCollection<Models.Port> portList = new();
+		ObservableCollection<MapMarker> portList = new();
 
 		public MapPageVM()
 		{
@@ -17,12 +18,12 @@ namespace sail4oxygen.ViewModels
 
 		public async Task Init()
 		{
-			PortList = await Models.MapHelper.GetPortsFromFile();
+			PortList = await Models.MapHelper.GetMapMarkersFromPortList();
 #if DEBUG
 			Console.WriteLine("Portlist updated:");
 			foreach (var port in PortList)
 			{
-				Console.WriteLine(port.latitude + " " + port.longitude);
+				Console.WriteLine(port.Latitude + " " + port.Longitude);
 			}
 #endif
 		}
