@@ -90,9 +90,39 @@
                                                 EnableDoubleTapZooming="True"/>
                     </map:MapTileLayer.ZoomPanBehavior>
                 </map:MapTileLayer>
-            </map:SfMaps.Layer>    
+                
+            </map:SfMaps.Layer>
+
         </map:SfMaps>
 
         <Label Text="(c) Openstreetmap contributors" FontSize="Micro" Grid.Row="1" Grid.Column="0"></Label>
+
+        <VerticalStackLayout Grid.Row="2" Grid.Column="0">
+            <Label Text="Enter coordinates" Margin="12,0" FontSize="Body"/>
+            <Label Text="Drag Map Center to measure location or enter coordinates below" FontSize="Micro" Margin=" 12,0,12,6"/>
+            
+            
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <VerticalStackLayout>
+                    <Label Text="Latitude" FontSize="Small"/>
+                    <HorizontalStackLayout Margin="6,0">
+                        <Entry Placeholder="dd" />
+                        <Entry Placeholder="mm.mmmm" />
+                        <Label Text="N"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+                <VerticalStackLayout Margin="18,0" >
+                <Label Text="Longitude" FontSize="Small"/>
+                    <HorizontalStackLayout Margin="6">
+                        <Entry Placeholder="ddd" />
+                        <Entry Placeholder="mm.mmmm" />
+                        <Label Text="E"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+
+        </VerticalStackLayout>
+
     </Grid>
 </ContentPage>
