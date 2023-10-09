@@ -4,36 +4,39 @@ namespace sail4oxygen.Models
     public class Port
     {
         public string name = "";
+        public string city = "";
         public string country = "";
-        public string location = "";
+        public string locationDescription = "";
+        public int status = 3;
         public double latitude = 0d;
         public double longitude = 0d;
-        public bool disabled = false;
 
         public Port()
         {
         }
 
         //Allow all parameters to be strings
-        public Port(string name, string latitude, string longitude, string country, string location, string disabled)
+        public Port(string name, string city, string latitude, string longitude, string country, string location, int status)
         {
             this.name = name;
+            this.city = city;
             this.latitude = Double.Parse(latitude);
             this.longitude = Double.Parse(latitude);
             this.country = country;
-            this.location = location;
-            this.disabled = disabled == "true" ? true : false;
+            this.locationDescription = location;
+            this.status = status;
         }
 
         //Allow coordinates as double
-        public Port(string name, Double latitude, Double longitude, string country, string location, string disabled)
+        public Port(string name, string city, Double latitude, Double longitude, string country, string location, int status)
         {
             this.name = name;
+            this.city = city;
             this.latitude = latitude;
-            this.longitude = latitude;
+            this.longitude = longitude;
             this.country = country;
-            this.location = location;
-            this.disabled = disabled == "true" ? true : false;
+            this.locationDescription = location;
+            this.status = status;
         }
     }
 }

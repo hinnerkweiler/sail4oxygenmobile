@@ -84,8 +84,8 @@ namespace sail4oxygen.Models
             string filePath = Path.Combine(FileSystem.AppDataDirectory, name);
             if (!File.Exists(filePath))
             {
-                //if file does not exist, download it from server
-                FileResult fileResult = await UpdatePortListFromServer(new Uri("https://s4oports.api.segeln.social"), name);
+                //if file does not exist, or is older than n days, download new one from server
+                FileResult fileResult = await UpdatePortListFromServer(new Uri("https://s4oapiserver.funkschiff.com/Locations"), name);
                 if (fileResult == null)
                 {
                     return null;
@@ -120,13 +120,21 @@ namespace sail4oxygen.Models
 
             foreach (Port port in portList)
             {
-                markerList.Add(new MapMarker()
+
+                var markerItem = (new MapMarker()
                 {
                     Latitude = port.latitude,
                     Longitude = port.longitude,
-                    IconType = MapIconType.Circle,
-                    IconFill = Color.FromRgb(255, 0, 0)
+                    IconType = MapIconType.Circle
                 });
+                switch (port.status)
+                {
+                    case 0: markerItem.IconFill = new SolidColorBrush(Color.FromRgba(0, 128, 0, 0.9)); break;
+                    case 2: markerItem.IconFill = new SolidColorBrush(Color.FromRgba(255, 165, 0, 0.9)); break;
+                    default: markerItem.IconFill = new SolidColorBrush(Color.FromRgba(255, 0, 0, 0.9)); break;
+                }
+
+                markerList.Add(markerItem);
             }
             return markerList;
         }
