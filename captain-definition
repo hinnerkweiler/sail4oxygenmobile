@@ -4,14 +4,14 @@
     "dockerfileLines": [
       "FROM mcr.microsoft.com/dotnet/sdk:7.0 as build-env",
       "WORKDIR /app",
-      "COPY ./Sail4oxygenApi /app",
+      "COPY ./Sailing4oxygenApi /app",
       "RUN dotnet restore",
       "RUN dotnet publish -c Release -o out",
       "FROM mcr.microsoft.com/dotnet/aspnet:7.0",
       "WORKDIR /sail4oxygen",
       "COPY --from=build-env /app/out .",
       "EXPOSE 80",
-      "ENTRYPOINT [\"dotnet\", \"Sail4oxygenApi.dll\"]"
+      "ENTRYPOINT [\"dotnet\", \"Sailing4oxygenApi.dll\"]"
                         ],
     "containerHttpPort": 80,     
     "hasPersistentData": false,   
