@@ -3,8 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Threading.Tasks;
-
-
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace sail4oxygen.ViewModels
 {
@@ -12,9 +11,8 @@ namespace sail4oxygen.ViewModels
 	{
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(LocationText))]
+        [NotifyCanExecuteChangedFor(nameof(FireLocationChangeMessageCommand))]
         Location myLocation;
-
-
 
         public bool CoordinatesValid
         {
@@ -179,6 +177,13 @@ namespace sail4oxygen.ViewModels
             {
                 Models.SharedData.SharedFileHandled += HandleCsvFileShared;
             }
+
+            WeakReferenceMessenger.Default.Register<Models.LocationChangeMessage>(this, (r, m) =>
+            {
+                OnLocationChangeMessage(m.Value);
+            });
+
+
         }
 
 
@@ -298,6 +303,26 @@ namespace sail4oxygen.ViewModels
             }
             return false;
         }
+
+        [RelayCommand]
+        private void FireLocationChangeMessage()
+        {
+            WeakReferenceMessenger.Default.Send(new Models.LocationChangeMessage(MyLocation));
+#if DEBUG
+            Console.WriteLine("*************** Location Change Sent from MainPageVM");
+#endif
+        }
+
+        private void OnLocationChangeMessage(Location location)
+        {
+            MyLocation.Latitude = location.Latitude;
+            MyLocation.Longitude = location.Longitude;
+#if DEBUG
+            Console.WriteLine("*************** Location Change Recived in MainPageVM");
+#endif
+        }
+
+
 
 
         public void Cleanup()

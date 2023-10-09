@@ -74,7 +74,8 @@ public partial class MainPage : ContentPage
 
     async void OnGPSReload_Clicked(System.Object sender, System.EventArgs e)
     {
-        MainPageVM.MyLocation = await MainPageVM.GetLocation();
+        await Shell.Current.GoToAsync("MapPage");
+        //MainPageVM.MyLocation = await MainPageVM.GetLocation();
     }
 
     

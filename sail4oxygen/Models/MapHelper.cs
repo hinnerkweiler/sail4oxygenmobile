@@ -2,7 +2,6 @@
 
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
-using Java.Net;
 using Syncfusion.Maui.Maps;
 
 namespace sail4oxygen.Models

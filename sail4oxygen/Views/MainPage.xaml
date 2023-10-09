@@ -5,11 +5,14 @@
              xmlns:models="clr-namespace:sail4oxygen.Models"
              xmlns:lang="clr-namespace:sail4oxygen.Resources.Languages"
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:views="clr-namespace:sail4oxygen.Views"
+             
              x:Class="sail4oxygen.Views.MainPage"
              NavigationPage.HasNavigationBar="False"
              Title="{x:Static lang:lang.MainPageTitle}"
              Shell.BackgroundColor="{AppThemeBinding Light={StaticResource s4blue25}, Dark={StaticResource Gray300}}"
              >
+             
     
     <Shell.TitleView>
         <HorizontalStackLayout>

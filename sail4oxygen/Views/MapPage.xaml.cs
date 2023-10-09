@@ -2,7 +2,7 @@
 
 public partial class MapPage : ContentPage
 {
-    public static ViewModels.MapPageVM MapPageViewModel = new();
+    ViewModels.MapPageVM MapPageViewModel = new();
 
     public MapPage()
 	{

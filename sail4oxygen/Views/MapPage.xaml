@@ -27,7 +27,9 @@
     <Grid RowDefinitions="*,20,auto" ColumnDefinitions="*">
         <map:SfMaps Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
             <map:SfMaps.Layer HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+
                 <!-- https://t1.openseamap.org/seamark/{z}/{x}/{y}.png //https://www.syncfusion.com/feedback/46968/a-maptilesublayer-for-maui-please -->
+
                 <map:MapTileLayer UrlTemplate="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
                                   EnableZoomingAnimation="True"
                                   EnableCenterAnimation="True"
@@ -35,54 +37,54 @@
                                   >
                     <map:MapTileLayer.Sublayers>
                         <map:MapLineLayer>
-                     <map:MapLineLayer.Lines>
-                        <map:MapLine StrokeThickness = "3"
+                            <map:MapLineLayer.Lines>
+                                <map:MapLine StrokeThickness = "3"
                                       StrokeLineCap="Round"
-                                      Stroke="{AppThemeBinding Light={StaticResource brightred}, Dark={StaticResource s4ored}}">
-                             <map:MapLine.From>
-                                 <map:MapLatLng Latitude="56.145550"
+                                      Stroke="{AppThemeBinding Light={StaticResource s4ored}, Dark={StaticResource brightred}}">
+                                    <map:MapLine.From>
+                                        <map:MapLatLng Latitude="56.145550"
                                                 Longitude="10.706177" />
-                             </map:MapLine.From>
-                              <map:MapLine.To>
-                                 <map:MapLatLng Latitude="55.989164" 
+                                    </map:MapLine.From>
+                                        <map:MapLine.To>
+                                            <map:MapLatLng Latitude="55.989164" 
                                                 Longitude="11.293945"/>
-                             </map:MapLine.To>
-                             <map:MapLine.StrokeDashArray>
-                                  <DoubleCollection>
-                                     <x:Double>2</x:Double>
-                                     <x:Double>2</x:Double>
-                                     <x:Double>0.1</x:Double>
-                                     <x:Double>2</x:Double>
-                                 </DoubleCollection>
-                            </map:MapLine.StrokeDashArray>
-                         </map:MapLine>
+                                        </map:MapLine.To>
+                                        <map:MapLine.StrokeDashArray>
+                                             <DoubleCollection>
+                                                <x:Double>2</x:Double>
+                                                <x:Double>2</x:Double>
+                                                <x:Double>0.1</x:Double>
+                                                <x:Double>2</x:Double>
+                                             </DoubleCollection>
+                                        </map:MapLine.StrokeDashArray>
+                                </map:MapLine>
 
-                         <map:MapLine StrokeThickness = "3"
+                                <map:MapLine StrokeThickness = "3"
                                       StrokeLineCap="Round"
-                                      Stroke="{AppThemeBinding Light={StaticResource brightred}, Dark={StaticResource s4ored}}">
-                             <map:MapLine.From>
-                                 <map:MapLatLng Latitude="54.204183"
+                                      Stroke="{AppThemeBinding Light={StaticResource s4ored}, Dark={StaticResource brightred}}">
+                                    <map:MapLine.From>
+                                        <map:MapLatLng Latitude="54.204183"
                                                 Longitude="11.087938" />
-                             </map:MapLine.From>
-                              <map:MapLine.To>
-                                 <map:MapLatLng Latitude="54.597488" 
+                                    </map:MapLine.From>
+                                    <map:MapLine.To>
+                                        <map:MapLatLng Latitude="54.597488" 
                                                 Longitude="11.532884"/>
-                             </map:MapLine.To>
-                             <map:MapLine.StrokeDashArray>
-                                  <DoubleCollection>
-                                     <x:Double>2</x:Double>
-                                     <x:Double>2</x:Double>
-                                     <x:Double>0.1</x:Double>
-                                     <x:Double>2</x:Double>
-                                 </DoubleCollection>
-                            </map:MapLine.StrokeDashArray>
-                         </map:MapLine>
-                      </map:MapLineLayer.Lines>
-                 </map:MapLineLayer>
+                                    </map:MapLine.To>
+                                    <map:MapLine.StrokeDashArray>
+                                        <DoubleCollection>
+                                            <x:Double>2</x:Double>
+                                            <x:Double>2</x:Double>
+                                            <x:Double>0.1</x:Double>
+                                            <x:Double>2</x:Double>
+                                        </DoubleCollection>
+                                    </map:MapLine.StrokeDashArray>
+                                </map:MapLine>
+                            </map:MapLineLayer.Lines>
+                        </map:MapLineLayer>
                     </map:MapTileLayer.Sublayers>
                     <map:MapTileLayer.Center>
-                        <map:MapLatLng Latitude = "54.6751"
-                                 Longitude="10.5421">
+                        <map:MapLatLng Latitude="54.45555"
+                                    Longitude="10.123">
                         </map:MapLatLng>
                     </map:MapTileLayer.Center>
                     <map:MapTileLayer.ZoomPanBehavior>
@@ -92,7 +94,7 @@
                     </map:MapTileLayer.ZoomPanBehavior>
                 </map:MapTileLayer>
                 
-            </map:SfMaps.Layer>
+        </map:SfMaps.Layer>
 
         </map:SfMaps>
 
@@ -114,7 +116,7 @@
                 </VerticalStackLayout>
                 <VerticalStackLayout Margin="18,0" >
                 <Label Text="Longitude" FontSize="Small"/>
-                    <HorizontalStackLayout Margin="6">
+                    <HorizontalStackLayout Margin="6,0">
                         <Entry Placeholder="ddd" />
                         <Entry Placeholder="mm.mmmm" />
                         <Label Text="E"/>

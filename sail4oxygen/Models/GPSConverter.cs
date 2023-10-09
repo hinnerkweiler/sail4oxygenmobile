@@ -1,5 +1,4 @@
 ﻿using System;
-using static Android.Media.MicrophoneInfo;
 
 namespace sail4oxygen.Models
 {
@@ -108,7 +107,7 @@ namespace sail4oxygen.Models
 			//Takes degrees, minutes, direction and double places and returns a double coordinate
 			//degrees is an integer
 			//minutes is a double
-			//direction is a string that can be "n", "s", "e" or "w"
+			//direction is a string that can be "N", "S", "E" or "W"
 			//doublePlaces is an integer
 			//returns a double coordinate
 			//example: DegreesMinutesTodouble(51, 12.3456, "e", 4) returns 51.1235
