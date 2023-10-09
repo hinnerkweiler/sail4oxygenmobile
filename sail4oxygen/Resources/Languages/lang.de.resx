@@ -296,5 +296,9 @@
     <value>Die Messung wird jetzt per E-Mail ans GEOMAR verschickt. Falls eine Aufforderung zur Auswahl einer App erscheint, bitte die App benutzen, mit der normalerweise E-Mails verschickt werden.</value>
     <comment/>
   </data>
+  <data name="ManualGPSChange" xml:space="preserve">
+    <value>Auswählen</value>
+    <comment/>
+  </data>
 </root>
 

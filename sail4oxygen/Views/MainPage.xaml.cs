@@ -15,6 +15,7 @@ public partial class MainPage : ContentPage
         Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
         Routing.RegisterRoute(nameof(Onboarding), typeof(Onboarding));
         Routing.RegisterRoute(nameof(ManualPage), typeof(ManualPage));
+        Routing.RegisterRoute(nameof(MapPage), typeof(MapPage));
 
         Models.FaqHelper.Init();
 
@@ -73,7 +74,8 @@ public partial class MainPage : ContentPage
 
     async void OnGPSReload_Clicked(System.Object sender, System.EventArgs e)
     {
-        MainPageVM.MyLocation = await MainPageVM.GetLocation();
+        await Shell.Current.GoToAsync("MapPage");
+        //MainPageVM.MyLocation = await MainPageVM.GetLocation();
     }
 
     
