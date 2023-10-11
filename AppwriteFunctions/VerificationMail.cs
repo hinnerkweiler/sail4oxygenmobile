@@ -22,5 +22,7 @@ public class Handler
         //get user
         //create Verification
         //Send Mail to User
+
+        return null;
     }
 }
