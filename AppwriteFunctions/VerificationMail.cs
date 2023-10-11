@@ -18,11 +18,15 @@ public class Handler
     {
         Context.Log(JsonSerializer.Serialize<object>(Context.Req.Headers));
 
+        JObject headers = new(Context.Req.Headers);
+
+        Context.Log(headers["x-appwrite-event"]);
+
         //get user Id from Message
         //get user
         //create Verification
         //Send Mail to User
 
-        return null;
+        return Context.Res.Empty();
     }
 }
