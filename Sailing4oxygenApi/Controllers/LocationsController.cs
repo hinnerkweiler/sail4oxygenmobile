@@ -27,22 +27,18 @@ namespace Sailing4oxygenApi.Controllers
             {
 
                 var client = new Client()
-                    .SetEndpoint(Environment.GetEnvironmentVariable("APPWRITE_ENDPOINT_URL"))
-                    .SetProject(Environment.GetEnvironmentVariable("APPWRITE_PROJECT_ID"))
-                    .SetKey(Environment.GetEnvironmentVariable("APPWRITE_API_KEY"));
+                    .SetEndpoint(Helpers.Envs.Endpoint)
+                    .SetProject(Helpers.Envs.Project)
+                    .SetKey(Helpers.Envs.ApiKey);
 
 
                 var databases = new Databases(client);
 
-                var databaseId = Environment.GetEnvironmentVariable("APPWRITE_DATABASE_ID");
-
-                var collectionId = Environment.GetEnvironmentVariable("APPWRITE_PORT_COLLECTION_ID");
-
                 var queryString = Models.Port.QueryAll();
 
                 var documentList = await databases.ListDocuments(
-                    databaseId: databaseId,
-                    collectionId: collectionId,
+                    databaseId: Helpers.Envs.DatabaseId,
+                    collectionId: Helpers.Envs.PortCollectionId,
                     queries: queryString);
 
                 errors.Add("Ports: " + documentList.Documents.Count);
