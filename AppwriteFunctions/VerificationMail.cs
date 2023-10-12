@@ -16,14 +16,8 @@ public class Handler
     // It is executed each time we get a request
     public async Task<RuntimeOutput> Main(RuntimeContext Context)
     {
-        
-        User user = JsonSerializer.Deserialize<User>(Environment.GetEnvironmentVariable("APPWRITE_FUNCTION_EVENT_DATA"));
 
-        var pref = user.Prefs;
-
-        Context.Log(pref.Data.ToString());
-
-        
+        var headers = JObject.Parse(Context.Req.Headers);
 
         //get user Id from Message
         //get user
