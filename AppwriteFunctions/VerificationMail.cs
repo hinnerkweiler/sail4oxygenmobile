@@ -23,7 +23,7 @@ public class Handler
             string userFromHeader = Context.Req.Headers["x-appwrite-event"];
 
             string userId = userFromHeader.Remove(0, 5);
-                   userId = userFromHeader.Remove(userId.Length, -7);
+                   userId = userFromHeader.Remove(userId.Length -7 , 7);
 
             Context.Log("Id String: " + userId);
 
