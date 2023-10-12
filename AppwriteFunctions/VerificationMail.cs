@@ -4,7 +4,6 @@ using Appwrite;
 using Appwrite.Services;
 using Appwrite.Models;
 using Appwrite.Extensions;
-
 using Newtonsoft.Json.Linq;
 using System.Text.Json;
 using System.Collections;
@@ -27,7 +26,7 @@ public class Handler
 
             Match match = Regex.Match(userFromHeader, pattern);
 
-            Users users = new(Sailing4oxygenApi.Helpers.InitClient.AppwriteClient);
+            Users users = new(DotNetRuntime.Helpers.InitClient.AppwriteClient);
 
             User user = await users.Get(match.Value.ToString());
 
