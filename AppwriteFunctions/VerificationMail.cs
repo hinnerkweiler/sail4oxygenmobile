@@ -22,13 +22,15 @@ public class Handler
 
             string userFromHeader = Context.Req.Headers["x-appwrite-event"];
 
-            string pattern = @"(?<=user\.)[^.]+(?=\.create)";
+            string userId = userFromHeader.Remove(0, 5);
+                   userId = userFromHeader.Remove(userId.Length, -7);
 
-            Match match = Regex.Match(userFromHeader, pattern);
+            Context.Log("Id String: " + userId);
+
 
             Users users = new(DotNetRuntime.Helpers.InitClient.AppwriteClient);
 
-            User user = await users.Get(match.Value.ToString());
+            User user = await users.Get(userId);
 
             Context.Log("Verification" + user.EmailVerification);
         }
