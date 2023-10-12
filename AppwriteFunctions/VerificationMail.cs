@@ -16,8 +16,9 @@ public class Handler
     // It is executed each time we get a request
     public async Task<RuntimeOutput> Main(RuntimeContext Context)
     {
-
-        var headers = JObject.Parse(Context.Req.Headers);
+        string trigger = Context.Req.Headers["x-appwrite-trigger"];
+        string userFromHeader  = Context.Req.Headers["x-appwrite-event"];
+        Console.WriteLine("trigger :   "+trigger+"\nuser :       "+userFromHeader);
 
         //get user Id from Message
         //get user
