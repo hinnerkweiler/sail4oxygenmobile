@@ -19,20 +19,20 @@ public class Handler
         try
         {
             string trigger = Context.Req.Headers["x-appwrite-trigger"];
-
             string userFromHeader = Context.Req.Headers["x-appwrite-event"];
-
+            string jwt = Context.Req.Headers[""];
             string userId = userFromHeader.Remove(0, 7);
                    userId = userId.Remove(userId.Length -7 , 7);
 
             Context.Log("Id String: " + userId);
 
-
             Users users = new(DotNetRuntime.Helpers.InitClient.AppwriteClient);
-
             User user = await users.Get(userId);
 
-            Context.Log("Verification" + user.EmailVerification);
+            Account account = new Account(DotNetRuntime.Helpers.InitClient.AppwriteClient);
+
+
+            Context.Log("Verification Status: " + user.EmailVerification);
         }
         catch (Exception ex)
         {
