@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET MAUI",
+            "name": ".NET MAUI",         
             "type": "maui",
             "request": "launch",
             "preLaunchTask": "maui: Build"
