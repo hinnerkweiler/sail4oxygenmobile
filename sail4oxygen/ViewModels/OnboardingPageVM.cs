@@ -20,11 +20,11 @@ namespace sail4oxygen.ViewModels
             {
                 if (NameIsValid)
                 {
-                    return Resources.Languages.lang.ok;
+                    return Resources.Languages.Lang.ok;
                 }
                 else
                 {
-                    return Resources.Languages.lang.BoatNameInvalidMessage;
+                    return Resources.Languages.Lang.BoatNameInvalidMessage;
                 }
             }
         }

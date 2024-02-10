@@ -54,7 +54,7 @@ namespace sail4oxygen.Models
                     }
                     catch (Exception ex)
                     {
-                        Models.SharedData.LastError = Resources.Languages.lang.FileWriteLastError + "  (" + ex.Message + ")";
+                        Models.SharedData.LastError = Resources.Languages.Lang.FileWriteLastError + "  (" + ex.Message + ")";
                     }
 
                     return true;
@@ -91,13 +91,13 @@ namespace sail4oxygen.Models
 #endif
                     if (fileage.TotalMinutes > maxMeasureAge)
                     {
-                        if (await Application.Current.MainPage.DisplayAlert(Resources.Languages.lang.FileTooOldAlertTitel, Resources.Languages.lang.FileTooOldAlertText1+ " " + Math.Round(fileage.TotalMinutes,MidpointRounding.AwayFromZero) + " " + Resources.Languages.lang.FileTooOldAlertText2, Resources.Languages.lang.ContinueSending, Resources.Languages.lang.CorrectCoordinates))
+                        if (await Application.Current.MainPage.DisplayAlert(Resources.Languages.Lang.FileTooOldAlertTitel, Resources.Languages.Lang.FileTooOldAlertText1+ " " + Math.Round(fileage.TotalMinutes,MidpointRounding.AwayFromZero) + " " + Resources.Languages.Lang.FileTooOldAlertText2, Resources.Languages.Lang.ContinueSending, Resources.Languages.Lang.CorrectCoordinates))
                         {
                             return true;
                         }
                         else
                         {
-                            Models.SharedData.LastError = Resources.Languages.lang.FileTooOldLastError;
+                            Models.SharedData.LastError = Resources.Languages.Lang.FileTooOldLastError;
                             return false;
                         }
                     }
@@ -108,7 +108,7 @@ namespace sail4oxygen.Models
                 }
                 else
                 {
-                    Models.SharedData.LastError = Resources.Languages.lang.WrongFileLastError;
+                    Models.SharedData.LastError = Resources.Languages.Lang.WrongFileLastError;
                     return false;
                 }
             }

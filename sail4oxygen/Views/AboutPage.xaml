@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:lang="clr-namespace:sail4oxygen.Resources.Languages"
              x:Class="sail4oxygen.Views.AboutPage"
-             Title="{x:Static lang:lang.AboutPageTitle}"
+             Title="{x:Static lang:Lang.AboutPageTitle}"
              Shell.BackgroundColor="{AppThemeBinding Light={StaticResource s4blue25}, Dark={StaticResource Gray300}}"
              >
 
@@ -36,7 +36,7 @@
 
             <Button
                 Margin="8"
-                Text="{x:Static lang:lang.AboutPageReadMore}"
+                Text="{x:Static lang:Lang.AboutPageReadMore}"
                 Clicked="s4oweb_Clicked"
                 HorizontalOptions="CenterAndExpand"
                 />
@@ -73,7 +73,7 @@
                         BackgroundColor="Transparent"
                         TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray300}}"
                         FontSize="Micro"
-                        Text="{x:Static lang:lang.DeveloperPageButtonText}"
+                        Text="{x:Static lang:Lang.DeveloperPageButtonText}"
                         Clicked="Github_Clicked"
                         HorizontalOptions="CenterAndExpand"
                         />
@@ -82,7 +82,7 @@
 
             <Button
                 Margin="8,24,24,8"
-                Text="{x:Static lang:lang.OpenSettingsPage}"
+                Text="{x:Static lang:Lang.OpenSettingsPage}"
                 x:Name="settings"
                 Clicked="settings_Clicked"
                 HorizontalOptions="CenterAndExpand"

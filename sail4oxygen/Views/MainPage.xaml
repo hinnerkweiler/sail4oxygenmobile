@@ -9,7 +9,7 @@
              
              x:Class="sail4oxygen.Views.MainPage"
              NavigationPage.HasNavigationBar="False"
-             Title="{x:Static lang:lang.MainPageTitle}"
+             Title="{x:Static lang:Lang.MainPageTitle}"
              Shell.BackgroundColor="{AppThemeBinding Light={StaticResource s4blue25}, Dark={StaticResource Gray300}}"
              >
              
@@ -64,7 +64,7 @@
                     Margin="24,24,0,0"
                     HorizontalOptions="Center"
                     HorizontalTextAlignment="Start"
-                    Text="{x:Static lang:lang.MainPageIntro}"
+                    Text="{x:Static lang:Lang.MainPageIntro}"
                     FontSize="Medium" />
 
             <!--  Guide -->
@@ -89,7 +89,7 @@
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="Start"
                         TextType="Html"
-                        Text="{x:Static lang:lang.MainPageIntro2}"
+                        Text="{x:Static lang:Lang.MainPageIntro2}"
                         FontSize="Small" />
 
                     <Label
@@ -98,7 +98,7 @@
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="Start"
                         TextType="Html"
-                        Text="{x:Static lang:lang.MainPageIntro3}"
+                        Text="{x:Static lang:Lang.MainPageIntro3}"
                         FontSize="Small" />
                     <Grid ColumnDefinitions="*,120" RowDefinitions="*">
                     <Label
@@ -108,11 +108,11 @@
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="Start"
                         TextType="Html"
-                        Text="{x:Static lang:lang.MainPageIntro4}"
+                        Text="{x:Static lang:Lang.MainPageIntro4}"
                         FontSize="Micro" />
                     <Button
                         Grid.Row="0" Grid.Column="1"
-                        Text="{x:Static lang:lang.OpenManualPdf}"
+                        Text="{x:Static lang:Lang.OpenManualPdf}"
                         FontSize="Micro"
                         Padding="3,3,3,3"
                         BorderColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray200}}"
@@ -144,13 +144,13 @@
                 <!-- Coordinate entry -->
                 <Label
                     TextType="Html"
-                    Text="{x:Static lang:lang.MainPageLatitudeTitle}"
+                    Text="{x:Static lang:Lang.MainPageLatitudeTitle}"
                     FontSize="Micro"
                     TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
                     VerticalOptions="CenterAndExpand"/>
                 <Entry
                     x:Name="LatitudeEntryDegree"
-                    Placeholder="{x:Static lang:lang.MainPageLatitudePlaceholder}"
+                    Placeholder="{x:Static lang:Lang.MainPageLatitudePlaceholder}"
                     Text="{Binding MyLocation.Latitude , Mode=TwoWay, StringFormat='{0:00.000000}', Converter={StaticResource ConverterHelper}}"
                     FontSize="Small"
                     VerticalOptions="CenterAndExpand">
@@ -166,13 +166,13 @@
 
                 <Label
                     TextType="Html"
-                    Text="{x:Static lang:lang.MainPageLongitudeTitle}"
+                    Text="{x:Static lang:Lang.MainPageLongitudeTitle}"
                     FontSize="Micro"
                     TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
                     VerticalOptions="CenterAndExpand"/>
                 <Entry
                     x:Name="LongitudeEntry"
-                    Placeholder="{x:Static lang:lang.MainPageLongitudePlaceholder}"
+                    Placeholder="{x:Static lang:Lang.MainPageLongitudePlaceholder}"
                     Text="{Binding MyLocation.Longitude, Mode=TwoWay, StringFormat='{0:000.000000}', Converter={StaticResource ConverterHelper}}"
                     FontSize="Small"
                     VerticalOptions="CenterAndExpand">
@@ -190,7 +190,7 @@
                 </VerticalStackLayout>
                 <!-- Change Coordinated Button -->
                     <Button
-                        Text="{x:Static lang:lang.ManualGPSChange}"
+                        Text="{x:Static lang:Lang.ManualGPSChange}"
                         Padding="8,8,8,8"
                         BackgroundColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue25}}"
                         TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource s4blue100}}"
@@ -216,7 +216,7 @@
                        BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
                         TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray300}}"
                     Margin="15,12,0,0"
-                    SemanticProperties.Hint="{x:Static lang:lang.MainPageFileRemoveHint}"
+                    SemanticProperties.Hint="{x:Static lang:Lang.MainPageFileRemoveHint}"
                     Clicked="OnFileRemove_Clicked"
                     HorizontalOptions="End"
                     IsVisible="{Binding FileRemoveButtonVisible}"/>
@@ -228,7 +228,7 @@
                 BackgroundColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue25}}"
                 TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource s4blue100}}"
                 Margin="0,8,0,20"
-                SemanticProperties.Hint="{x:Static lang:lang.MainPageSendButtonHint}"
+                SemanticProperties.Hint="{x:Static lang:Lang.MainPageSendButtonHint}"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
 

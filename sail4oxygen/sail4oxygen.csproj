@@ -122,13 +122,19 @@
 	  </Compile>
 	</ItemGroup>
 	<ItemGroup>
-	  <EmbeddedResource Update="Resources\Languages\lang.de.resx">
+	  <EmbeddedResource Update="Resources\Languages\Lang.de.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>lang.de.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
-	  <EmbeddedResource Update="Resources\Languages\lang.resx">
+	  <EmbeddedResource Update="Resources\Languages\Lang.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>lang.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Languages\Lang.resx">
+	    <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Languages\Lang.de.resx">
+	    <LastGenOutput>Lang.de.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>

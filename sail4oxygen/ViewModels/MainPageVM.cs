@@ -59,11 +59,11 @@ namespace sail4oxygen.ViewModels
             {
                 if (IsLearnMoreExpanded)
                 {
-                    return "&#x2304;  " + Resources.Languages.lang.MainPageIntro1;
+                    return "&#x2304;  " + Resources.Languages.Lang.MainPageIntro1;
                 }
                 else
                 {
-                    return "&gt;  " + Resources.Languages.lang.MainPageIntro1;
+                    return "&gt;  " + Resources.Languages.Lang.MainPageIntro1;
 
                 }
             }
@@ -143,9 +143,9 @@ namespace sail4oxygen.ViewModels
             get
             {
                 if (CsvFileToSend == null)
-                    return Resources.Languages.lang.SendButtonTextSelectFile;
+                    return Resources.Languages.Lang.SendButtonTextSelectFile;
                 else
-                    return Resources.Languages.lang.SendButtonTextSendFile;
+                    return Resources.Languages.Lang.SendButtonTextSendFile;
             }
         }
 
@@ -156,7 +156,7 @@ namespace sail4oxygen.ViewModels
             get
             {
                 if (CsvFileToSend == null)
-                    return Resources.Languages.lang.NoCsvFile;
+                    return Resources.Languages.Lang.NoCsvFile;
                 else
                     return CsvFileToSend.FileName;
             }
@@ -279,7 +279,7 @@ namespace sail4oxygen.ViewModels
                     catch (Exception ex)
                     {
                         Console.WriteLine("The user canceled or something went wrong: ", ex.Message);
-                        await Application.Current.MainPage.DisplayAlert(Resources.Languages.lang.NoFileAlertTitle,  Resources.Languages.lang.NoFileAlertText + " " + ex.Message, Resources.Languages.lang.ok);
+                        await Application.Current.MainPage.DisplayAlert(Resources.Languages.Lang.NoFileAlertTitle,  Resources.Languages.Lang.NoFileAlertText + " " + ex.Message, Resources.Languages.Lang.ok);
                     }
                 }
                 
@@ -287,19 +287,19 @@ namespace sail4oxygen.ViewModels
                 {
                     await Email.Default.ComposeAsync(await Models.Mail.Send(MyLocation, CsvFileToSend.FullPath));
 
-                    await Application.Current.MainPage.DisplayAlert(Resources.Languages.lang.ThankYou, Resources.Languages.lang.SendMessageAlertText, Resources.Languages.lang.ok);
+                    await Application.Current.MainPage.DisplayAlert(Resources.Languages.Lang.ThankYou, Resources.Languages.Lang.SendMessageAlertText, Resources.Languages.Lang.ok);
 
                     Cleanup();
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert(Resources.Languages.lang.NoFileSent, Resources.Languages.lang.NoFileSentMessage + " " + Models.SharedData.LastError, Resources.Languages.lang.ok);
+                    await Application.Current.MainPage.DisplayAlert(Resources.Languages.Lang.NoFileSent, Resources.Languages.Lang.NoFileSentMessage + " " + Models.SharedData.LastError, Resources.Languages.Lang.ok);
                 }
                 return true;
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Nothing sent!", Resources.Languages.lang.LocationInvalidMessage, Resources.Languages.lang.ok);
+                await Application.Current.MainPage.DisplayAlert("Nothing sent!", Resources.Languages.Lang.LocationInvalidMessage, Resources.Languages.Lang.ok);
             }
             return false;
         }

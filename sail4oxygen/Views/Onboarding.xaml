@@ -4,7 +4,7 @@
              xmlns:lang="clr-namespace:sail4oxygen.Resources.Languages"
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="sail4oxygen.Views.Onboarding"
-             Title="{x:Static lang:lang.OnboardingPageTitle}"
+             Title="{x:Static lang:Lang.OnboardingPageTitle}"
              Shell.NavBarIsVisible="False">
 
     <ContentPage.Resources>
@@ -27,7 +27,7 @@
                     HorizontalOptions="StartAndExpand"
                     VerticalTextAlignment="End"
                     FontSize="Micro" FontAttributes="Bold"
-                    Text="{x:Static lang:lang.OnboardingPageComeBackInfo}"
+                    Text="{x:Static lang:Lang.OnboardingPageComeBackInfo}"
                     />
             <Button
                     Grid.Column="0" Grid.Row="0"
@@ -46,13 +46,13 @@
                 Margin="12"
                 FontSize="Medium"
                 TextType="Html"
-                Text="{x:Static lang:lang.OnboardingGreetingText}"
+                Text="{x:Static lang:Lang.OnboardingGreetingText}"
                 />
             <Label
                 Margin="12"
                 FontSize="Medium"
                 TextType="Html"
-                Text="{x:Static lang:lang.OnboardingDsgvoTitle}"
+                Text="{x:Static lang:Lang.OnboardingDsgvoTitle}"
                 />
             <Grid RowDefinitions="*" ColumnDefinitions="70,*"
                   >
@@ -61,7 +61,7 @@
                     Margin="12"
                     FontSize="Body"
                     TextType="Html"
-                    Text="{x:Static lang:lang.OnboardingDSGVOInfo}"
+                    Text="{x:Static lang:Lang.OnboardingDSGVOInfo}"
                 />
                 <CheckBox 
                     Grid.Column="0" Grid.Row="0"
@@ -74,7 +74,7 @@
             <Label
                 Margin="0,6"
                 FontAttributes="Bold"
-                Text="{x:Static lang:lang.BoatName}" />
+                Text="{x:Static lang:Lang.BoatName}" />
 
             <Entry x:Name="boatname" Placeholder="Name"
                 Text="{Binding BoatName}"
@@ -102,7 +102,7 @@
                 Margin="12"
                 FontSize="Body"
                 TextType="Html"
-                Text="{x:Static lang:lang.OnboardingKORInfo}"
+                Text="{x:Static lang:Lang.OnboardingKORInfo}"
                 />
 
             <Button
@@ -110,7 +110,7 @@
                 Margin="6,12"
                 x:Name="installkor"
                 Clicked="installkor_Clicked"
-                Text="{x:Static lang:lang.OnboardingKORButton}"
+                Text="{x:Static lang:Lang.OnboardingKORButton}"
                 />
 
             <Label

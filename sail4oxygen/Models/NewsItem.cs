@@ -34,22 +34,22 @@ namespace sail4oxygen.Models
 					switch (Date)
 					{
 						case DateTime date when (DateTime.Now - date).TotalSeconds < 60:
-							return Resources.Languages.lang.justnow;
+							return Resources.Languages.Lang.justnow;
 
 						case DateTime date when (DateTime.Now - date).TotalMinutes < 60:
-							return string.Format(Resources.Languages.lang.minutesago,(int)(DateTime.Now - date).TotalMinutes);
+							return string.Format(Resources.Languages.Lang.minutesago,(int)(DateTime.Now - date).TotalMinutes);
 							
 						case DateTime date when (DateTime.Now - date).TotalHours < 24:
-							return string.Format(Resources.Languages.lang.hourssago,(int)(DateTime.Now - date).TotalHours);
+							return string.Format(Resources.Languages.Lang.hourssago,(int)(DateTime.Now - date).TotalHours);
 							
 						case DateTime date when (DateTime.Now - date).TotalDays < 7:
-							return string.Format(Resources.Languages.lang.daysago,(int)(DateTime.Now - date).TotalDays);
+							return string.Format(Resources.Languages.Lang.daysago,(int)(DateTime.Now - date).TotalDays);
 							
 						default:
 							return Date.ToString("d");
 					}
 				}
-				return Resources.Languages.lang.NoDate;
+				return Resources.Languages.Lang.NoDate;
 			} 					
 			
 
