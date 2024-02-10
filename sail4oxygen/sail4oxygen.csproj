@@ -108,11 +108,11 @@
 	  <Compile Update="Resources\Languages\lng.Designer.cs">
 	    <DependentUpon>lang.resx</DependentUpon>
 	  </Compile>
-	  <Compile Update="Resources\Languages\lang.de.Designer.cs">
-	    <DependentUpon>lang.de.resx</DependentUpon>
+	  <Compile Update="Resources\Languages\Lang.de.Designer.cs">
+	    <DependentUpon>Lang.de.resx</DependentUpon>
 	  </Compile>
-	  <Compile Update="Resources\Languages\lang.Designer.cs">
-	    <DependentUpon>lang.resx</DependentUpon>
+	  <Compile Update="Resources\Languages\Lang.Designer.cs">
+	    <DependentUpon>Lang.resx</DependentUpon>
 	  </Compile>
 	  <Compile Update="Resources\Languages\lang.Designer.cs">
 	    <DependentUpon>lang.resx</DependentUpon>
