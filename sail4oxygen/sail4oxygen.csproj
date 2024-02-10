@@ -99,9 +99,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\LucidaGrande.ttf" />
-	  <BundleResource Include="Resources\Images\help.svg" />
 	  <BundleResource Include="Resources\Raw\non.htm" />
-	  <BundleResource Include="Resources\Images\backgrounddark.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Resources\Languages\lng.Designer.cs">
@@ -132,7 +130,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiIcon Include="Resources\AppIcon\appicon.svg" />
-	  <MauiIcon Include="Resources\Images\backgroundlight.svg" BaseSize="200,200" Color="#FFFFFF" />
 	</ItemGroup>
 	
 	<ItemGroup>
