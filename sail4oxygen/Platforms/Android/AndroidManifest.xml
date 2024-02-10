@@ -19,5 +19,5 @@
 			<data android:scheme="https" />
 		</intent>
 	</queries>
-	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33" />
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34" />
 </manifest>
