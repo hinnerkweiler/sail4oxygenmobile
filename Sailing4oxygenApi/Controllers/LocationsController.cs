@@ -3,6 +3,7 @@ using Appwrite;
 using Appwrite.Models;
 using Appwrite.Services;
 using Microsoft.AspNetCore.Mvc;
+using Sailing4oxygenApi.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Sailing4oxygenApi.Controllers
@@ -81,7 +82,7 @@ namespace Sailing4oxygenApi.Controllers
             {
                 Console.WriteLine("Error:" + item);
             }
-            return null;
+            return new List<Port>();
         }
 
     }

@@ -43,7 +43,7 @@ namespace Sailing4oxygenApi.Controllers
             //Verify a valid user is currently logged in using Appwrite Authentication
             //
 
-            return null;
+            return new Document("", "", "", "", "", new List<object>(), new Dictionary<string, object>());
         }
 
         // POST api/values
