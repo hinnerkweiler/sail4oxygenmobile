@@ -37,7 +37,7 @@ public partial class MainPage : ContentPage
         if (Models.DsgvoHandler.IsDsgvoAccepted)
         {
             if (await Application.Current.MainPage.DisplayAlert(sail4oxygen.Resources.Languages.Lang.SendingNoteTitle, sail4oxygen.Resources.Languages.Lang.SendingNote, sail4oxygen.Resources.Languages.Lang.ContinueSending,  sail4oxygen.Resources.Languages.Lang.cancel))
-            _ = await MainPageVM.SelectFile(null);
+                _ = await MainPageVM.SelectFile(null);
         }
         else
         {
