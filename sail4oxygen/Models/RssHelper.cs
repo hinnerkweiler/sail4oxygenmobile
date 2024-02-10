@@ -80,6 +80,9 @@ namespace sail4oxygen.Models
 			}
 			catch (Exception ex)
 			{
+#if DEBUG
+				Console.WriteLine(ex.Message);
+#endif
 				isValid = false;
 			}
 			return isValid;
