@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:map="clr-namespace:Syncfusion.Maui.Maps;assembly=Syncfusion.Maui.Maps"
+             xmlns:models="clr-namespace:sail4oxygen.Models;assembly=sail4oxygen"
              x:Class="sail4oxygen.Views.MapPage"
              Title=""
              Shell.BackgroundColor="{AppThemeBinding Light={StaticResource s4blue25}, Dark={StaticResource Gray300}}"
@@ -109,17 +110,33 @@
                 <VerticalStackLayout>
                     <Label Text="Latitude" FontSize="Small"/>
                     <HorizontalStackLayout Margin="6,0">
-                        <Entry Placeholder="ddd" Text="{Binding UserLat.Degrees, Mode=TwoWay}"/>
-                        <Entry Placeholder="mm.mmmm" Text="{Binding UserLat.Minutes, Mode=TwoWay}"/>
+                        <Entry Placeholder="dd" Text="{Binding UserLat.Degrees, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <models:TwoDigitBehavior/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Entry Placeholder="mm.mmmm" Text="{Binding UserLat.Minutes, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <models:MinutesBehavior/>
+                            </Entry.Behaviors>
+                        </Entry>
                         <Label Text="{Binding UserLat.Direction}"/>
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
                 <VerticalStackLayout Margin="18,0" >
                 <Label Text="Longitude" FontSize="Small"/>
                     <HorizontalStackLayout Margin="6,0">
-                        <Entry Placeholder="ddd" Text="{Binding UserLong.Degrees, Mode=TwoWay}"/>
-                        <Entry Placeholder="mm.mmmm" Text="{Binding UserLong.Minutes, Mode=TwoWay}"/>
-                        <Label Text="{Binding UserLat.Minutes}"/>
+                        <Entry Placeholder="ddd" Text="{Binding UserLong.Degrees, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <models:TwoDigitBehavior/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Entry Placeholder="mm.mmmm" Text="{Binding UserLong.Minutes, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <models:MinutesBehavior/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label Text="{Binding UserLong.Direction}"/>
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
             </HorizontalStackLayout>
