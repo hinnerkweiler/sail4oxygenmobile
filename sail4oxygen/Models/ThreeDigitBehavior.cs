@@ -1,6 +1,6 @@
 namespace sail4oxygen.Models;
 
-public class TwoDigitBehavior : Behavior<Entry>
+public class ThreeDigitBehavior : Behavior<Entry>
 {
     protected override void OnAttachedTo(Entry entry)
     {
@@ -19,7 +19,7 @@ public class TwoDigitBehavior : Behavior<Entry>
         var entry = sender as Entry;
         if (entry == null) return;
 
-        if (args.NewTextValue.Length > 2)
+        if (args.NewTextValue.Length > 3)
         {
             // Revert to old value if more than two digits are entered
             entry.Text = args.OldTextValue;
