@@ -19,8 +19,14 @@ public class MinutesBehavior : Behavior<Entry>
         var entry = sender as Entry;
         if (entry == null) return;
 
-        // Allow the user to clear the entry or enter a single period
-        if (string.IsNullOrEmpty(args.NewTextValue) || args.NewTextValue == ".")
+        // Allow the user to clear the entry
+        if (string.IsNullOrEmpty(args.NewTextValue))
+        {
+            return;
+        }
+
+        // Allow incomplete numeric input (e.g., "5.", "0.", or ".")
+        if (args.NewTextValue == "." || args.NewTextValue.EndsWith("."))
         {
             return;
         }
