@@ -10,22 +10,25 @@ namespace sail4oxygen.ViewModels
 	public partial class MapPageVM : ObservableObject
 	{
 		[ObservableProperty]
+		Models.Coordinate userLat =  new();
+		
+		[ObservableProperty]
+		Models.Coordinate userLong = new();
+
+		
+		[ObservableProperty]
 		private Location userLocation = new();
 
-		public double UserLat {
-			get => UserLocation.Latitude;
+		
+		
+		public string MyBoatName
+		{
+			get => Models.PreferencesHelper.BoatName;
 			set
 			{
-				UserLocation.Latitude = value;
+				Models.PreferencesHelper.BoatName = value; 
 			}
 		}
-		public double UserLon {
-			get => UserLocation.Longitude;
-            set
-            {
-                UserLocation.Longitude = value;
-            }
-        }
 
 		[ObservableProperty]
 		ObservableCollection<MapMarker> portList = new();
@@ -33,6 +36,8 @@ namespace sail4oxygen.ViewModels
 		public MapPageVM()
 		{
 			_= Init();
+			UserLat.Direction = 'N';
+			UserLong.Direction = 'E';
         }
 
 		public async Task Init()
@@ -55,6 +60,8 @@ namespace sail4oxygen.ViewModels
             Console.WriteLine("*************** Location Change Recived in MapViewVM");
 #endif
         }
+        
+        
 
 
     }

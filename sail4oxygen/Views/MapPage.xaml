@@ -24,7 +24,7 @@
         </HorizontalStackLayout>
     </Shell.TitleView>
 
-    <Grid RowDefinitions="*,20,auto" ColumnDefinitions="*">
+    <Grid RowDefinitions="*,20,auto,auto" ColumnDefinitions="*">
         <map:SfMaps Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
             <map:SfMaps.Layer HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
 
@@ -102,30 +102,42 @@
 
         <VerticalStackLayout Grid.Row="2" Grid.Column="0">
             <Label Text="Enter coordinates" Margin="12,0" FontSize="Body"/>
-            <Label Text="Drag Map Center to measure location or enter coordinates below" FontSize="Micro" Margin=" 12,0,12,6"/>
+            <Label Text="Enter coordinates of measurement below" FontSize="Micro" Margin=" 12,0,12,6"/>
             
             
             <HorizontalStackLayout HorizontalOptions="Center">
                 <VerticalStackLayout>
                     <Label Text="Latitude" FontSize="Small"/>
                     <HorizontalStackLayout Margin="6,0">
-                        <Entry Placeholder="dd" />
-                        <Entry Placeholder="mm.mmmm" />
-                        <Label Text="N"/>
+                        <Entry Placeholder="ddd" Text="{Binding UserLat.Degrees, Mode=TwoWay}"/>
+                        <Entry Placeholder="mm.mmmm" Text="{Binding UserLat.Minutes, Mode=TwoWay}"/>
+                        <Label Text="{Binding UserLat.Direction}"/>
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
                 <VerticalStackLayout Margin="18,0" >
                 <Label Text="Longitude" FontSize="Small"/>
                     <HorizontalStackLayout Margin="6,0">
-                        <Entry Placeholder="ddd" />
-                        <Entry Placeholder="mm.mmmm" />
-                        <Label Text="E"/>
+                        <Entry Placeholder="ddd" Text="{Binding UserLong.Degrees, Mode=TwoWay}"/>
+                        <Entry Placeholder="mm.mmmm" Text="{Binding UserLong.Minutes, Mode=TwoWay}"/>
+                        <Label Text="{Binding UserLat.Minutes}"/>
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
             </HorizontalStackLayout>
 
 
         </VerticalStackLayout>
+        <HorizontalStackLayout Grid.Row="3" Grid.Column="0">
+            <Label
+                Margin="24,0"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+                Text = "Boatname:"/>
+            <Entry
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                Placeholder="Enter your Boat Name"
+                Text="{Binding MyBoatName, Mode=TwoWay}"/>
+        </HorizontalStackLayout>
 
     </Grid>
 </ContentPage>
