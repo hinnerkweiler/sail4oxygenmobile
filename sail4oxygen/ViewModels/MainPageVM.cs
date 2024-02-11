@@ -201,8 +201,12 @@ namespace sail4oxygen.ViewModels
             {
                 OnBoatNameChangeMessage(m.Value);
             });
-
-
+            WeakReferenceMessenger.Default.Register<Models.UserLocationChangedMessage>(this, (r, m) =>
+            {
+                var location = new Location(m.Latitude, m.Longitude);
+                OnLocationChangeMessage(location);
+            });
+            
         }
 
 
