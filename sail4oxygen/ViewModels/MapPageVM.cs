@@ -4,43 +4,48 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Syncfusion.Maui.Maps;
 using CommunityToolkit.Mvvm.Messaging;
+using sail4oxygen.Models;
 
 namespace sail4oxygen.ViewModels
 {
 	public partial class MapPageVM : ObservableObject
 	{
-		[ObservableProperty]
-		Models.Coordinate userLat =  new();
-		
-		[ObservableProperty]
-		Models.Coordinate userLong = new();
+		//The user's location when changed manually
+		[ObservableProperty] private Coordinate _userLat = new();
 
-		
-		[ObservableProperty]
-		private Location userLocation = new();
+		[ObservableProperty] private Coordinate _userLong = new();
 
-		
-		
+		//Read and write BoatName directly to the Preferences
 		public string MyBoatName
 		{
-			get => Models.PreferencesHelper.BoatName;
-			set
-			{
-				Models.PreferencesHelper.BoatName = value; 
-			}
+			get => PreferencesHelper.BoatName;
+			set => PreferencesHelper.BoatName = value;
 		}
 
-		[ObservableProperty]
-		ObservableCollection<MapMarker> portList = new();
+		[ObservableProperty] private ObservableCollection<MapMarker> _portList = new();
 
 		public MapPageVM()
 		{
-			_= Init();
+			_ = Init();
+			//We are in the northern hemisphere and east of Greenwich at all times!
 			UserLat.Direction = 'N';
 			UserLong.Direction = 'E';
-        }
+		}
 
-		public async Task Init()
+		//Release a Message whenever the user manually alters the location.
+		partial void OnUserLongChanged(Coordinate newValue)
+		{
+			OnUserLatChanged(newValue);
+		}
+
+		partial void OnUserLatChanged(Coordinate newValue)
+		{
+			double latitude = newValue.ToDouble();
+			double longitude = newValue.ToDouble();
+			WeakReferenceMessenger.Default.Send(new UserLocationChangedMessage(latitude, longitude));
+		}
+
+		private async Task Init()
 		{
 			PortList = await Models.MapHelper.GetMapMarkersFromPortList();
 #if DEBUG
@@ -51,19 +56,6 @@ namespace sail4oxygen.ViewModels
 			}
 #endif
 		}
-
-        private void OnLocationChangeMessage(Location location)
-        {
-            UserLocation.Latitude = location.Latitude;
-            UserLocation.Longitude = location.Longitude;
-#if DEBUG
-            Console.WriteLine("*************** Location Change Recived in MapViewVM");
-#endif
-        }
-        
-        
-
-
-    }
+	}
 }
 
