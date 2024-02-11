@@ -27,6 +27,20 @@ namespace sail4oxygen.ViewModels
         }
 
 
+        public string MyBoatName
+        {
+            get
+            {
+                string name=Models.PreferencesHelper.BoatName;
+                //if name is longer than 20 characters, cut it and add …
+                if (name.Length > 20)
+                {
+                    name = name.Substring(0, 20) + "…";
+                }
+
+                return name;
+            }
+        }
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(CoordinatesValid))]

@@ -132,60 +132,65 @@
                 Margin="50,12,50,12"
                 Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Gray300}}"
                 />
-
+            
             <!--  GPS -->
             <HorizontalStackLayout
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 x:Name="CoordinateEditor"
                 >
+                
+                <VerticalStackLayout
+                    >
+                    <Label
+                        Margin="0,4,0,2"
+                        TextType="Html"
+                        Text="{x:Static lang:Lang.BoatName}"
+                        FontSize="Micro"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                        VerticalOptions="CenterAndExpand"/>
 
-                <VerticalStackLayout>
-                <!-- Coordinate entry -->
-                <Label
-                    TextType="Html"
-                    Text="{x:Static lang:Lang.MainPageLatitudeTitle}"
-                    FontSize="Micro"
-                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
-                    VerticalOptions="CenterAndExpand"/>
-                <Entry
-                    x:Name="LatitudeEntryDegree"
-                    Placeholder="{x:Static lang:Lang.MainPageLatitudePlaceholder}"
-                    Text="{Binding MyLocation.Latitude , Mode=TwoWay, StringFormat='{0:00.000000}', Converter={StaticResource ConverterHelper}}"
-                    FontSize="Small"
-                    VerticalOptions="CenterAndExpand">
-                    <Entry.Behaviors>
-                        <mct:TextValidationBehavior 
-                            InvalidStyle="{StaticResource InvalidEntryStyle}"
-                            ValidStyle="{StaticResource ValidEntryStyle}"
-                            IsValid="{Binding LatitudeIsValid, Mode=TwoWay}"
-                            Flags="ValidateOnValueChanged"
-                            RegexPattern="(?:54(?:[\,\.]\d+)?|55(?:[\,\.]\d+)?)$"/>
-                    </Entry.Behaviors>
-                </Entry>
+                    <Label
+                        HorizontalOptions="Start"
+                        TextType="Html"
+                        Text="{Binding MyBoatName}"
+                        x:Name="BoatNameField"
+                        FontSize="Body"
+                        TextTransform="Uppercase"
+                        FontAttributes="Bold"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                        VerticalOptions="CenterAndExpand"/>
+                    <!-- Coordinate entry -->
+                    <Label
+                        Margin="0,4,0,2"
+                        TextType="Html"
+                        Text="{x:Static lang:Lang.MainPageLatitudeTitle}"
+                        FontSize="Micro"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"
+                        VerticalOptions="CenterAndExpand"/>
+                    <Label
+                        TextType="Html"
+                        Text="{Binding MyLocation.Latitude, Mode=TwoWay, StringFormat='{0:000.000000}'}"
+                        FontSize="Small"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"
+                        VerticalOptions="CenterAndExpand"/>
+                    
 
-                <Label
-                    TextType="Html"
-                    Text="{x:Static lang:Lang.MainPageLongitudeTitle}"
-                    FontSize="Micro"
-                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
-                    VerticalOptions="CenterAndExpand"/>
-                <Entry
-                    x:Name="LongitudeEntry"
-                    Placeholder="{x:Static lang:Lang.MainPageLongitudePlaceholder}"
-                    Text="{Binding MyLocation.Longitude, Mode=TwoWay, StringFormat='{0:000.000000}', Converter={StaticResource ConverterHelper}}"
-                    FontSize="Small"
-                    VerticalOptions="CenterAndExpand">
-                    <Entry.Behaviors>
-                        <mct:TextValidationBehavior 
-                            InvalidStyle="{StaticResource InvalidEntryStyle}"
-                            IsValid="{Binding LongitudeIsValid, Mode=TwoWay}"
-                            ValidStyle="{StaticResource ValidEntryStyle}"
-                            Flags="ValidateOnValueChanged"
-                            RegexPattern="(?:9(?:[\,\.]\d+)?|10(?:[\,\.]\d+)?|11(?:[\,\.]\d+)?)$"
-                            />
-                    </Entry.Behaviors>
-                </Entry>
+                    <Label
+                        Margin="0,4,0,2"
+                        TextType="Html"
+                        Text="{x:Static lang:Lang.MainPageLongitudeTitle}"
+                        FontSize="Micro"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"
+                        VerticalOptions="CenterAndExpand"/>
+                    <Label
+                        TextType="Html"
+                        Text="{Binding MyLocation.Longitude, Mode=TwoWay, StringFormat='{0:00.000000}'}"
+                        FontSize="Small"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"
+                        VerticalOptions="CenterAndExpand"/>
+                    
+                    
                 
                 </VerticalStackLayout>
                 <!-- Change Coordinated Button -->
