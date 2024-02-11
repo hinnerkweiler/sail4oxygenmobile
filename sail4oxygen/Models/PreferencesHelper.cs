@@ -1,5 +1,7 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
+
 namespace sail4oxygen.Models
 {
 	public static partial class PreferencesHelper  
@@ -24,6 +26,7 @@ namespace sail4oxygen.Models
             set
             {
                 Preferences.Set("BoatName", value);
+                WeakReferenceMessenger.Default.Send<Models.BoatNameChangeMessage>(new Models.BoatNameChangeMessage(value));
             }
         }
 

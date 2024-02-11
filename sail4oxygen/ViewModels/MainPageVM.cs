@@ -182,6 +182,11 @@ namespace sail4oxygen.ViewModels
             {
                 OnLocationChangeMessage(m.Value);
             });
+            
+            WeakReferenceMessenger.Default.Register<Models.BoatNameChangeMessage>(this, (r, m) =>
+            {
+                OnBoatNameChangeMessage(m.Value);
+            });
 
 
         }
@@ -322,7 +327,10 @@ namespace sail4oxygen.ViewModels
 #endif
         }
 
-
+        private void OnBoatNameChangeMessage(string value)
+        {
+            OnPropertyChanged(nameof(MyBoatName));
+        }
 
 
         public void Cleanup()
