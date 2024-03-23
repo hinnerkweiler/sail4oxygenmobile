@@ -11,8 +11,10 @@ namespace sail4oxygen.ViewModels
 	{
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(LocationText))]
+        [NotifyPropertyChangedFor(nameof(LatitudeString))]
+        [NotifyPropertyChangedFor(nameof(LongitudeString))]
         [NotifyCanExecuteChangedFor(nameof(FireLocationChangeMessageCommand))]
-        Location myLocation;
+        private Location _myLocation;
 
         public bool CoordinatesValid
         {
@@ -203,8 +205,9 @@ namespace sail4oxygen.ViewModels
             });
             WeakReferenceMessenger.Default.Register<Models.UserLocationChangedMessage>(this, (r, m) =>
             {
-                var location = new Location(m.Latitude, m.Longitude);
-                OnLocationChangeMessage(location);
+                MyLocation.Latitude = m.Latitude;
+                MyLocation.Longitude = m.Longitude;
+                MyLocation.Timestamp = DateTime.UtcNow;
             });
             
         }
