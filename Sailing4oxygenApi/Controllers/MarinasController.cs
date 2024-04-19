@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 
 namespace Sailing4oxygenApi.Controllers
@@ -16,6 +17,8 @@ namespace Sailing4oxygenApi.Controllers
     [ApiController]
     public class MarinasController : Controller
     {
+        private MemoryCache _cache = new MemoryCache(new MemoryCacheOptions());
+        
         [HttpGet("fromOverpass")]
         public async Task<IActionResult> GetFromOverpass()
         {
@@ -45,15 +48,21 @@ namespace Sailing4oxygenApi.Controllers
         [HttpGet("csv")]
         public async Task<IActionResult> GetFromAppwrite()
         {
+            if (_cache.TryGetValue("marinas", out var marinasCsv))
+            {
+                return File(Encoding.UTF8.GetBytes(marinasCsv.ToString()), "text/csv", "marinas.csv");
+            }
             var marinas = await Helpers.AppwriteDatabase.GetMarinas();
             var csv = new StringBuilder();
-            csv.AppendLine("\"Name\", \"Latitude\", \"Longitude\", \"Town\", \"Country\", \"State\", \"Municipality\", \"Email\", \"Phone\", \"Website\"");
+            csv.AppendLine(
+                "\"Name\", \"Latitude\", \"Longitude\", \"Town\", \"Country\", \"State\", \"Municipality\", \"Email\", \"Phone\", \"Website\"");
             foreach (var marina in marinas)
             {
                 var newLine =
                     $"\"{marina.Name}\", \"{marina.Latitude.ToString(CultureInfo.InvariantCulture)}\", \"{marina.Longitude.ToString(CultureInfo.InvariantCulture)}\", \"{marina.Town}\", \"{marina.Country}\", \"{marina.State}\", \"{marina.Municipality}\", \"{marina.Email}\", \"{marina.Phone}\", \"{marina.Website}\"";
                 csv.AppendLine(newLine);
             }
+            _cache.Set("marinas", csv, TimeSpan.FromHours(24));
             return File(Encoding.UTF8.GetBytes(csv.ToString()), "text/csv", "marinas.csv");
         }
     }
