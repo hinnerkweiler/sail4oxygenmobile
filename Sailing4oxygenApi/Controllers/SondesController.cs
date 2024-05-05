@@ -11,25 +11,25 @@ public class SondesController : Controller
     [HttpGet("Free")]
     public IActionResult Free()
     {
-        return View();
+        return Ok("Free Sondes");
     }
     
     [HttpGet("SoonFree")]
     public IActionResult SoonFree()
     {
-        return View();
+        return Ok("Soon Free Sondes");
     }
     
     [HttpGet("Taken")]
     public IActionResult Taken()
     {
-        return View();
+        return Ok("Taken Sondes");
     }
     
     [HttpGet]
     public IActionResult All()
     {
-        return View();
+        return Ok("All Sondes");
     }
     
     
