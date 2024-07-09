@@ -244,7 +244,7 @@ namespace sail4oxygen.ViewModels
 
 
         [CommunityToolkit.Mvvm.Input.RelayCommand]
-        async void Appearing()
+        private async void Appearing()
         {
             MyLocation = await GetLocation();
         }
