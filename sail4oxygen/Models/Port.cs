@@ -1,6 +1,9 @@
 ﻿using System;
 namespace sail4oxygen.Models
 {
+    
+    //ToDo: Get bases directly from the Web-App endpoint at https://app.sail4oxygen.org/api/bases/geojson 
+    //We do not need this at all 
     public class Port
     {
         public string name = "";
