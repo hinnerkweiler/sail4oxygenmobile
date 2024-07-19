@@ -4,9 +4,12 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Messaging;
+using sail4oxygen.Models;
+using sail4oxygen.Services;
 
 namespace sail4oxygen.ViewModels
 {
+    
 	public partial class MainPageVM : ObservableObject
 	{
         [ObservableProperty]
@@ -183,8 +186,34 @@ namespace sail4oxygen.ViewModels
         private Models.NewsItems news = new Models.NewsItems();
 
 
+        
+        
+        
+        
+        
+        /// <summary>
+        /// ********************************************************************************************************************
+        /// </summary>
         public MainPageVM()
 		{
+            WeakReferenceMessenger.Default.Register<LocationPropertyChangedMessage>(this, (r, m) =>
+            {
+                    OnPropertyChanged(nameof(MyLocation));
+            });
+            
+            WeakReferenceMessenger.Default.Register<BoatNameChangeMessage>(this, (r, m) =>
+            {
+                    OnPropertyChanged(nameof(MyBoatName));
+            });
+
+            
+            LocationService.Instance.OnLocationChanged += (s, e) =>
+            {
+                MyLocation = LocationService.Instance.MyLocation;
+            };
+
+            MyLocation = LocationService.Instance.MyLocation;
+
             if (Models.SharedData.StartFromShare)
             {
                 HandleCsvFileShared(null, Models.SharedData.FileUri?.AbsolutePath);
