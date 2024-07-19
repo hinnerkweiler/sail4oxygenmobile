@@ -69,6 +69,7 @@
                                 <models:TwoDigitBehavior/>
                             </Entry.Behaviors>
                         </Entry>
+                        <Label Text="°" FontSize="Small"/>
                         <Entry Placeholder="mm.mmmm" Text="{Binding UserLat.Minutes, Mode=TwoWay}">
                             <Entry.Behaviors>
                                 <models:MinutesBehavior/>
@@ -85,6 +86,7 @@
                                 <models:TwoDigitBehavior/>
                             </Entry.Behaviors>
                         </Entry>
+                        <Label Text="°" FontSize="Small"/>
                         <Entry Placeholder="mm.mmmm" Text="{Binding UserLng.Minutes, Mode=TwoWay}">
                             <Entry.Behaviors>
                                 <models:MinutesBehavior/>
