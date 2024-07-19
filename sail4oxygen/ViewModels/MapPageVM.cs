@@ -103,6 +103,20 @@ namespace sail4oxygen.ViewModels
 		[ObservableProperty]
 		private ObservableCollection<MapMarker> _portList = new();
 
+		public string SaveButtonText
+		{
+			get
+			{
+				if (LocationService.Instance.ManualLocation)
+				{
+					return Resources.Languages.Lang.UpdateCoordinates;
+				}
+				else
+				{
+					return Resources.Languages.Lang.SetCoordinates;
+				}
+			}
+		}
 
         
 		public MapPageVM()
