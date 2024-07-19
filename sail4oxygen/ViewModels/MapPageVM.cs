@@ -6,21 +6,93 @@ using CommunityToolkit.Mvvm.Input;
 using Syncfusion.Maui.Maps;
 using CommunityToolkit.Mvvm.Messaging;
 using sail4oxygen.Models;
+using sail4oxygen.Services;
 
 namespace sail4oxygen.ViewModels
 {
 	public partial class MapPageVM : ObservableObject
 	{
+		public double Latitude
+		{
+			get => LocationService.Instance.MyLocation.Latitude;
+			set
+			{
+				if (LocationService.Instance.MyLocation.Latitude != value)
+				{
+					LocationService.Instance.MyLocation.Latitude = value;
+					OnPropertyChanged(nameof(Latitude));
+					OnPropertyChanged(nameof(CurrentLocation));
+					WeakReferenceMessenger.Default.Send(new LocationPropertyChangedMessage(nameof(Latitude), value));
+				}
+			}
+		}
+		
+		public double Longitude
+		{
+			get => LocationService.Instance.MyLocation.Longitude;
+			set
+			{
+				if (LocationService.Instance.MyLocation.Longitude != value)
+				{
+					LocationService.Instance.MyLocation.Longitude = value;
+					OnPropertyChanged(nameof(Longitude));
+					OnPropertyChanged(nameof(CurrentLocation));
+					WeakReferenceMessenger.Default.Send(new LocationPropertyChangedMessage(nameof(Longitude), value));
+				}
+			}
+		}
+		
+		public Syncfusion.Maui.Maps.MapLatLng CurrentLocation
+		{
+			get => new Syncfusion.Maui.Maps.MapLatLng(Latitude, Longitude);
+		}
+		
+        
 		//The user's location when changed manually
-		[ObservableProperty]
-		[NotifyCanExecuteChangedFor(nameof(FireLocationChangedCommand))]
+		//[ObservableProperty]
+		//[NotifyCanExecuteChangedFor(nameof(FireLocationChangedCommand))]
 		private Coordinate _userLat = new() { Degrees = 54, Minutes = 30.5, Direction = 'N'};
 		
-		
-		[ObservableProperty] 
-		[NotifyCanExecuteChangedFor(nameof(FireLocationChangedCommand))]
-		private Coordinate _userLong = new() { Degrees = 9, Minutes = 30.5, Direction = 'E'};
+        public Coordinate UserLat
+        {
+            get => _userLat;
+            set
+            {
+                if (_userLat != value)
+                {
+                    _userLat = value;
+                    OnPropertyChanged(nameof(UserLat));
+                    UpdateLatitudeFromCoordinate();
+                }
+            }
+        }
+        
+        private Coordinate _userLng = new() { Degrees = 9, Minutes = 30.5, Direction = 'E'};
 
+        public Coordinate UserLng
+        {
+            get => _userLng;
+            set
+            {
+	            if (_userLng != value)
+	            {
+		            _userLng = value;
+		            OnPropertyChanged(nameof(UserLng));
+		            UpdateLongitudeFromCoordinate();
+	            }
+            }
+        }
+    
+        private void UpdateLatitudeFromCoordinate()
+        {
+            Latitude = _userLat.Degrees + (_userLat.Minutes / 60);
+        }
+	
+        private void UpdateLongitudeFromCoordinate()
+        {
+            Longitude = _userLat.Degrees + (_userLat.Minutes / 60);
+        }
+		
 		//Read and write BoatName directly to the Preferences
 		public string MyBoatName
 		{
@@ -31,30 +103,38 @@ namespace sail4oxygen.ViewModels
 		[ObservableProperty]
 		private ObservableCollection<MapMarker> _portList = new();
 
+
+        
 		public MapPageVM()
 		{
+			
+			
+			var location = LocationService.Instance.MyLocation;
+			if (location != null)
+			{
+				Latitude = location.Latitude;
+				Longitude = location.Longitude;
+			}
+			//Set UserLat and UserLong to the current location
+			UserLat.Degrees = (int)Latitude;
+			UserLat.Minutes = (Latitude - UserLat.Degrees) * 60;
+			UserLng.Degrees = (int)Longitude;
+			UserLng.Minutes = (Longitude - UserLng.Degrees) * 60;
+			
 			_ = Init();
 		}
-
-		//Release a Message whenever the user manually alters the location.
-		partial void OnUserLongChanged(Coordinate value)
+		
+		public void SaveLocation()
 		{
-			OnUserLatChanged(value);
+			//Build the Latitude from the Degrees and Minutes in the UserLat Coordinates
+			Latitude = UserLat.Degrees + UserLat.Minutes / 60;
+			Longitude = UserLng.Degrees + UserLng.Minutes / 60;
+			
+			var newLocation = new Location(Latitude, Longitude);
+			LocationService.Instance.MyLocation = newLocation;
+			LocationService.Instance.ManualLocation = true;
 		}
 		
-		partial void OnUserLatChanged(Coordinate value)
-		{
-			double latitude = UserLat.ToDouble();
-			double longitude = UserLong.ToDouble();
-			WeakReferenceMessenger.Default.Send(new UserLocationChangedMessage(latitude, longitude));
-		}
-
-		[RelayCommand]
-		private void FireLocationChanged()
-		{
-			OnUserLatChanged(UserLat);
-		}
-
 		private async Task Init()
 		{
 			PortList = await Models.MapHelper.GetMapMarkersFromPortList();

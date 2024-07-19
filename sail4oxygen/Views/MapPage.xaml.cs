@@ -1,12 +1,20 @@
-﻿namespace sail4oxygen.Views;
+﻿using sail4oxygen.ViewModels;
+
+namespace sail4oxygen.Views;
 
 public partial class MapPage : ContentPage
 {
-    ViewModels.MapPageVM MapPageViewModel = new();
+    ViewModels.MapPageVM mapPageViewModel = new();
 
     public MapPage()
 	{
-		BindingContext = MapPageViewModel;
+		BindingContext = mapPageViewModel;
 		InitializeComponent();
+	}
+    
+	async void OnSave_Clicked(System.Object sender, System.EventArgs e)
+	{
+		((MapPageVM)BindingContext).SaveLocation();
+		//await Shell.Current.GoToAsync("..");
 	}
 }
