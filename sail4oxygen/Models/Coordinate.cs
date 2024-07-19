@@ -9,11 +9,30 @@ namespace sail4oxygen.Models
 		[ObservableProperty]
 		private char _direction;
 
-		[ObservableProperty]
 		private int _degrees;
-
-		[ObservableProperty]
+		
+		public int Degrees
+		{
+			get => _degrees;
+			set
+			{
+				SetProperty(ref _degrees, value);
+			}
+		}
+		
 		private double _minutes;
+		
+		public double Minutes
+		{
+			get
+			{
+				return Math.Round(_minutes, 3);
+			}
+			set
+			{
+				SetProperty(ref _minutes, value);
+			}
+		}
 		
 		public double ToDouble()
 		{
@@ -22,6 +41,8 @@ namespace sail4oxygen.Models
 			var sign = (Direction == 'N' || Direction == 'E') ? 1 : -1;
 			return sign * (Degrees + (Minutes / 60));
 		}
+        
+        
     }
 }
 
