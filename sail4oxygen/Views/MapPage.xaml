@@ -48,8 +48,7 @@
 
         </map:SfMaps>
         <!-- draw a crosshair in the middle of the map -->
-        <BoxView BackgroundColor="Black" HeightRequest="15" Width="5" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" ZIndex="99"/>
-        <BoxView BackgroundColor="Black" HeightRequest="5" Width="15" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" ZIndex="99"/>
+        <Image Source="cross.png" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.RowSpan="2" ZIndex="99"/>
         
 
 
