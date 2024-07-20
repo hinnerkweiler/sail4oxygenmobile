@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:map="clr-namespace:Syncfusion.Maui.Maps;assembly=Syncfusion.Maui.Maps"
+             xmlns:lang="clr-namespace:sail4oxygen.Resources.Languages"
+             xmlns:models="clr-namespace:sail4oxygen.Models;assembly=sail4oxygen"
              x:Class="sail4oxygen.Views.MapPage"
              Title=""
              Shell.BackgroundColor="{AppThemeBinding Light={StaticResource s4blue25}, Dark={StaticResource Gray300}}"
@@ -11,7 +13,7 @@
         <HorizontalStackLayout
             HorizontalOptions="End">
             <Label
-                Text="Where is"
+                Text="{x:Static lang:Lang.Coordinates}"
                 VerticalOptions="Center"
                 FontFamily="LucidaGrande" />
 
@@ -24,69 +26,17 @@
         </HorizontalStackLayout>
     </Shell.TitleView>
 
-    <Grid RowDefinitions="*,20,auto,auto" ColumnDefinitions="*">
-        <map:SfMaps Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
-            <map:SfMaps.Layer HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
-
+    <Grid RowDefinitions="*,20,auto,auto" ColumnDefinitions="*" HorizontalOptions="Fill" VerticalOptions="Fill">
+        
+        <map:SfMaps Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" >
+            <map:SfMaps.Layer >
                 <!-- https://t1.openseamap.org/seamark/{z}/{x}/{y}.png //https://www.syncfusion.com/feedback/46968/a-maptilesublayer-for-maui-please -->
-
                 <map:MapTileLayer UrlTemplate="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
                                   EnableZoomingAnimation="True"
                                   EnableCenterAnimation="True"
-                                  Markers="{Binding PortList}"
+                                  Center="{Binding CurrentLocation}"
                                   >
-                    <map:MapTileLayer.Sublayers>
-                        <map:MapLineLayer>
-                            <map:MapLineLayer.Lines>
-                                <map:MapLine StrokeThickness = "3"
-                                      StrokeLineCap="Round"
-                                      Stroke="{AppThemeBinding Light={StaticResource s4ored}, Dark={StaticResource brightred}}">
-                                    <map:MapLine.From>
-                                        <map:MapLatLng Latitude="56.145550"
-                                                Longitude="10.706177" />
-                                    </map:MapLine.From>
-                                        <map:MapLine.To>
-                                            <map:MapLatLng Latitude="55.989164" 
-                                                Longitude="11.293945"/>
-                                        </map:MapLine.To>
-                                        <map:MapLine.StrokeDashArray>
-                                             <DoubleCollection>
-                                                <x:Double>2</x:Double>
-                                                <x:Double>2</x:Double>
-                                                <x:Double>0.1</x:Double>
-                                                <x:Double>2</x:Double>
-                                             </DoubleCollection>
-                                        </map:MapLine.StrokeDashArray>
-                                </map:MapLine>
-
-                                <map:MapLine StrokeThickness = "3"
-                                      StrokeLineCap="Round"
-                                      Stroke="{AppThemeBinding Light={StaticResource s4ored}, Dark={StaticResource brightred}}">
-                                    <map:MapLine.From>
-                                        <map:MapLatLng Latitude="54.204183"
-                                                Longitude="11.087938" />
-                                    </map:MapLine.From>
-                                    <map:MapLine.To>
-                                        <map:MapLatLng Latitude="54.597488" 
-                                                Longitude="11.532884"/>
-                                    </map:MapLine.To>
-                                    <map:MapLine.StrokeDashArray>
-                                        <DoubleCollection>
-                                            <x:Double>2</x:Double>
-                                            <x:Double>2</x:Double>
-                                            <x:Double>0.1</x:Double>
-                                            <x:Double>2</x:Double>
-                                        </DoubleCollection>
-                                    </map:MapLine.StrokeDashArray>
-                                </map:MapLine>
-                            </map:MapLineLayer.Lines>
-                        </map:MapLineLayer>
-                    </map:MapTileLayer.Sublayers>
-                    <map:MapTileLayer.Center>
-                        <map:MapLatLng Latitude="54.45555"
-                                    Longitude="10.123">
-                        </map:MapLatLng>
-                    </map:MapTileLayer.Center>
+                    
                     <map:MapTileLayer.ZoomPanBehavior>
                         <map:MapZoomPanBehavior ZoomLevel = "8"
                                                 EnablePanning="True"
@@ -97,8 +47,12 @@
         </map:SfMaps.Layer>
 
         </map:SfMaps>
+        <!-- draw a crosshair in the middle of the map -->
+        <Image Source="cross.png" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.RowSpan="2" ZIndex="99"/>
+        
 
-        <Label Text="(c) Openstreetmap contributors" FontSize="Micro" Grid.Row="1" Grid.Column="0"></Label>
+
+        <Label Text="(c) Openstreetmap contributors" FontSize="Micro" Margin="12" Grid.Row="1" Grid.Column="0"></Label>
 
         <VerticalStackLayout Grid.Row="2" Grid.Column="0">
             <Label Text="Enter coordinates" Margin="12,0" FontSize="Body"/>
@@ -107,23 +61,49 @@
             
             <HorizontalStackLayout HorizontalOptions="Center">
                 <VerticalStackLayout>
-                    <Label Text="Latitude" FontSize="Small"/>
+                    <Label Text="{x:Static lang:Lang.Latitude}" FontSize="Small"/>
                     <HorizontalStackLayout Margin="6,0">
-                        <Entry Placeholder="ddd" Text="{Binding UserLat.Degrees, Mode=TwoWay}"/>
-                        <Entry Placeholder="mm.mmmm" Text="{Binding UserLat.Minutes, Mode=TwoWay}"/>
+                        <Entry Placeholder="dd" Text="{Binding UserLat.Degrees, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <models:TwoDigitBehavior/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label Text="°" FontSize="Small"/>
+                        <Entry Placeholder="mm.mmmm" Text="{Binding UserLat.Minutes, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <models:MinutesBehavior/>
+                            </Entry.Behaviors>
+                        </Entry>
                         <Label Text="{Binding UserLat.Direction}"/>
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
                 <VerticalStackLayout Margin="18,0" >
-                <Label Text="Longitude" FontSize="Small"/>
+                <Label Text="{x:Static lang:Lang.Longitude}" FontSize="Small"/>
                     <HorizontalStackLayout Margin="6,0">
-                        <Entry Placeholder="ddd" Text="{Binding UserLong.Degrees, Mode=TwoWay}"/>
-                        <Entry Placeholder="mm.mmmm" Text="{Binding UserLong.Minutes, Mode=TwoWay}"/>
-                        <Label Text="{Binding UserLat.Minutes}"/>
+                        <Entry Placeholder="ddd" Text="{Binding UserLng.Degrees, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <models:TwoDigitBehavior/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label Text="°" FontSize="Small"/>
+                        <Entry Placeholder="mm.mmmm" Text="{Binding UserLng.Minutes, Mode=TwoWay}">
+                            <Entry.Behaviors>
+                                <models:MinutesBehavior/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label Text="{Binding UserLng.Direction}"/>
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
             </HorizontalStackLayout>
-
+            
+            <Grid RowDefinitions="auto" ColumnDefinitions="auto,auto">
+                <Button 
+                    Grid.Row="0" Grid.Column="0"
+                    Text="{Binding SaveButtonText}" Clicked="OnSave_Clicked" Margin="12,6"/>
+                <Button 
+                    Grid.Row="0" Grid.Column="1"
+                    Text="{x:Static lang:Lang.ActivateGPS}" Clicked="OnActivateGPS_Clicked" Margin="12,6"/>
+            </Grid>
 
         </VerticalStackLayout>
         <HorizontalStackLayout Grid.Row="3" Grid.Column="0">

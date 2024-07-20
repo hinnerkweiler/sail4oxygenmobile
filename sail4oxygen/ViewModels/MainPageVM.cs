@@ -4,15 +4,19 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Messaging;
+using sail4oxygen.Models;
+using sail4oxygen.Services;
 
 namespace sail4oxygen.ViewModels
 {
+    
 	public partial class MainPageVM : ObservableObject
 	{
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(LocationText))]
-        [NotifyCanExecuteChangedFor(nameof(FireLocationChangeMessageCommand))]
-        Location myLocation;
+        [NotifyPropertyChangedFor(nameof(LatitudeString))]
+        [NotifyPropertyChangedFor(nameof(LongitudeString))]
+        private Location _myLocation;
 
         public bool CoordinatesValid
         {
@@ -181,8 +185,34 @@ namespace sail4oxygen.ViewModels
         private Models.NewsItems news = new Models.NewsItems();
 
 
+        
+        
+        
+        
+        
+        /// <summary>
+        /// ********************************************************************************************************************
+        /// </summary>
         public MainPageVM()
 		{
+            WeakReferenceMessenger.Default.Register<LocationPropertyChangedMessage>(this, (r, m) =>
+            {
+                    OnPropertyChanged(nameof(MyLocation));
+            });
+            
+            WeakReferenceMessenger.Default.Register<BoatNameChangeMessage>(this, (r, m) =>
+            {
+                    OnPropertyChanged(nameof(MyBoatName));
+            });
+
+            
+            LocationService.Instance.OnLocationChanged += (s, e) =>
+            {
+                MyLocation = LocationService.Instance.MyLocation;
+            };
+
+            MyLocation = LocationService.Instance.MyLocation;
+
             if (Models.SharedData.StartFromShare)
             {
                 HandleCsvFileShared(null, Models.SharedData.FileUri?.AbsolutePath);
@@ -191,18 +221,6 @@ namespace sail4oxygen.ViewModels
             {
                 Models.SharedData.SharedFileHandled += HandleCsvFileShared;
             }
-
-            WeakReferenceMessenger.Default.Register<Models.LocationChangeMessage>(this, (r, m) =>
-            {
-                OnLocationChangeMessage(m.Value);
-            });
-            
-            WeakReferenceMessenger.Default.Register<Models.BoatNameChangeMessage>(this, (r, m) =>
-            {
-                OnBoatNameChangeMessage(m.Value);
-            });
-
-
         }
 
 
@@ -237,9 +255,9 @@ namespace sail4oxygen.ViewModels
 
 
         [CommunityToolkit.Mvvm.Input.RelayCommand]
-        async void Appearing()
+        private async void Appearing()
         {
-            MyLocation = await GetLocation();
+           LocationService.Instance.GetLocation();
         }
 
         [CommunityToolkit.Mvvm.Input.RelayCommand]
@@ -247,39 +265,6 @@ namespace sail4oxygen.ViewModels
         {
             await Browser.Default.OpenAsync(item.Url);
         }
-            
-
-
-        public async Task<Location> GetLocation()
-        {
-            try
-            {
-                Location location = await Geolocation.Default.GetLocationAsync();
-
-                if (location != null)
-                    return location;
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                Console.WriteLine(fnsEx);
-            }
-            catch (FeatureNotEnabledException fneEx)
-            {
-                Console.WriteLine(fneEx);
-            }
-            catch (PermissionException pEx)
-            {
-                Console.WriteLine(pEx);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-            //toDo: Advise to use UI to enter coordinates 
-            return null;
-        }
-
-
 
         public async Task<bool> SelectFile(PickOptions options)
         {
@@ -321,29 +306,6 @@ namespace sail4oxygen.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Nothing sent!", Resources.Languages.Lang.LocationInvalidMessage, Resources.Languages.Lang.ok);
             }
             return false;
-        }
-
-        [RelayCommand]
-        private void FireLocationChangeMessage()
-        {
-            WeakReferenceMessenger.Default.Send(new Models.LocationChangeMessage(MyLocation));
-#if DEBUG
-            Console.WriteLine("*************** Location Change Sent from MainPageVM");
-#endif
-        }
-
-        private void OnLocationChangeMessage(Location location)
-        {
-            MyLocation.Latitude = location.Latitude;
-            MyLocation.Longitude = location.Longitude;
-#if DEBUG
-            Console.WriteLine("*************** Location Change Recived in MainPageVM");
-#endif
-        }
-
-        private void OnBoatNameChangeMessage(string value)
-        {
-            OnPropertyChanged(nameof(MyBoatName));
         }
 
 

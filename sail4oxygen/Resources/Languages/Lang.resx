@@ -38,16 +38,14 @@
     <comment/>
   </data>
   <data name="MainPageLatitudeTitle" xml:space="preserve">
-    <value>Latitude (xx,xxxxx)</value>
-    <comment/>
+    <value>Latitude (xx.xxxxx)</value>
   </data>
   <data name="MainPageLatitudePlaceholder" xml:space="preserve">
     <value>Waiting for GPS...</value>
     <comment/>
   </data>
   <data name="MainPageLongitudeTitle" xml:space="preserve">
-    <value>Longitude (xx,xxxxx)</value>
-    <comment/>
+    <value>Longitude (xx.xxxxx)</value>
   </data>
   <data name="MainPageLongitudePlaceholder" xml:space="preserve">
     <value>...</value>
@@ -300,5 +298,23 @@
   <data name="ManualGPSChange" xml:space="preserve">
     <value>Select manually</value>
     <comment/>
+  </data>
+  <data name="Coordinates" xml:space="preserve">
+    <value>Coordinates</value>
+  </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="Longitude" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="SetCoordinates" xml:space="preserve">
+    <value>Save Coordinates</value>
+  </data>
+  <data name="UpdateCoordinates" xml:space="preserve">
+    <value>Update Coordinates</value>
+  </data>
+  <data name="ActivateGPS" xml:space="preserve">
+    <value>Activate GPS</value>
   </data>
 </root>
