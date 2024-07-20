@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using Syncfusion.Maui.Maps;
 using CommunityToolkit.Mvvm.Messaging;
 using sail4oxygen.Models;
@@ -17,10 +14,10 @@ namespace sail4oxygen.ViewModels
 			get => LocationService.Instance.MyLocation.Latitude;
 			set
 			{
-				if (LocationService.Instance.MyLocation.Latitude != value)
+				if (Math.Abs(LocationService.Instance.MyLocation.Latitude - value) > 0.01f)
 				{
 					LocationService.Instance.MyLocation.Latitude = value;
-					OnPropertyChanged(nameof(Latitude));
+					OnPropertyChanged();
 					OnPropertyChanged(nameof(CurrentLocation));
 					WeakReferenceMessenger.Default.Send(new LocationPropertyChangedMessage(nameof(Latitude), value));
 				}
@@ -32,22 +29,19 @@ namespace sail4oxygen.ViewModels
 			get => LocationService.Instance.MyLocation.Longitude;
 			set
 			{
-				if (LocationService.Instance.MyLocation.Longitude != value)
+				if (Math.Abs(LocationService.Instance.MyLocation.Longitude - value) > 0.01f)
 				{
 					LocationService.Instance.MyLocation.Longitude = value;
-					OnPropertyChanged(nameof(Longitude));
+					OnPropertyChanged();
 					OnPropertyChanged(nameof(CurrentLocation));
 					WeakReferenceMessenger.Default.Send(new LocationPropertyChangedMessage(nameof(Longitude), value));
 				}
 			}
 		}
 		
-		public Syncfusion.Maui.Maps.MapLatLng CurrentLocation
-		{
-			get => new Syncfusion.Maui.Maps.MapLatLng(Latitude, Longitude);
-		}
-		
-        
+		public MapLatLng CurrentLocation => new (Latitude, Longitude);
+
+
 		//The user's location when changed manually
 		//[ObservableProperty]
 		//[NotifyCanExecuteChangedFor(nameof(FireLocationChangedCommand))]
@@ -61,7 +55,7 @@ namespace sail4oxygen.ViewModels
                 if (_userLat != value)
                 {
                     _userLat = value;
-                    OnPropertyChanged(nameof(UserLat));
+                    OnPropertyChanged();
                     UpdateLatitudeFromCoordinate();
                 }
             }
@@ -77,7 +71,7 @@ namespace sail4oxygen.ViewModels
 	            if (_userLng != value)
 	            {
 		            _userLng = value;
-		            OnPropertyChanged(nameof(UserLng));
+		            OnPropertyChanged();
 		            UpdateLongitudeFromCoordinate();
 	            }
             }
@@ -144,14 +138,12 @@ namespace sail4oxygen.ViewModels
 			Latitude = UserLat.Degrees + UserLat.Minutes / 60;
 			Longitude = UserLng.Degrees + UserLng.Minutes / 60;
 			
-			var newLocation = new Location(Latitude, Longitude);
-			LocationService.Instance.MyLocation = newLocation;
 			LocationService.Instance.ManualLocation = true;
 		}
 		
 		private async Task Init()
 		{
-			PortList = await Models.MapHelper.GetMapMarkersFromPortList();
+			PortList = await MapHelper.GetMapMarkersFromPortList();
 		}
 	}
 }

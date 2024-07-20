@@ -1,8 +1,4 @@
-﻿using System;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using sail4oxygen.Models;
 using sail4oxygen.Services;
@@ -30,12 +26,11 @@ namespace sail4oxygen.ViewModels
             }
         }
 
-
         public string MyBoatName
         {
             get
             {
-                string name=Models.PreferencesHelper.BoatName;
+                string name=PreferencesHelper.BoatName;
                 //if name is longer than 20 characters, cut it and add …
                 if (name.Length > 20)
                 {
@@ -49,24 +44,18 @@ namespace sail4oxygen.ViewModels
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(CoordinatesValid))]
         bool latitudeIsValid;
-
-
-
+        
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(CoordinatesValid))]
         bool longitudeIsValid;
-
-
-
+        
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(FileName))]
         [NotifyPropertyChangedFor(nameof(SendButtonText))]
         [NotifyPropertyChangedFor(nameof(FileRemoveButtonVisible))]
         
-		FileResult csvFileToSend = null;
-
+		FileResult csvFileToSend;
         
-
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsCoordinateEditorVisible))]
         bool isCoordinateViewVisible = true;
@@ -89,33 +78,14 @@ namespace sail4oxygen.ViewModels
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(LearnMoreHeaderText))]
-        bool isLearnMoreExpanded = false;
+        bool isLearnMoreExpanded;
 
-        public bool IsCoordinateEditorVisible
-        {
-            //opposite of IsCoordinateViewVisible
-            get
-            {
-                return !IsCoordinateViewVisible;
-            }
-        }
-
-
-
-        public string LocationText
-        {
-            get
-            {
-                return LatitudeString +" | "+LongitudeString + "\n" + MyLocation.Timestamp.ToString("u");
-            }
-        }
-
-
-
-        PickOptions filePickOptions = new();
-
-
-
+        public bool IsCoordinateEditorVisible => !IsCoordinateViewVisible;
+           
+        public string LocationText => LatitudeString +" | "+LongitudeString + "\n" + MyLocation.Timestamp.ToString("u");
+        
+        PickOptions _filePickOptions = new();
+        
         public string LatitudeString
         {
             get
@@ -126,9 +96,7 @@ namespace sail4oxygen.ViewModels
                     return Math.Abs(MyLocation.Latitude).ToString("00.0##° S");
             }
         }
-
-
-
+        
         public string LongitudeString
         {
             get
@@ -139,9 +107,8 @@ namespace sail4oxygen.ViewModels
                     return Math.Abs(MyLocation.Longitude).ToString("00.0##° W");
             }
         }
-
-
-        public bool FileRemoveButtonVisible
+        
+       public bool FileRemoveButtonVisible
         {
             get
             {
@@ -151,8 +118,6 @@ namespace sail4oxygen.ViewModels
             }
         }
         
-
-
         [ObservableProperty]
         private Models.ScreenInfo screen = new();
 
@@ -167,8 +132,6 @@ namespace sail4oxygen.ViewModels
             }
         }
 
-
-
         public string FileName
         {
             get
@@ -179,20 +142,12 @@ namespace sail4oxygen.ViewModels
                     return CsvFileToSend.FileName;
             }
         }
-
-
+        
         [ObservableProperty]
         private Models.NewsItems news = new Models.NewsItems();
 
-
         
         
-        
-        
-        
-        /// <summary>
-        /// ********************************************************************************************************************
-        /// </summary>
         public MainPageVM()
 		{
             WeakReferenceMessenger.Default.Register<LocationPropertyChangedMessage>(this, (r, m) =>
@@ -274,7 +229,7 @@ namespace sail4oxygen.ViewModels
                 {
                     try
                     {
-                        var file = await FilePicker.Default.PickAsync(filePickOptions);
+                        var file = await FilePicker.Default.PickAsync(_filePickOptions);
                         if (file != null)
                         {
                             CsvFileToSend = file;
@@ -311,7 +266,7 @@ namespace sail4oxygen.ViewModels
 
         public void Cleanup()
         {
-            this.CsvFileToSend = null;
+            this.CsvFileToSend = null!;
             Models.SharedData.FileUri = null;
             Models.SharedData.StartFromShare = false;
         }
