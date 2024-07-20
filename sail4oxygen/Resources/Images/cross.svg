@@ -3,27 +3,31 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:#BE1E2D;stroke-width:8.5039;stroke-linecap:round;stroke-miterlimit:10;}
-	.st1{fill:none;stroke:#BE1E2D;stroke-width:8.5039;stroke-linecap:round;stroke-miterlimit:10;stroke-dasharray:63.9051,63.9051;}
-	.st2{fill:none;stroke:#21409A;stroke-width:5.6693;stroke-miterlimit:10;}
+	.st0{fill:none;stroke:#BE1E2D;stroke-width:2.8346;stroke-linecap:round;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#BE1E2D;stroke-width:2.8346;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#21409A;stroke-width:2.8346;stroke-miterlimit:10;}
 </style>
 <g id="Layer_1">
 	<g>
 		<g>
-			<line class="st0" x1="250" y1="58.7" x2="250" y2="91.3"/>
-			<line class="st1" x1="250" y1="155.2" x2="250" y2="378.9"/>
-			<line class="st0" x1="250" y1="410.8" x2="250" y2="443.4"/>
+			<g>
+				<line class="st0" x1="250" y1="180.3" x2="250" y2="212.9"/>
+				<line class="st0" x1="250" y1="289.2" x2="250" y2="321.8"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<line class="st0" x1="179.2" y1="251" x2="211.8" y2="251"/>
+				<line class="st0" x1="288.2" y1="251" x2="320.8" y2="251"/>
+			</g>
 		</g>
 	</g>
 	<g>
-		<g>
-			<line class="st0" x1="57.6" y1="251" x2="90.2" y2="251"/>
-			<line class="st1" x1="154.1" y1="251" x2="377.8" y2="251"/>
-			<line class="st0" x1="409.8" y1="251" x2="442.4" y2="251"/>
-		</g>
+		<line class="st1" x1="299.5" y1="201.6" x2="200.5" y2="300.5"/>
+		<line class="st1" x1="200.5" y1="201.6" x2="299.5" y2="300.5"/>
 	</g>
 </g>
 <g id="Layer_2">
-	<circle class="st2" cx="250" cy="250" r="64.3"/>
+	<circle class="st2" cx="250" cy="250" r="105"/>
 </g>
 </svg>
