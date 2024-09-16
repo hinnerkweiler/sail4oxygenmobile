@@ -19,14 +19,31 @@ public partial class App : Application
 	protected override void OnStart()
 	{
 		base.OnStart();
-		var locationService = LocationService.Instance;
+		LocationUpdate();
 	}
 
 	protected override void OnResume()
 	{
 		base.OnResume();
-        
+        LocationUpdate();
     }
 
-    }
+	private void LocationUpdate()
+	{
+		try
+		{
+			var locationService = LocationService.Instance;
+			if (locationService == null)
+			{
+				throw new InvalidOperationException("LocationService instance is null.");
+			}
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Error during OnStart: {ex.Message}");
+		}
+	}
+
+}
+
 
