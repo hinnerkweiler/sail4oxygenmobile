@@ -11,7 +11,7 @@ namespace sail4oxygen.ViewModels
 	{
 		public double Latitude
 		{
-			get => LocationService.Instance.MyLocation.Latitude;
+			get => LocationService.Instance.MyLocation?.Latitude ?? 54.322;
 			set
 			{
 				if (Math.Abs(LocationService.Instance.MyLocation.Latitude - value) > 0.01f)
@@ -26,7 +26,7 @@ namespace sail4oxygen.ViewModels
 		
 		public double Longitude
 		{
-			get => LocationService.Instance.MyLocation.Longitude;
+			get => LocationService.Instance.MyLocation?.Longitude ?? 10.135;
 			set
 			{
 				if (Math.Abs(LocationService.Instance.MyLocation.Longitude - value) > 0.01f)
@@ -115,13 +115,21 @@ namespace sail4oxygen.ViewModels
         
 		public MapPageVM()
 		{
-			
-			
-			var location = LocationService.Instance.MyLocation;
-			if (location != null)
+			try
 			{
-				Latitude = location.Latitude;
-				Longitude = location.Longitude;
+				var location = LocationService.Instance.MyLocation;
+				if (location != null)
+				{
+					Latitude = location.Latitude;
+					Longitude = location.Longitude;
+				}
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("GPS not ready: "+e.Message);
+				//The location is not jet available and we do not wait for it, set Map Center to Lighthouse Kiel
+				Latitude = 54.322;
+				Longitude = 10.135;
 			}
 			//Set UserLat and UserLong to the current location
 			UserLat.Degrees = (int)Latitude;
