@@ -43,11 +43,11 @@ namespace sail4oxygen.ViewModels
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(CoordinatesValid))]
-        bool latitudeIsValid;
+        bool latitudeIsValid =true;
         
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(CoordinatesValid))]
-        bool longitudeIsValid;
+        bool longitudeIsValid=true;
         
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(FileName))]
@@ -255,10 +255,6 @@ namespace sail4oxygen.ViewModels
                     await Application.Current.MainPage.DisplayAlert(Resources.Languages.Lang.NoFileSent, Resources.Languages.Lang.NoFileSentMessage + " " + Models.SharedData.LastError, Resources.Languages.Lang.ok);
                 }
                 return true;
-            }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert("Nothing sent!", Resources.Languages.Lang.LocationInvalidMessage, Resources.Languages.Lang.ok);
             }
             return false;
         }

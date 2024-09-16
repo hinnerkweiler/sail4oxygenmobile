@@ -1,32 +1,30 @@
-﻿using System;
-
-
+﻿
 namespace sail4oxygen.Models
 {
     public static class Mail
     {
-        static private string[] Recipients = new[] { PrivatData.RecipientList };
+        private static string[] _recipients = new[] { PrivatData.RecipientList };
 
         private static async Task<EmailAttachment> CreateLocationAttachment(Location location)
 	{
-            var targetFileName = "location" + location.Timestamp.Ticks.ToString()+".txt";
-            try
-            {
-                var targetFile = System.IO.Path.Combine(FileSystem.Current.CacheDirectory, targetFileName);
-                using FileStream outputStream = System.IO.File.OpenWrite(targetFile);
-                using StreamWriter streamWriter = new StreamWriter(outputStream);
+        var targetFileName = "location" + location.Timestamp.Ticks.ToString()+".txt";
+        try
+        {
+            var targetFile = System.IO.Path.Combine(FileSystem.Current.CacheDirectory, targetFileName);
+            using FileStream outputStream = System.IO.File.OpenWrite(targetFile);
+            using StreamWriter streamWriter = new StreamWriter(outputStream);
 
-                await streamWriter.WriteAsync(location.Latitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + "," + location.Longitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + "," + location.Timestamp.ToString("u"));
+            await streamWriter.WriteAsync(location.Latitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + "," + location.Longitude.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + "," + location.Timestamp.ToString("u"));
 
-                return new EmailAttachment(targetFile);
-            }
-            catch (Exception ex)
-            {
-                SharedData.LastError = ex.Message;
-                Console.WriteLine(ex.Message);
-                return null;
-            }
+            return new EmailAttachment(targetFile);
         }
+        catch (Exception ex)
+        {
+            SharedData.LastError = ex.Message;
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
 
 
 
@@ -43,7 +41,7 @@ namespace sail4oxygen.Models
                 Subject = subject,
                 Body = body,
                 BodyFormat = EmailBodyFormat.PlainText,
-                To = new List<string>(Recipients)
+                To = [.._recipients]
             };
 
             message.Attachments.Add(new EmailAttachment(fileToSendPath));
