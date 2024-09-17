@@ -13,6 +13,21 @@ namespace sail4oxygen.ViewModels
         [NotifyPropertyChangedFor(nameof(LatitudeString))]
         [NotifyPropertyChangedFor(nameof(LongitudeString))]
         private Location _myLocation;
+        
+       /// <summary>
+       /// Returns status of the location service to enable/Disable the Send Button
+       /// </summary>
+       private bool HaveLocation
+        {
+            get
+            {
+                if ((_myLocation != null) && (_myLocation.Latitude != 0) && (_myLocation.Longitude != 0))
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
 
         public bool CoordinatesValid
         {

@@ -230,6 +230,7 @@
             <Button
                 Text="{Binding SendButtonText}"
                 Padding="50,25,50,25"
+                IsEnabled="{Binding HaveLocation}"
                 BackgroundColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue25}}"
                 TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource s4blue100}}"
                 Margin="0,8,0,20"
