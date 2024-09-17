@@ -3,14 +3,25 @@
 	<application android:allowBackup="true" android:icon="@mipmap/appicon" android:supportsRtl="true" android:label="sail4oxygen">
 
 		<!-- Add your MainActivity with LaunchMode -->
-		<activity android:name="com.hinnerk_weiler.sail4oxygen.MainActivity"
+		<activity android:name="sail4oxygen.MainActivity"
 				  android:exported="true"
-				  android:launchMode="singleTop">
+				  android:launchMode="singleTop"
+				  android:theme="@style/Maui.SplashTheme">
+			<!-- IntentFilter for single CSV file -->
+			<intent-filter >
+				<action android:name="android.intent.action.SEND" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<data android:mimeType="*/*" />
+			</intent-filter>
+			
+			
+			<!-- Main activity launcher -->
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
+
 
 	</application>
 
@@ -20,7 +31,8 @@
 	<queries>
 		<intent>
 			<action android:name="android.intent.action.SENDTO" />
-			<data android:scheme="mailto" />
+			<category android:name="android.intent.category.DEFAULT" />
+			<data android:mimeType="*/*" />
 		</intent>
 	</queries>
 
