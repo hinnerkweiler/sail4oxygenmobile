@@ -2,13 +2,13 @@
 
 public partial class AboutPage : ContentPage
 {
-    public ViewModels.AboutPageVM AboutPageVM = new();
+    private readonly ViewModels.AboutPageVM aboutPageVm = new();
    
 
     public AboutPage()
     {
         
-        BindingContext = AboutPageVM;
+        BindingContext = aboutPageVm;
         InitializeComponent();
 
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using CommunityToolkit.Maui.Views;
 
 namespace sail4oxygen.Views;
 
@@ -75,7 +76,6 @@ public partial class MainPage : ContentPage
     async void OnGPSReload_Clicked(System.Object sender, System.EventArgs e)
     {
         await Shell.Current.GoToAsync("MapPage");
-        //MainPageVM.MyLocation = await MainPageVM.GetLocation();
     }
 
     

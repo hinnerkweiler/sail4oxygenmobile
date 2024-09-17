@@ -1,18 +1,33 @@
-﻿using System;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
+using sail4oxygen.Models;
+using sail4oxygen.Services;
 
 namespace sail4oxygen.ViewModels
 {
+    
 	public partial class MainPageVM : ObservableObject
 	{
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(LocationText))]
-        [NotifyCanExecuteChangedFor(nameof(FireLocationChangeMessageCommand))]
-        Location myLocation;
+        [NotifyPropertyChangedFor(nameof(LatitudeString))]
+        [NotifyPropertyChangedFor(nameof(LongitudeString))]
+        private Location _myLocation;
+        
+       /// <summary>
+       /// Returns status of the location service to enable/Disable the Send Button
+       /// </summary>
+       private bool HaveLocation
+        {
+            get
+            {
+                if ((_myLocation != null) && (_myLocation.Latitude != 0) && (_myLocation.Longitude != 0))
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
 
         public bool CoordinatesValid
         {
@@ -26,12 +41,11 @@ namespace sail4oxygen.ViewModels
             }
         }
 
-
         public string MyBoatName
         {
             get
             {
-                string name=Models.PreferencesHelper.BoatName;
+                string name=PreferencesHelper.BoatName;
                 //if name is longer than 20 characters, cut it and add …
                 if (name.Length > 20)
                 {
@@ -44,25 +58,19 @@ namespace sail4oxygen.ViewModels
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(CoordinatesValid))]
-        bool latitudeIsValid;
-
-
-
+        bool latitudeIsValid =true;
+        
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(CoordinatesValid))]
-        bool longitudeIsValid;
-
-
-
+        bool longitudeIsValid=true;
+        
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(FileName))]
         [NotifyPropertyChangedFor(nameof(SendButtonText))]
         [NotifyPropertyChangedFor(nameof(FileRemoveButtonVisible))]
         
-		FileResult csvFileToSend = null;
-
+		FileResult csvFileToSend;
         
-
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsCoordinateEditorVisible))]
         bool isCoordinateViewVisible = true;
@@ -85,33 +93,14 @@ namespace sail4oxygen.ViewModels
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(LearnMoreHeaderText))]
-        bool isLearnMoreExpanded = false;
+        bool isLearnMoreExpanded;
 
-        public bool IsCoordinateEditorVisible
-        {
-            //opposite of IsCoordinateViewVisible
-            get
-            {
-                return !IsCoordinateViewVisible;
-            }
-        }
-
-
-
-        public string LocationText
-        {
-            get
-            {
-                return LatitudeString +" | "+LongitudeString + "\n" + MyLocation.Timestamp.ToString("u");
-            }
-        }
-
-
-
-        PickOptions filePickOptions = new();
-
-
-
+        public bool IsCoordinateEditorVisible => !IsCoordinateViewVisible;
+           
+        public string LocationText => LatitudeString +" | "+LongitudeString + "\n" + MyLocation.Timestamp.ToString("u");
+        
+        PickOptions _filePickOptions = new();
+        
         public string LatitudeString
         {
             get
@@ -122,9 +111,7 @@ namespace sail4oxygen.ViewModels
                     return Math.Abs(MyLocation.Latitude).ToString("00.0##° S");
             }
         }
-
-
-
+        
         public string LongitudeString
         {
             get
@@ -135,9 +122,8 @@ namespace sail4oxygen.ViewModels
                     return Math.Abs(MyLocation.Longitude).ToString("00.0##° W");
             }
         }
-
-
-        public bool FileRemoveButtonVisible
+        
+       public bool FileRemoveButtonVisible
         {
             get
             {
@@ -147,8 +133,6 @@ namespace sail4oxygen.ViewModels
             }
         }
         
-
-
         [ObservableProperty]
         private Models.ScreenInfo screen = new();
 
@@ -163,8 +147,6 @@ namespace sail4oxygen.ViewModels
             }
         }
 
-
-
         public string FileName
         {
             get
@@ -175,14 +157,32 @@ namespace sail4oxygen.ViewModels
                     return CsvFileToSend.FileName;
             }
         }
-
-
+        
         [ObservableProperty]
         private Models.NewsItems news = new Models.NewsItems();
 
-
+        
+        
         public MainPageVM()
 		{
+            WeakReferenceMessenger.Default.Register<LocationPropertyChangedMessage>(this, (r, m) =>
+            {
+                    OnPropertyChanged(nameof(MyLocation));
+            });
+            
+            WeakReferenceMessenger.Default.Register<BoatNameChangeMessage>(this, (r, m) =>
+            {
+                    OnPropertyChanged(nameof(MyBoatName));
+            });
+
+            
+            LocationService.Instance.OnLocationChanged += (s, e) =>
+            {
+                MyLocation = LocationService.Instance.MyLocation;
+            };
+
+            MyLocation = LocationService.Instance.MyLocation;
+
             if (Models.SharedData.StartFromShare)
             {
                 HandleCsvFileShared(null, Models.SharedData.FileUri?.AbsolutePath);
@@ -191,18 +191,6 @@ namespace sail4oxygen.ViewModels
             {
                 Models.SharedData.SharedFileHandled += HandleCsvFileShared;
             }
-
-            WeakReferenceMessenger.Default.Register<Models.LocationChangeMessage>(this, (r, m) =>
-            {
-                OnLocationChangeMessage(m.Value);
-            });
-            
-            WeakReferenceMessenger.Default.Register<Models.BoatNameChangeMessage>(this, (r, m) =>
-            {
-                OnBoatNameChangeMessage(m.Value);
-            });
-
-
         }
 
 
@@ -237,9 +225,9 @@ namespace sail4oxygen.ViewModels
 
 
         [CommunityToolkit.Mvvm.Input.RelayCommand]
-        async void Appearing()
+        private async void Appearing()
         {
-            MyLocation = await GetLocation();
+           LocationService.Instance.GetLocation();
         }
 
         [CommunityToolkit.Mvvm.Input.RelayCommand]
@@ -247,39 +235,6 @@ namespace sail4oxygen.ViewModels
         {
             await Browser.Default.OpenAsync(item.Url);
         }
-            
-
-
-        public async Task<Location> GetLocation()
-        {
-            try
-            {
-                Location location = await Geolocation.Default.GetLocationAsync();
-
-                if (location != null)
-                    return location;
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                Console.WriteLine(fnsEx);
-            }
-            catch (FeatureNotEnabledException fneEx)
-            {
-                Console.WriteLine(fneEx);
-            }
-            catch (PermissionException pEx)
-            {
-                Console.WriteLine(pEx);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-            //toDo: Advise to use UI to enter coordinates 
-            return null;
-        }
-
-
 
         public async Task<bool> SelectFile(PickOptions options)
         {
@@ -289,7 +244,7 @@ namespace sail4oxygen.ViewModels
                 {
                     try
                     {
-                        var file = await FilePicker.Default.PickAsync(filePickOptions);
+                        var file = await FilePicker.Default.PickAsync(_filePickOptions);
                         if (file != null)
                         {
                             CsvFileToSend = file;
@@ -316,40 +271,13 @@ namespace sail4oxygen.ViewModels
                 }
                 return true;
             }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert("Nothing sent!", Resources.Languages.Lang.LocationInvalidMessage, Resources.Languages.Lang.ok);
-            }
             return false;
-        }
-
-        [RelayCommand]
-        private void FireLocationChangeMessage()
-        {
-            WeakReferenceMessenger.Default.Send(new Models.LocationChangeMessage(MyLocation));
-#if DEBUG
-            Console.WriteLine("*************** Location Change Sent from MainPageVM");
-#endif
-        }
-
-        private void OnLocationChangeMessage(Location location)
-        {
-            MyLocation.Latitude = location.Latitude;
-            MyLocation.Longitude = location.Longitude;
-#if DEBUG
-            Console.WriteLine("*************** Location Change Recived in MainPageVM");
-#endif
-        }
-
-        private void OnBoatNameChangeMessage(string value)
-        {
-            OnPropertyChanged(nameof(MyBoatName));
         }
 
 
         public void Cleanup()
         {
-            this.CsvFileToSend = null;
+            this.CsvFileToSend = null!;
             Models.SharedData.FileUri = null;
             Models.SharedData.StartFromShare = false;
         }

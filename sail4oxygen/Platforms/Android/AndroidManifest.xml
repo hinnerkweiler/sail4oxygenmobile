@@ -1,14 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.hinnerk_weiler.sail4oxygen" android:versionName="0.12.2" android:versionCode="34">
-	<application android:allowBackup="true" android:icon="@mipmap/appicon" android:supportsRtl="true" android:label="sail4oxygen"></application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.hinnerk_weiler.sail4oxygen" android:versionName="2.0.4" android:versionCode="37">
+	<application android:allowBackup="true" android:icon="@mipmap/appicon" android:supportsRtl="true" android:label="sail4oxygen">
+
+		<!-- Add your MainActivity with LaunchMode -->
+		<activity android:name="sail4oxygen.MainActivity"
+				  android:exported="true"
+				  android:launchMode="singleTop"
+				  android:theme="@style/Maui.SplashTheme">
+			<!-- IntentFilter for single CSV file -->
+			<intent-filter >
+				<action android:name="android.intent.action.SEND" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<data android:mimeType="*/*" />
+			</intent-filter>
+			
+			
+			<!-- Main activity launcher -->
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+
+
+	</application>
+
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
+
 	<queries>
 		<intent>
 			<action android:name="android.intent.action.SENDTO" />
-			<data android:scheme="mailto" />
+			<category android:name="android.intent.category.DEFAULT" />
+			<data android:mimeType="*/*" />
 		</intent>
 	</queries>
+
 	<queries>
 		<intent>
 			<action android:name="android.intent.action.VIEW" />
@@ -19,5 +46,6 @@
 			<data android:scheme="https" />
 		</intent>
 	</queries>
+
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34" />
 </manifest>

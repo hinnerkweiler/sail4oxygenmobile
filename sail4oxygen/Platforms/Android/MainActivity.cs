@@ -28,7 +28,7 @@ public class MainActivity : MauiAppCompatActivity
 #if DEBUG
         System.Console.WriteLine("S4O *!*!*!*!*!*!*!*!*!*!*!*!*! ON RESUME");
 #endif
-        IntentWorker();
+        IntentWorker(Intent);  // Use the current intent
 
         Platform.OnResume(this);
     }
@@ -39,33 +39,31 @@ public class MainActivity : MauiAppCompatActivity
 #if DEBUG
         System.Console.WriteLine("S4O *!*!*!*!*!*!*!*!*!*!*!*!*! ON INTENT");
 #endif
-        IntentWorker();
+        IntentWorker(intent);  // Use the new intent
 
         Platform.OnNewIntent(intent);
     }
 
-    private void IntentWorker()
+    private void IntentWorker(Intent intent)
     {
-        var intent = Intent;
         var action = intent.Action;
         var type = intent.Type;
 
-
-        //store the intent data in a static variable
+        // Store the intent data in a static variable
         if (Intent.ActionSend.Equals(action) && type != null)
         {
-        
             var uri = (Android.Net.Uri)intent.GetParcelableExtra(Intent.ExtraStream);
 #if DEBUG
-            System.Console.WriteLine("CSV Recived: " + uri);
+            System.Console.WriteLine("CSV Received: " + uri);
 #endif
-            //create copy in local app space and store the path in a static variable
+            // Create copy in local app space and store the path in a static variable
             var appFilePath = AndroidHelpers.UriResolver.CopyFileFromUriToAppSpace(this, uri);
 
             Models.SharedData.StartFromShare = true;
             Models.SharedData.FileUri = appFilePath;
         }
     }
+
     
 }
 

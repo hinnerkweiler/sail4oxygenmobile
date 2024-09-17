@@ -170,7 +170,7 @@
                         VerticalOptions="CenterAndExpand"/>
                     <Label
                         TextType="Html"
-                        Text="{Binding MyLocation.Latitude, Mode=TwoWay, StringFormat='{0:000.000000}'}"
+                        Text="{Binding MyLocation.Latitude, Mode=TwoWay, StringFormat='{0:00.0000}'}"
                         FontSize="Small"
                         TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"
                         VerticalOptions="CenterAndExpand"/>
@@ -185,7 +185,7 @@
                         VerticalOptions="CenterAndExpand"/>
                     <Label
                         TextType="Html"
-                        Text="{Binding MyLocation.Longitude, Mode=TwoWay, StringFormat='{0:00.000000}'}"
+                        Text="{Binding MyLocation.Longitude, Mode=TwoWay, StringFormat='{0:000.0000}'}"
                         FontSize="Small"
                         TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"
                         VerticalOptions="CenterAndExpand"/>
@@ -230,6 +230,7 @@
             <Button
                 Text="{Binding SendButtonText}"
                 Padding="50,25,50,25"
+                IsEnabled="{Binding HaveLocation}"
                 BackgroundColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue25}}"
                 TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource s4blue100}}"
                 Margin="0,8,0,20"
