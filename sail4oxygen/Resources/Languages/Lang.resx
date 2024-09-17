@@ -208,8 +208,7 @@
     <comment/>
   </data>
   <data name="OnboardingDSGVOInfo" xml:space="preserve">
-    <value>&lt;em&gt;Wehen transmitting measurements I agree sending my sample data via email to the GEOMAR Research Center, revealing my email address and location at time of measurement. See sail4oxygen.org for further information.</value>
-    <comment/>
+    <value>&lt;em&gt;When transmitting measurements I agree sending my sample data via email to the GEOMAR Research Center, revealing my email address and location at time of measurement. See sail4oxygen.org for further information.</value>
   </data>
   <data name="PrivacyAlertTitle" xml:space="preserve">
     <value>DSGVO Consent</value>
