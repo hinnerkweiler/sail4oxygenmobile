@@ -197,6 +197,7 @@
                     <Button
                         Text="{x:Static lang:Lang.ManualGPSChange}"
                         Padding="8,8,8,8"
+                        IsEnabled="{Binding HaveLocation}"
                         BackgroundColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource s4blue25}}"
                         TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource s4blue100}}"
                         Margin="6,6,6,6"

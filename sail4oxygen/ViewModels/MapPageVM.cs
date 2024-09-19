@@ -14,9 +14,10 @@ namespace sail4oxygen.ViewModels
 			get => LocationService.Instance.MyLocation?.Latitude ?? 54.322;
 			set
 			{
-				if (Math.Abs(LocationService.Instance.MyLocation.Latitude - value) > 0.01f)
+				if (Math.Abs(LocationService.Instance.MyLocation?.Latitude ?? 54.322 - value) > 0.01f)
 				{
-					LocationService.Instance.MyLocation.Latitude = value;
+					if (LocationService.Instance.MyLocation != null)
+						LocationService.Instance.MyLocation.Latitude = value;
 					OnPropertyChanged();
 					OnPropertyChanged(nameof(CurrentLocation));
 					WeakReferenceMessenger.Default.Send(new LocationPropertyChangedMessage(nameof(Latitude), value));
@@ -29,9 +30,10 @@ namespace sail4oxygen.ViewModels
 			get => LocationService.Instance.MyLocation?.Longitude ?? 10.135;
 			set
 			{
-				if (Math.Abs(LocationService.Instance.MyLocation.Longitude - value) > 0.01f)
+				if (Math.Abs(LocationService.Instance.MyLocation?.Longitude ?? 10.135 - value) > 0.01f)
 				{
-					LocationService.Instance.MyLocation.Longitude = value;
+					if (LocationService.Instance.MyLocation != null)
+						LocationService.Instance.MyLocation.Longitude = value;
 					OnPropertyChanged();
 					OnPropertyChanged(nameof(CurrentLocation));
 					WeakReferenceMessenger.Default.Send(new LocationPropertyChangedMessage(nameof(Longitude), value));
@@ -156,3 +158,4 @@ namespace sail4oxygen.ViewModels
 	}
 }
 
+	
