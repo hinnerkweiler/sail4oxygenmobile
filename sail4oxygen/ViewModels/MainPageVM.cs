@@ -21,11 +21,11 @@ namespace sail4oxygen.ViewModels
         {
             get
             {
-                if ((_myLocation != null) )
+                if (LocationService.Instance.MyLocation == null)
                 {
-                    return true;
+                    return false;
                 }
-                return false;
+                return true;
             }
         }
 
