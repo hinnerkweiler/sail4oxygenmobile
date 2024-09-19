@@ -20,7 +20,7 @@ public static class MauiProgram
             })
             .ConfigureEssentials(essentials =>
             {
-                     essentials.AddAppAction(new AppAction("id1", "Takeover Sonde", icon: "calendar"));
+                     //essentials.AddAppAction(new AppAction("id1", "Takeover Sonde", icon: "calendar"));
             });
 		builder.ConfigureSyncfusionCore();
 #if DEBUG
