@@ -46,7 +46,7 @@ public partial class Onboarding : ContentPage
     {
         if (!viewModel.DsgvoBoxChecked)
         {
-            if (await DisplayAlert(sail4oxygen.Resources.Languages.lang.PrivacyAlertTitle, sail4oxygen.Resources.Languages.lang.PrivacyAlertText, sail4oxygen.Resources.Languages.lang.PrivacyAlertOK, sail4oxygen.Resources.Languages.lang.PrivacyAlertReturn))
+            if (await DisplayAlert(sail4oxygen.Resources.Languages.Lang.PrivacyAlertTitle, sail4oxygen.Resources.Languages.Lang.PrivacyAlertText, sail4oxygen.Resources.Languages.Lang.PrivacyAlertOK, sail4oxygen.Resources.Languages.Lang.PrivacyAlertReturn))
             {
                 await Shell.Current.GoToAsync("..");
             }
