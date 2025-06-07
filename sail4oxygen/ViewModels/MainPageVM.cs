@@ -274,7 +274,10 @@ namespace sail4oxygen.ViewModels
                     catch (Exception ex)
                     {
                         Console.WriteLine("The user canceled or something went wrong: ", ex.Message);
-                        await Application.Current.MainPage.DisplayAlert(Resources.Languages.Lang.NoFileAlertTitle,  Resources.Languages.Lang.NoFileAlertText + " " + ex.Message, Resources.Languages.Lang.ok);
+                        await Application.Current.MainPage.DisplayAlert(
+                            Resources.Languages.Lang.NoFileAlertTitle,  
+                            Resources.Languages.Lang.NoFileAlertText + " " + ex.Message, 
+                            Resources.Languages.Lang.ok);
                     }
                 }
                 
@@ -282,19 +285,28 @@ namespace sail4oxygen.ViewModels
                 {
                     await Email.Default.ComposeAsync(await Models.Mail.Send(MyLocation, CsvFileToSend.FullPath));
 
-                    await Application.Current.MainPage.DisplayAlert(Resources.Languages.Lang.ThankYou, Resources.Languages.Lang.SendMessageAlertText, Resources.Languages.Lang.ok);
+                    await Application.Current.MainPage.DisplayAlert(
+                        Resources.Languages.Lang.ThankYou, 
+                        Resources.Languages.Lang.SendMessageAlertText, 
+                        Resources.Languages.Lang.ok);
 
                     Cleanup();
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert(Resources.Languages.Lang.NoFileSent, Resources.Languages.Lang.NoFileSentMessage + " " + Models.SharedData.LastError, Resources.Languages.Lang.ok);
+                    await Application.Current.MainPage.DisplayAlert(
+                        Resources.Languages.Lang.NoFileSent, 
+                        Resources.Languages.Lang.NoFileSentMessage + " " + Models.SharedData.LastError, 
+                        Resources.Languages.Lang.ok);
                 }
                 return true;
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Nothing sent!", Resources.Languages.Lang.LocationInvalidMessage, Resources.Languages.Lang.ok);
+                await Application.Current.MainPage.DisplayAlert(
+                    "Nothing sent!", 
+                    Resources.Languages.Lang.LocationInvalidMessage, 
+                    Resources.Languages.Lang.ok);
             }
             return false;
         }
