@@ -149,7 +149,7 @@
                             ValidStyle="{StaticResource ValidEntryStyle}"
                             IsValid="{Binding LatitudeIsValid, Mode=TwoWay}"
                             Flags="ValidateOnValueChanged"
-                            RegexPattern="(?:54(?:[\,\.]\d+)?|55(?:[\,\.]\d+)?)$"/>
+                            RegexPattern="^(?:5[0-9]|6[0-9]|7[0-7])(?:[.,]\d+)?$"/>
                     </Entry.Behaviors>
                 </Entry>
                 <Label
@@ -170,7 +170,7 @@
                             IsValid="{Binding LongitudeIsValid, Mode=TwoWay}"
                             ValidStyle="{StaticResource ValidEntryStyle}"
                             Flags="ValidateOnValueChanged"
-                            RegexPattern="(?:9(?:[\,\.]\d+)?|10(?:[\,\.]\d+)?|11(?:[\,\.]\d+)?)$"
+                            RegexPattern="^(?:[0-9]|[1-2][0-9]|3[0-5])(?:[.,]\d+)?$"
                             />
                     </Entry.Behaviors>
                     
