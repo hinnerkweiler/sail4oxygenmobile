@@ -35,12 +35,12 @@ public partial class MainPage : ContentPage
 	{
         if (Models.DsgvoHandler.IsDsgvoAccepted)
         {
-            if (await Application.Current.MainPage.DisplayAlert(sail4oxygen.Resources.Languages.Lang.SendingNoteTitle, sail4oxygen.Resources.Languages.Lang.SendingNote, sail4oxygen.Resources.Languages.Lang.ContinueSending,  sail4oxygen.Resources.Languages.Lang.cancel))
+            if (await Application.Current.MainPage.DisplayAlert(sail4oxygen.Resources.Languages.lang.SendingNoteTitle, sail4oxygen.Resources.Languages.lang.SendingNote, sail4oxygen.Resources.Languages.lang.ContinueSending,  sail4oxygen.Resources.Languages.lang.cancel))
             _ = await MainPageVM.SelectFile(null);
         }
         else
         {
-            if (await Application.Current.MainPage.DisplayAlert(sail4oxygen.Resources.Languages.Lang.PrivacyAlertTitle, sail4oxygen.Resources.Languages.Lang.PrivacyAlertText, sail4oxygen.Resources.Languages.Lang.PrivacyAlertChangesetting, sail4oxygen.Resources.Languages.Lang.cancel))
+            if (await Application.Current.MainPage.DisplayAlert(sail4oxygen.Resources.Languages.lang.PrivacyAlertTitle, sail4oxygen.Resources.Languages.lang.PrivacyAlertText, sail4oxygen.Resources.Languages.lang.PrivacyAlertChangesetting, sail4oxygen.Resources.Languages.lang.cancel))
             {
                 await Shell.Current.GoToAsync("Onboarding");
             }
@@ -73,9 +73,10 @@ public partial class MainPage : ContentPage
 
     async void OnGPSReload_Clicked(System.Object sender, System.EventArgs e)
     {
-        MainPageVM.MyLocation = await MainPageVM.GetLocation();
+        var location = await MainPageVM.GetLocation();
+        if (location != null)         
+            MainPageVM.MyLocation = location;
     }
-
     
     async void EditCoordinatesButton_Clicked(System.Object sender, System.EventArgs e)
     {

@@ -9,25 +9,13 @@ using System.Threading.Tasks;
 namespace sail4oxygen.ViewModels
 {
 	public partial class MainPageVM : ObservableObject
-	{
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(LocationText))]
-        Location myLocation;
+    {
+        [ObservableProperty] [NotifyPropertyChangedFor(nameof(LocationText))]
+        private Location myLocation = new Location();
 
 
 
-        public bool CoordinatesValid
-        {
-            get
-            {
-                if (LatitudeIsValid && LongitudeIsValid)
-                {
-                    return true;
-                }
-                return false;
-            }
-        }
-
+        public bool CoordinatesValid => LatitudeIsValid && LongitudeIsValid ? true : false;
 
 
         [ObservableProperty]
@@ -61,11 +49,11 @@ namespace sail4oxygen.ViewModels
             {
                 if (IsLearnMoreExpanded)
                 {
-                    return "&#x2304;  " + Resources.Languages.Lang.MainPageIntro1;
+                    return "&#x2304;  " + Resources.Languages.lang.MainPageIntro1;
                 }
                 else
                 {
-                    return "&gt;  " + Resources.Languages.Lang.MainPageIntro1;
+                    return "&gt;  " + Resources.Languages.lang.MainPageIntro1;
 
                 }
             }
@@ -86,13 +74,12 @@ namespace sail4oxygen.ViewModels
 
 
 
-        public string LocationText
-        {
-            get
-            {
-                return LatitudeString +" | "+LongitudeString + "\n" + MyLocation.Timestamp.ToString("u");
-            }
-        }
+        public string LocationText =>
+            MyLocation == null
+                ? "–"
+                : LatitudeString + " | " + LongitudeString +
+                  (MyLocation.Timestamp != default ? "\n" + MyLocation.Timestamp.ToString("u") : "");
+
 
 
 
@@ -100,29 +87,19 @@ namespace sail4oxygen.ViewModels
 
 
 
-        public string LatitudeString
-        {
-            get
-            {
-                if (MyLocation.Latitude > 0)
-                    return Math.Abs(MyLocation.Latitude).ToString("00.0##° N");
-                else
-                    return Math.Abs(MyLocation.Latitude).ToString("00.0##° S");
-            }
-        }
+        public string LatitudeString =>
+            MyLocation == null ? "–"
+                : MyLocation.Latitude >= 0
+                    ? Math.Abs(MyLocation.Latitude).ToString("00.0##° N")
+                    : Math.Abs(MyLocation.Latitude).ToString("00.0##° S");
 
 
 
-        public string LongitudeString
-        {
-            get
-            {
-                if (MyLocation.Longitude > 0)
-                    return Math.Abs(MyLocation.Longitude).ToString("00.0##° E");
-                else
-                    return Math.Abs(MyLocation.Longitude).ToString("00.0##° W");
-            }
-        }
+        public string LongitudeString =>
+            MyLocation == null ? "–"
+                : MyLocation.Longitude >= 0
+                    ? Math.Abs(MyLocation.Longitude).ToString("00.0##° E")
+                    : Math.Abs(MyLocation.Longitude).ToString("00.0##° W");
 
 
         public bool FileRemoveButtonVisible
@@ -145,9 +122,9 @@ namespace sail4oxygen.ViewModels
             get
             {
                 if (CsvFileToSend == null)
-                    return Resources.Languages.Lang.SendButtonTextSelectFile;
+                    return Resources.Languages.lang.SendButtonTextSelectFile;
                 else
-                    return Resources.Languages.Lang.SendButtonTextSendFile;
+                    return Resources.Languages.lang.SendButtonTextSendFile;
             }
         }
 
@@ -158,7 +135,7 @@ namespace sail4oxygen.ViewModels
             get
             {
                 if (CsvFileToSend == null)
-                    return Resources.Languages.Lang.NoCsvFile;
+                    return Resources.Languages.lang.NoCsvFile;
                 else
                     return CsvFileToSend.FileName;
             }
@@ -215,7 +192,9 @@ namespace sail4oxygen.ViewModels
         [CommunityToolkit.Mvvm.Input.RelayCommand]
         async void Appearing()
         {
-            MyLocation = await GetLocation();
+            var location = await GetLocation();
+            if (location != null)          // ← only update if GPS actually gave a result
+                MyLocation = location;
         }
 
         [CommunityToolkit.Mvvm.Input.RelayCommand]
@@ -275,9 +254,9 @@ namespace sail4oxygen.ViewModels
                     {
                         Console.WriteLine("The user canceled or something went wrong: ", ex.Message);
                         await Application.Current.MainPage.DisplayAlert(
-                            Resources.Languages.Lang.NoFileAlertTitle,  
-                            Resources.Languages.Lang.NoFileAlertText + " " + ex.Message, 
-                            Resources.Languages.Lang.ok);
+                            Resources.Languages.lang.NoFileAlertTitle,  
+                            Resources.Languages.lang.NoFileAlertText + " " + ex.Message, 
+                            Resources.Languages.lang.ok);
                     }
                 }
                 
@@ -286,18 +265,18 @@ namespace sail4oxygen.ViewModels
                     await Email.Default.ComposeAsync(await Models.Mail.Send(MyLocation, CsvFileToSend.FullPath));
 
                     await Application.Current.MainPage.DisplayAlert(
-                        Resources.Languages.Lang.ThankYou, 
-                        Resources.Languages.Lang.SendMessageAlertText, 
-                        Resources.Languages.Lang.ok);
+                        Resources.Languages.lang.ThankYou, 
+                        Resources.Languages.lang.SendMessageAlertText, 
+                        Resources.Languages.lang.ok);
 
                     Cleanup();
                 }
                 else
                 {
                     await Application.Current.MainPage.DisplayAlert(
-                        Resources.Languages.Lang.NoFileSent, 
-                        Resources.Languages.Lang.NoFileSentMessage + " " + Models.SharedData.LastError, 
-                        Resources.Languages.Lang.ok);
+                        Resources.Languages.lang.NoFileSent, 
+                        Resources.Languages.lang.NoFileSentMessage + " " + Models.SharedData.LastError, 
+                        Resources.Languages.lang.ok);
                 }
                 return true;
             }
@@ -305,8 +284,8 @@ namespace sail4oxygen.ViewModels
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Nothing sent!", 
-                    Resources.Languages.Lang.LocationInvalidMessage, 
-                    Resources.Languages.Lang.ok);
+                    Resources.Languages.lang.LocationInvalidMessage, 
+                    Resources.Languages.lang.ok);
             }
             return false;
         }

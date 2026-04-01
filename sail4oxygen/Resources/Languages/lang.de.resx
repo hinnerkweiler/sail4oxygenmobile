@@ -268,10 +268,6 @@
     <value>Vollst. Anleitung (PDF)</value>
     <comment/>
   </data>
-  <data name="BoatName" xml:space="preserve">
-    <value>Dein Bootsname:</value>
-    <comment/>
-  </data>
   <data name="HideBoatname" xml:space="preserve">
     <value>Bootsnamen nicht öffentlich anzeigen </value>
     <comment/>
@@ -295,6 +291,15 @@
   <data name="SendingNote" xml:space="preserve">
     <value>Die Messung wird jetzt per E-Mail ans GEOMAR verschickt. Falls eine Aufforderung zur Auswahl einer App erscheint, bitte die App benutzen, mit der normalerweise E-Mails verschickt werden.</value>
     <comment/>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>2. Ort der Messung</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>3. Messdaten</value>
+  </data>
+  <data name="BoatName" xml:space="preserve">
+    <value>1. Bootsname</value>
   </data>
 </root>
 

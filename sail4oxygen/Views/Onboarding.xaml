@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:lang="clr-namespace:sail4oxygen.Resources.Languages"
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:components="clr-namespace:sail4oxygen.Views.Components"
              x:Class="sail4oxygen.Views.Onboarding"
-             Title="{x:Static lang:Lang.OnboardingPageTitle}"
+             Title="{x:Static lang:lang.OnboardingPageTitle}"
              Shell.NavBarIsVisible="False">
 
     <ContentPage.Resources>
@@ -27,7 +28,7 @@
                     HorizontalOptions="StartAndExpand"
                     VerticalTextAlignment="End"
                     FontSize="Micro" FontAttributes="Bold"
-                    Text="{x:Static lang:Lang.OnboardingPageComeBackInfo}"
+                    Text="{x:Static lang:lang.OnboardingPageComeBackInfo}"
                     />
             <Button
                     Grid.Column="0" Grid.Row="0"
@@ -46,13 +47,13 @@
                 Margin="12"
                 FontSize="Medium"
                 TextType="Html"
-                Text="{x:Static lang:Lang.OnboardingGreetingText}"
+                Text="{x:Static lang:lang.OnboardingGreetingText}"
                 />
             <Label
                 Margin="12"
                 FontSize="Medium"
                 TextType="Html"
-                Text="{x:Static lang:Lang.OnboardingDsgvoTitle}"
+                Text="{x:Static lang:lang.OnboardingDsgvoTitle}"
                 />
             <Grid RowDefinitions="*" ColumnDefinitions="70,*"
                   >
@@ -61,7 +62,7 @@
                     Margin="12"
                     FontSize="Body"
                     TextType="Html"
-                    Text="{x:Static lang:Lang.OnboardingDSGVOInfo}"
+                    Text="{x:Static lang:lang.OnboardingDSGVOInfo}"
                 />
                 <CheckBox 
                     Grid.Column="0" Grid.Row="0"
@@ -71,38 +72,20 @@
                 />
             </Grid>
 
-            <Label
-                Margin="0,6"
-                FontAttributes="Bold"
-                Text="{x:Static lang:Lang.BoatName}" />
-
-            <Entry x:Name="boatname" Placeholder="Name"
-                Text="{Binding BoatName}"
-                PlaceholderColor="{x:StaticResource Gray500}">
-                <Entry.Behaviors>
-                    <mct:TextValidationBehavior 
-                        InvalidStyle="{StaticResource InvalidEntryStyle}"
-                        ValidStyle="{StaticResource ValidEntryStyle}"
-                        IsValid="{Binding NameIsValid, Mode=TwoWay}"
-                        Flags="ValidateOnValueChanged"
-                        RegexPattern="^[\wøæåØÆÅäöüÄÖÜ0-9\s\-+]*$" />
-                </Entry.Behaviors>
-            </Entry>
-
-            <Label
-                    Margin="0,3"
-                    HorizontalTextAlignment="End"
-                    FontSize="Micro"
-                    TextType="Html"
-                    x:Name="BoatNameValidationLabel"
-                    Text="{Binding BoatnameValidationMessage}"
-                    />
+            <components:ValidatedTextEntry
+                LabelText="{x:Static lang:lang.BoatName}"
+                Placeholder="Name"
+                PlaceholderColor="{x:StaticResource Gray500}"
+                Text="{Binding BoatName, Mode=TwoWay}"
+                IsValid="{Binding NameIsValid, Mode=TwoWay}"
+                ValidationMessage="{Binding BoatnameValidationMessage}"
+                RegexPattern="^[\wøæåØÆÅäöüÄÖÜ0-9\s\-+]*$" />
 
              <Label
                 Margin="12"
                 FontSize="Body"
                 TextType="Html"
-                Text="{x:Static lang:Lang.OnboardingKORInfo}"
+                Text="{x:Static lang:lang.OnboardingKORInfo}"
                 />
 
             <Button
@@ -110,7 +93,7 @@
                 Margin="6,12"
                 x:Name="installkor"
                 Clicked="installkor_Clicked"
-                Text="{x:Static lang:Lang.OnboardingKORButton}"
+                Text="{x:Static lang:lang.OnboardingKORButton}"
                 />
 
             <Label
