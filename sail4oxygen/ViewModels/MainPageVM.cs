@@ -12,36 +12,49 @@ namespace sail4oxygen.ViewModels
     {
         [ObservableProperty] [NotifyPropertyChangedFor(nameof(LocationText))]
         private Location myLocation = new Location();
-
-
-
+        
         public bool CoordinatesValid => LatitudeIsValid && LongitudeIsValid ? true : false;
-
-
+        
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(CoordinatesValid))]
         bool latitudeIsValid;
-
-
-
+        
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(CoordinatesValid))]
         bool longitudeIsValid;
-
-
-
+        
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(FileName))]
         [NotifyPropertyChangedFor(nameof(SendButtonText))]
         [NotifyPropertyChangedFor(nameof(FileRemoveButtonVisible))]
         
 		FileResult csvFileToSend = null;
-
         
-
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsCoordinateEditorVisible))]
         bool isCoordinateViewVisible = true;
+        
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(BoatnameValidationMessage))]
+        bool nameIsValid;
+
+        public string BoatnameValidationMessage =>
+            NameIsValid
+                ? Resources.Languages.lang.ok
+                : Resources.Languages.lang.BoatNameInvalidMessage;
+
+        private const string BoatNameRegex = @"^[\wøæåØÆÅäöüÄÖÜ0-9\s\-+]*$";
+
+        public string BoatName
+        {
+            get => Models.PreferencesHelper.BoatName;
+            set
+            {
+                if (value != null && System.Text.RegularExpressions.Regex.IsMatch(value, BoatNameRegex))
+                    Models.PreferencesHelper.BoatName = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string LearnMoreHeaderText
         {
