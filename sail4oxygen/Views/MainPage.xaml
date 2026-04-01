@@ -249,15 +249,11 @@
             <VerticalStackLayout
                 VerticalOptions="FillAndExpand">
                 <Label
-                    Text="Citizen Science"
+                    Text="News"
                     SemanticProperties.HeadingLevel="Level3"
                     FontSize="18"
                     HorizontalOptions="Center" />
-                <Image
-                    Source="s4ob.png"
-                    HeightRequest="100"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center" />
+                
                 <ListView
                     x:Name="NewsListView"
                     ItemsSource="{Binding News.FirstArticles}"
