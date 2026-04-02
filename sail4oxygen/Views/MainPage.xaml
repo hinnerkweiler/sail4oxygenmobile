@@ -160,6 +160,7 @@
                     x:Name="LatitudeEntry"
                     Placeholder="{x:Static lang:lang.MainPageLatitudePlaceholder}"
                     Text="{Binding MyLocation.Latitude , Mode=TwoWay, StringFormat='{0:00.00000}', Converter={StaticResource ConverterHelper}}"
+                    TextChanged="LatitudeEntry_TextChanged"
                     FontSize="Small"
                     VerticalOptions="CenterAndExpand">
                     <Entry.Behaviors>
@@ -182,6 +183,7 @@
                     x:Name="LongitudeEntry"
                     Placeholder="{x:Static lang:lang.MainPageLongitudePlaceholder}"
                     Text="{Binding MyLocation.Longitude, Mode=TwoWay, StringFormat='{0:000.00000}', Converter={StaticResource ConverterHelper}}"
+                    TextChanged="LongitudeEntry_TextChanged"
                     FontSize="Small"
                     VerticalOptions="CenterAndExpand">
                     <Entry.Behaviors>

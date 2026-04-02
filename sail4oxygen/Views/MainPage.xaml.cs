@@ -29,6 +29,18 @@ public partial class MainPage : ContentPage
         }
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        MainPageVM.StartAutoGpsRefresh();
+    }
+
+    protected override void OnDisappearing()
+    {
+        MainPageVM.StopAutoGpsRefresh();
+        base.OnDisappearing();
+    }
+
 
 
 	private async void OnCounterClicked(object sender, EventArgs e)
@@ -74,8 +86,20 @@ public partial class MainPage : ContentPage
     async void OnGPSReload_Clicked(System.Object sender, System.EventArgs e)
     {
         var location = await MainPageVM.GetLocation();
-        if (location != null)         
-            MainPageVM.MyLocation = location;
+        if (location != null)
+            MainPageVM.ApplyGpsLocation(location);
+    }
+
+    void LatitudeEntry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (sender is Entry { IsFocused: true })
+            MainPageVM.MarkCoordinatesEditedManually();
+    }
+
+    void LongitudeEntry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (sender is Entry { IsFocused: true })
+            MainPageVM.MarkCoordinatesEditedManually();
     }
     
     async void EditCoordinatesButton_Clicked(System.Object sender, System.EventArgs e)

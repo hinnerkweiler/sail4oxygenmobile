@@ -1,7 +1,7 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 
@@ -12,6 +12,10 @@ namespace sail4oxygen.ViewModels
     {
         [ObservableProperty] [NotifyPropertyChangedFor(nameof(LocationText))]
         private Location myLocation = new Location();
+
+        private CancellationTokenSource gpsAutoUpdateCancellationTokenSource;
+        private bool hasReceivedAutomaticGpsFix;
+        private bool coordinatesEditedManually;
         
         public bool CoordinatesValid => LatitudeIsValid && LongitudeIsValid ? true : false;
         
@@ -172,7 +176,7 @@ namespace sail4oxygen.ViewModels
         }
 
 
-        public async void HandleCsvFileShared(object? sender, string filePath)
+        public async void HandleCsvFileShared(object sender, string filePath)
         {
             Models.SharedData.SharedFileHandled -= HandleCsvFileShared;
             
@@ -202,12 +206,77 @@ namespace sail4oxygen.ViewModels
 
 
 
-        [CommunityToolkit.Mvvm.Input.RelayCommand]
-        async void Appearing()
+        public void MarkCoordinatesEditedManually()
         {
-            var location = await GetLocation();
-            if (location != null)          // ← only update if GPS actually gave a result
-                MyLocation = location;
+            coordinatesEditedManually = true;
+            StopAutoGpsRefresh();
+        }
+
+        public void StartAutoGpsRefresh()
+        {
+            if (coordinatesEditedManually || hasReceivedAutomaticGpsFix || gpsAutoUpdateCancellationTokenSource != null)
+                return;
+
+            gpsAutoUpdateCancellationTokenSource = new CancellationTokenSource();
+            _ = AutoUpdateLocationUntilValidFixAsync(gpsAutoUpdateCancellationTokenSource.Token);
+        }
+
+        public void StopAutoGpsRefresh()
+        {
+            gpsAutoUpdateCancellationTokenSource?.Cancel();
+            gpsAutoUpdateCancellationTokenSource?.Dispose();
+            gpsAutoUpdateCancellationTokenSource = null;
+        }
+
+        public void ApplyGpsLocation(Location location, bool isAutomatic = false)
+        {
+            if (location == null || (isAutomatic && coordinatesEditedManually))
+                return;
+
+            MyLocation = location;
+            LatitudeIsValid = true;
+            LongitudeIsValid = true;
+
+            if (isAutomatic)
+            {
+                hasReceivedAutomaticGpsFix = true;
+                StopAutoGpsRefresh();
+            }
+        }
+
+        private async Task AutoUpdateLocationUntilValidFixAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                while (!cancellationToken.IsCancellationRequested && !coordinatesEditedManually && !hasReceivedAutomaticGpsFix)
+                {
+                    var location = await GetLocation();
+                    if (IsValidAutomaticGpsFix(location))
+                    {
+                        ApplyGpsLocation(location!, isAutomatic: true);
+                        return;
+                    }
+
+                    await Task.Delay(TimeSpan.FromSeconds(3), cancellationToken);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                // expected when leaving the page or after manual edits
+            }
+            finally
+            {
+                gpsAutoUpdateCancellationTokenSource?.Dispose();
+                gpsAutoUpdateCancellationTokenSource = null;
+            }
+        }
+
+        private static bool IsValidAutomaticGpsFix(Location location)
+        {
+            if (location == null)
+                return false;
+
+            return location.Latitude != 0 || location.Longitude != 0;
         }
 
         [CommunityToolkit.Mvvm.Input.RelayCommand]
@@ -222,7 +291,8 @@ namespace sail4oxygen.ViewModels
         {
             try
             {
-                Location location = await Geolocation.Default.GetLocationAsync();
+                var request = new GeolocationRequest(GeolocationAccuracy.Best, TimeSpan.FromSeconds(10));
+                Location location = await Geolocation.Default.GetLocationAsync(request);
 
                 if (location != null)
                     return location;
