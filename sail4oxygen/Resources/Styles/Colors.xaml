@@ -5,19 +5,31 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
 
-    <Color x:Key="Primary">#ed1c24</Color>
-    <Color x:Key="Secondary">#b4c7e3</Color>
-    <Color x:Key="Tertiary">#0060a0</Color>
-    <Color x:Key="White">White</Color>
-    <Color x:Key="Black">Black</Color>
-    <Color x:Key="Gray100">#E1E1E1</Color>
-    <Color x:Key="Gray200">#C8C8C8</Color>
-    <Color x:Key="Gray300">#ACACAC</Color>
-    <Color x:Key="Gray400">#919191</Color>
-    <Color x:Key="Gray500">#6E6E6E</Color>
-    <Color x:Key="Gray600">#404040</Color>
-    <Color x:Key="Gray900">#212121</Color>
-    <Color x:Key="Gray950">#141414</Color>
+    <!-- Web brand tokens from style.css -->
+    <Color x:Key="BrandNeonFull">#00DE01</Color>
+    <Color x:Key="BrandNeonSoft">#99F199</Color>
+    <Color x:Key="BrandDeep">#082D30</Color>
+    <Color x:Key="BrandDarkType">#0D495E</Color>
+    <Color x:Key="BrandSurface">#167A9D</Color>
+    <Color x:Key="BrandSpindrift">#F4FCFF</Color>
+    <Color x:Key="BrandBoxBg">#F6FAFE</Color>
+    <Color x:Key="BrandBoxGraphics">#C7DEE5</Color>
+    <Color x:Key="BrandMist">#1FF4FCFF</Color>
+
+    <!-- Compatibility keys used across the app -->
+    <Color x:Key="Primary">#167A9D</Color>
+    <Color x:Key="Secondary">#C7DEE5</Color>
+    <Color x:Key="Tertiary">#0D495E</Color>
+    <Color x:Key="White">#F4FCFF</Color>
+    <Color x:Key="Black">#082D30</Color>
+    <Color x:Key="Gray100">#E2F0F4</Color>
+    <Color x:Key="Gray200">#C7DEE5</Color>
+    <Color x:Key="Gray300">#9FB9C2</Color>
+    <Color x:Key="Gray400">#6E94A3</Color>
+    <Color x:Key="Gray500">#4A7383</Color>
+    <Color x:Key="Gray600">#1D4D5F</Color>
+    <Color x:Key="Gray900">#0D495E</Color>
+    <Color x:Key="Gray950">#0C121A</Color>
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
@@ -32,10 +44,20 @@
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
 
-    <Color x:Key="s4blue25">#b4c7e3</Color>
-    <Color x:Key="s4blue100">#0060a0</Color>
-    <Color x:Key="s4ored">#ed1c24</Color>
-    <Color x:Key="brightred">#f0c090</Color>
+    <SolidColorBrush x:Key="BrandNeonFullBrush" Color="{StaticResource BrandNeonFull}"/>
+    <SolidColorBrush x:Key="BrandNeonSoftBrush" Color="{StaticResource BrandNeonSoft}"/>
+    <SolidColorBrush x:Key="BrandDeepBrush" Color="{StaticResource BrandDeep}"/>
+    <SolidColorBrush x:Key="BrandDarkTypeBrush" Color="{StaticResource BrandDarkType}"/>
+    <SolidColorBrush x:Key="BrandSurfaceBrush" Color="{StaticResource BrandSurface}"/>
+    <SolidColorBrush x:Key="BrandSpindriftBrush" Color="{StaticResource BrandSpindrift}"/>
+    <SolidColorBrush x:Key="BrandBoxBgBrush" Color="{StaticResource BrandBoxBg}"/>
+    <SolidColorBrush x:Key="BrandBoxGraphicsBrush" Color="{StaticResource BrandBoxGraphics}"/>
+    <SolidColorBrush x:Key="BrandMistBrush" Color="{StaticResource BrandMist}"/>
+
+    <Color x:Key="s4blue25">#F6FAFE</Color>
+    <Color x:Key="s4blue100">#167A9D</Color>
+    <Color x:Key="s4ored">#00DE01</Color>
+    <Color x:Key="brightred">#99F199</Color>
     <Color x:Key="Cyan100Accent">#28C2D1</Color>
     <Color x:Key="Cyan200Accent">#7BDDEF</Color>
     <Color x:Key="Cyan300Accent">#C3F2F4</Color>

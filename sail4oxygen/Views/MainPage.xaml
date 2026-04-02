@@ -9,12 +9,14 @@
              x:Class="sail4oxygen.Views.MainPage"
              NavigationPage.HasNavigationBar="False"
              Title="{x:Static lang:lang.MainPageTitle}"
-             Shell.BackgroundColor="{AppThemeBinding Light={StaticResource s4blue25}, Dark={StaticResource Gray300}}"
+             Shell.BackgroundColor="{AppThemeBinding Light={StaticResource s4blue25}, Dark={StaticResource Tertiary}}"
              >
     
     <Shell.TitleView>
-        <HorizontalStackLayout>
+        <Grid ColumnDefinitions="*,Auto" HorizontalOptions="Fill">
+            
             <Button
+                Grid.Column="0"
                 BackgroundColor="{AppThemeBinding Light={StaticResource s4blue25}, Dark={StaticResource Gray300}}"
                 TextColor="{AppThemeBinding Light={StaticResource s4blue100}, Dark={StaticResource Gray100}}"
                 Text="&#x24D8;"
@@ -23,18 +25,17 @@
                 Margin="12,12,0,6"
                 HorizontalOptions="Start"
                 Clicked="About_Clicked"
-                />
+            />
+            
             <Image
-                Source="s4ob.png"
-                x:Name="s4oLogo"
-                HorizontalOptions="EndAndExpand"
-                Aspect="AspectFit"
-                HeightRequest="70"
-                Margin="0,0,0,0"
-                />
-        </HorizontalStackLayout>
+                Grid.Column="1"
+                Source="s4ologospindrift.png"
+                HeightRequest="45"
+                Margin="10"
+                HorizontalOptions="End"
+                Aspect="AspectFit" />
+        </Grid>
     </Shell.TitleView>
-
 
     <ContentPage.Behaviors>
         <mct:EventToCommandBehavior Command="{Binding AppearingCommand}" EventName="Appearing" />
@@ -52,15 +53,21 @@
     <ScrollView>
         <VerticalStackLayout
             >
-                <Label Grid.Column="0" Grid.Row="0"
-                    TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
-                    Margin="24,24,0,0"
-                    HorizontalOptions="Center"
-                    HorizontalTextAlignment="Start"
-                    Text="{x:Static lang:lang.MainPageIntro}"
-                    FontSize="Medium" />
-
-
+            <Label Grid.Column="0" Grid.Row="0"
+                   TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource BrandNeonFull}}"
+                   Margin="24,3,24,0"
+                   HorizontalOptions="End"
+                   HorizontalTextAlignment="End"
+                   Text="sail4oxygen"
+                   FontSize="Medium" />
+            <Label Grid.Column="0" Grid.Row="0"
+                   TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"
+                   Margin="24,24,0,0"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Start"
+                   Text="{x:Static lang:lang.MainPageIntro}"
+                   FontSize="Medium" />
+            
             <mct:Expander IsExpanded="{Binding IsLearnMoreExpanded}">
                 <mct:Expander.Header>
                     <Label Grid.Column="0" Grid.Row="0"
@@ -126,7 +133,7 @@
                 <components:ValidatedTextEntry
                     LabelText="{x:Static lang:lang.BoatName}"
                     Placeholder="Name"
-                    PlaceholderColor="{x:StaticResource Gray500}"
+                    PlaceholderColor="{x:StaticResource Gray200}"
                     Text="{Binding BoatName, Mode=TwoWay}"
                     IsValid="{Binding NameIsValid, Mode=TwoWay}"
                     ValidationMessage="{Binding BoatnameValidationMessage}"

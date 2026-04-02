@@ -12,7 +12,7 @@
                 VerticalOptions="Center"
                 FontFamily="LucidaGrande" />
 
-            <Image Source="s4ob.png"
+            <Image Source="s4ologospindrift.png"
                    x:Name="s4oLogo"
                    VerticalOptions="Center"
                    Aspect="AspectFit"
