@@ -95,6 +95,15 @@ public partial class MainPage : ContentPage
             MainPageVM.ApplyGpsLocation(location);
     }
 
+    async void OpenCoordinateCalculator_Clicked(System.Object sender, System.EventArgs e)
+    {
+        var calculatorPage = new CoordinateCalculatorModalPage(
+            MainPageVM.MyLocation,
+            (latitude, longitude) => MainPageVM.ApplyManualCoordinates(latitude, longitude));
+
+        await Navigation.PushModalAsync(calculatorPage, true);
+    }
+
     void LatitudeEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
         if (sender is Entry { IsFocused: true })

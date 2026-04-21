@@ -192,15 +192,23 @@
                 </Entry>
                 </VerticalStackLayout>
 
-                <Button
-                    Text="{x:Static lang:lang.MainPageGPSReload}"
-                    Padding="8,8,8,8"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource BrandNeonFull}, Dark={StaticResource BrandNeonSoft}}"
-                    TextColor="{AppThemeBinding Light={StaticResource BrandDarkType}, Dark={StaticResource BrandDarkType}}"
-                    Margin="6,12,6,12"
-                    SemanticProperties.Hint="{x:Static lang:lang.MainPageGPSReloadHint}"
-                    Clicked="OnGPSReload_Clicked"
-                    HorizontalOptions="Center" />
+                <VerticalStackLayout Spacing="8" Margin="6,12,6,12">
+                    <Button
+                        Text="{x:Static lang:lang.MainPageGPSReload}"
+                        Padding="8,8,8,8"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource BrandNeonFull}, Dark={StaticResource BrandNeonSoft}}"
+                        TextColor="{AppThemeBinding Light={StaticResource BrandDarkType}, Dark={StaticResource BrandDarkType}}"
+                        SemanticProperties.Hint="{x:Static lang:lang.MainPageGPSReloadHint}"
+                        Clicked="OnGPSReload_Clicked"
+                        HorizontalOptions="Center" />
+                    <Button
+                        Text="{x:Static lang:lang.CoordinateCalculatorOpen}"
+                        Padding="8,8,8,8"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource BrandNeonFull}, Dark={StaticResource BrandNeonSoft}}"
+                        TextColor="{AppThemeBinding Light={StaticResource BrandDarkType}, Dark={StaticResource BrandDarkType}}"
+                        Clicked="OpenCoordinateCalculator_Clicked"
+                        HorizontalOptions="Center" />
+                </VerticalStackLayout>
             </HorizontalStackLayout>
                 
             <Label
