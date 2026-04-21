@@ -86,8 +86,6 @@
 	  <None Remove="Resources\Images\backgrounddark.svg" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Models\" />
-	  <Folder Include="ViewModels\" />
 	  <Folder Include="Resources\Languages\" />
 	</ItemGroup>
 	<ItemGroup>
