@@ -106,8 +106,7 @@
     <comment/>
   </data>
   <data name="DeveloperNote" xml:space="preserve">
-    <value>&lt;p&gt;&amp;#xA9 2023 Hinnerk Weiler&lt;/p&gt;Carefully crafted with &amp;#9829 for the oceans. Developer contact and technical support:&lt;br /&gt;h.weiler@trans-ocean.org. This Software was developed in best intentions and is provided as is with no warranties. Source code and full license Information is available on the developer page.&lt;/p&gt;</value>
-    <comment/>
+    <value>&lt;p&gt;&amp;#xA9 2023-2026 Hinnerk Weiler&lt;/p&gt;Carefully crafted with &amp;#9829 for the oceans. Developer contact and technical support:&lt;br /&gt;post@hinnerk-weiler.com &lt;br /&gt; This Software was developed with best intentions and is provided as is with no warranties. Source code and full license Information is available on the developer page.&lt;/p&gt;</value>
   </data>
   <data name="AboutPageTitle" xml:space="preserve">
     <value>About the App</value>
