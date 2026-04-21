@@ -372,8 +372,12 @@ namespace sail4oxygen.ViewModels
             }
             return false;
         }
-
-
+        
+        public void RefreshBoatName()
+        {
+            OnPropertyChanged(nameof(BoatName));
+        }
+        
         public void Cleanup()
         {
             this.CsvFileToSend = null;

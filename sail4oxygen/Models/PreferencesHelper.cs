@@ -24,7 +24,22 @@ namespace sail4oxygen.Models
             set
             {
                 Preferences.Set("BoatName", value);
+                Preferences.Set("BoatNameLastChangedUtc", DateTimeOffset.UtcNow);
             }
+        }
+        
+        public static bool ResetBoatNameIfExpired(int maxAgeDays = 4)
+        {
+            var lastChanged = Preferences.Get("BoatNameLastChangedUtc", DateTimeOffset.MinValue);
+            if (lastChanged == DateTimeOffset.MinValue) return false;
+
+            if (DateTimeOffset.UtcNow - lastChanged >= TimeSpan.FromDays(maxAgeDays))
+            {
+                Preferences.Remove("BoatName");
+                Preferences.Remove("BoatNameLastChangedUtc");
+                return true;
+            }
+            return false;
         }
 
 

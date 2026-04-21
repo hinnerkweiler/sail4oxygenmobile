@@ -14,12 +14,13 @@ public partial class App : Application
 	protected override void OnStart()
 	{
 		base.OnStart();
-			
+		Models.PreferencesHelper.ResetBoatNameIfExpired();
 	}
 
 	protected override void OnResume()
 	{
 		base.OnResume();
+		Models.PreferencesHelper.ResetBoatNameIfExpired();
         
     }
 
