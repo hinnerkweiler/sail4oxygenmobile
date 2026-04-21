@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lang="clr-namespace:sail4oxygen.Resources.Languages"
+             x:Class="sail4oxygen.Views.Components.Calculator">
+
+    <ContentView.Resources>
+        <Color x:Key="CalculatorSurfaceColor">#F4FCFF</Color>
+        <Color x:Key="CalculatorTextColor">#0D495E</Color>
+        <Color x:Key="CalculatorStrokeColor">#C7DEE5</Color>
+    </ContentView.Resources>
+
+    <Border
+        Margin="0"
+        Padding="18"
+        BackgroundColor="{StaticResource CalculatorSurfaceColor}"
+        Stroke="{StaticResource CalculatorStrokeColor}"
+        StrokeShape="RoundRectangle 18">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="12">
+            <Label
+                Grid.Row="0"
+                FontSize="18"
+                FontAttributes="Bold"
+                Text="{x:Static lang:lang.CoordinateCalculatorTitle}"
+                TextColor="{StaticResource CalculatorTextColor}" />
+
+            <Label
+                Grid.Row="1"
+                FontSize="12"
+                Text="{x:Static lang:lang.CoordinateCalculatorDescription}"
+                TextColor="{StaticResource CalculatorTextColor}" />
+
+            <Grid Grid.Row="2" RowDefinitions="Auto,Auto" RowSpacing="8">
+                <Label
+                    Grid.Row="0"
+                    FontAttributes="Bold"
+                    Text="{x:Static lang:lang.MainPageLatitudeTitle}"
+                    TextColor="{StaticResource CalculatorTextColor}" />
+                <Grid
+                    Grid.Row="1"
+                    ColumnDefinitions="0.38*,0.38*,0.24*"
+                    ColumnSpacing="8">
+                    <Entry
+                        Grid.Column="0"
+                        Keyboard="Numeric"
+                        Placeholder="{x:Static lang:lang.CoordinateCalculatorDegrees}"
+                        Text="{Binding LatitudeDegrees, Mode=TwoWay}"
+                        TextColor="{StaticResource CalculatorTextColor}" />
+                    <Entry
+                        Grid.Column="1"
+                        Keyboard="Numeric"
+                        Placeholder="{x:Static lang:lang.CoordinateCalculatorMinutes}"
+                        Text="{Binding LatitudeMinutes, Mode=TwoWay}"
+                        TextColor="{StaticResource CalculatorTextColor}" />
+                    <Picker
+                        Grid.Column="2"
+                        SelectedIndex="{Binding SelectedLatitudeHemisphereIndex, Mode=TwoWay}"
+                        TextColor="{StaticResource CalculatorTextColor}">
+                        <Picker.Items>
+                            <x:String>N</x:String>
+                            <x:String>S</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="3" RowDefinitions="Auto,Auto" RowSpacing="8">
+                <Label
+                    Grid.Row="0"
+                    FontAttributes="Bold"
+                    Text="{x:Static lang:lang.MainPageLongitudeTitle}"
+                    TextColor="{StaticResource CalculatorTextColor}" />
+                <Grid
+                    Grid.Row="1"
+                    ColumnDefinitions="0.38*,0.38*,0.24*"
+                    ColumnSpacing="8">
+                    <Entry
+                        Grid.Column="0"
+                        Keyboard="Numeric"
+                        Placeholder="{x:Static lang:lang.CoordinateCalculatorDegrees}"
+                        Text="{Binding LongitudeDegrees, Mode=TwoWay}"
+                        TextColor="{StaticResource CalculatorTextColor}" />
+                    <Entry
+                        Grid.Column="1"
+                        Keyboard="Numeric"
+                        Placeholder="{x:Static lang:lang.CoordinateCalculatorMinutes}"
+                        Text="{Binding LongitudeMinutes, Mode=TwoWay}"
+                        TextColor="{StaticResource CalculatorTextColor}" />
+                    <Picker
+                        Grid.Column="2"
+                        SelectedIndex="{Binding SelectedLongitudeHemisphereIndex, Mode=TwoWay}"
+                        TextColor="{StaticResource CalculatorTextColor}">
+                        <Picker.Items>
+                            <x:String>E</x:String>
+                            <x:String>W</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </Grid>
+            </Grid>
+
+            <Border
+                Grid.Row="4"
+                Padding="10"
+                HeightRequest="110"
+                BackgroundColor="#EAF6FA"
+                Stroke="{StaticResource CalculatorStrokeColor}"
+                StrokeShape="RoundRectangle 12">
+                <Grid>
+                    <Label
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        FontSize="12"
+                        Text="{x:Static lang:lang.CoordinateCalculatorMapPlaceholder}"
+                        TextColor="{StaticResource CalculatorTextColor}" />
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="5" RowDefinitions="Auto,Auto" RowSpacing="8">
+                <Label
+                    Grid.Row="0"
+                    FontSize="12"
+                    Text="{Binding ValidationMessage}"
+                    TextColor="#C43C32" />
+                <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <Button
+                        Grid.Column="0"
+                        BackgroundColor="#E2F0F4"
+                        Command="{Binding CancelCommand}"
+                        Text="{x:Static lang:lang.cancel}"
+                        TextColor="{StaticResource CalculatorTextColor}" />
+                    <Button
+                        Grid.Column="1"
+                        Command="{Binding SetCoordinatesCommand}"
+                        Text="{x:Static lang:lang.CoordinateCalculatorSet}"
+                        TextColor="{StaticResource CalculatorTextColor}" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</ContentView>

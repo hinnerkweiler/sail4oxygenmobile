@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:sail4oxygen.Views.Components"
+             x:Class="sail4oxygen.Views.CoordinateCalculatorModalPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#66000000">
+
+    <Grid RowDefinitions="*,Auto">
+        <Grid Grid.Row="0" />
+
+        <Border
+            Grid.Row="1"
+            Padding="18,18,18,30"
+            BackgroundColor="{StaticResource BrandSpindrift}"
+            Stroke="{StaticResource BrandBoxGraphics}"
+            StrokeShape="RoundRectangle 24,24,0,0">
+            <components:Calculator x:Name="CalculatorView" />
+        </Border>
+    </Grid>
+</ContentPage>
+
