@@ -95,14 +95,6 @@ namespace sail4oxygen.Models
             this.Date = dateTimeFromString(datestring);
         }
 
-
-
-		public async Task UpdateImage()
-		{
-			this.FeaturedImageUrl = await Models.RssHelper.GetImagefromProxy(this.Url);
-			OnPropertyChanged("RssImage");
-        }
-
         public NewsItem(string title, string description, string source, string image, string datestring)
         {
 			this.Headline = title;

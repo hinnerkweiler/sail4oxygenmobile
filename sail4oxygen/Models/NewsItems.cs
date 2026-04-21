@@ -46,10 +46,6 @@ namespace sail4oxygen.Models
 						}
 						break;
 				}
-				foreach (var item in articles)
-				{
-					_=item.UpdateImage();
-				}
 				return articles;
 			}
 		}

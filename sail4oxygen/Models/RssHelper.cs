@@ -9,7 +9,7 @@ namespace sail4oxygen.Models
 {
 	public static class RssHelper
 	{
-		static string rssUrl = "https://www.trans-ocean.org/DesktopModules/DNNArticle/DNNArticleRSS.aspx?portalid=0&moduleid=426&tabid=226&categoryid=170&cp=True&uid=-1&Language=de-DE";
+		private static string rssUrl = "https://www.sail4oxygen.org/feed/";
 
         private  static async Task<string> GetRssFeed()
 		{
@@ -35,26 +35,28 @@ namespace sail4oxygen.Models
 		public static async Task<System.Collections.ObjectModel.ObservableCollection<NewsItem>> GetNewsItems()
 		{
 			var rssFeed = await GetRssFeed();
-
-			System.Collections.ObjectModel.ObservableCollection<NewsItem> list = new System.Collections.ObjectModel.ObservableCollection<NewsItem>();
+			var list = new System.Collections.ObjectModel.ObservableCollection<NewsItem>();
 
 			if (IsValidRssFeed(rssFeed))
-			{				
+			{
 				try
 				{
-					System.Xml.Linq.XDocument doc = System.Xml.Linq.XDocument.Parse(rssFeed);
+					var doc = System.Xml.Linq.XDocument.Parse(rssFeed);
 					var items = doc.Descendants("item");
+
 					foreach (var item in items)
-                    {						
+					{
+						var enclosureUrl = item.Element("enclosure")?.Attribute("url")?.Value;
+
 						var newsItem = new NewsItem(
-							title: item.Element("title").Value,
-							description: item.Element("description").Value,
-							source: item.Element("link").Value,
-							datestring: item.Element("pubDate").Value
+							title:       item.Element("title")?.Value,
+							description: item.Element("description")?.Value,
+							source:      item.Element("link")?.Value,
+							image:       enclosureUrl,           // <-- from enclosure tag
+							datestring:  item.Element("pubDate")?.Value
 						);
 						list.Add(newsItem);
 					}
-				
 				}
 				catch (Exception ex)
 				{
@@ -87,6 +89,7 @@ namespace sail4oxygen.Models
 
 
 
+		[Obsolete]
 		public async static Task<Uri> GetImagefromProxy(Uri url)
 		{
 			string webhookUrl = "https://autopilot.funkschiff.com/webhook/296358ad-873b-4329-8be0-4aef2f78f499";
