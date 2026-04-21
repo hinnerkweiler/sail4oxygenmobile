@@ -300,4 +300,25 @@
   <data name="Data" xml:space="preserve">
     <value>3. Data</value>
   </data>
+  <data name="CoordinateCalculatorOpen" xml:space="preserve">
+    <value>Adjust / Check</value>
+  </data>
+  <data name="CoordinateCalculatorTitle" xml:space="preserve">
+    <value>Coordinate Editor</value>
+  </data>
+  <data name="CoordinateCalculatorDescription" xml:space="preserve">
+    <value>Enter degrees and minutes, to manually set probing location.</value>
+  </data>
+  <data name="CoordinateCalculatorDegrees" xml:space="preserve">
+    <value>Degrees</value>
+  </data>
+  <data name="CoordinateCalculatorMinutes" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="CoordinateCalculatorSet" xml:space="preserve">
+    <value>Set</value>
+  </data>
+  <data name="CoordinateCalculatorMapPlaceholder" xml:space="preserve">
+    <value>Map preview will appear here in a future update.</value>
+  </data>
 </root>

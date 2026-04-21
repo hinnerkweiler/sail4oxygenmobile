@@ -300,5 +300,26 @@
   <data name="BoatName" xml:space="preserve">
     <value>1. Bootsname</value>
   </data>
+  <data name="CoordinateCalculatorOpen" xml:space="preserve">
+    <value>Ändern / Prüfen</value>
+  </data>
+  <data name="CoordinateCalculatorTitle" xml:space="preserve">
+    <value>Koordinateneditor</value>
+  </data>
+  <data name="CoordinateCalculatorDescription" xml:space="preserve">
+    <value>Grad und Minuten eingeben, um den Messort manuell anzupassen.</value>
+  </data>
+  <data name="CoordinateCalculatorDegrees" xml:space="preserve">
+    <value>Grad</value>
+  </data>
+  <data name="CoordinateCalculatorMinutes" xml:space="preserve">
+    <value>Minuten</value>
+  </data>
+  <data name="CoordinateCalculatorSet" xml:space="preserve">
+    <value>Setzen</value>
+  </data>
+  <data name="CoordinateCalculatorMapPlaceholder" xml:space="preserve">
+    <value>Eine Kartenansicht wird in einem kommenden Update hier eingeblendet.</value>
+  </data>
 </root>
 
