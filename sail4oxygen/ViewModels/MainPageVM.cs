@@ -244,6 +244,19 @@ namespace sail4oxygen.ViewModels
             }
         }
 
+        public void ApplyManualCoordinates(double latitude, double longitude)
+        {
+            MyLocation = new Location
+            {
+                Latitude = latitude,
+                Longitude = longitude
+            };
+
+            LatitudeIsValid = true;
+            LongitudeIsValid = true;
+            MarkCoordinatesEditedManually();
+        }
+
         private async Task AutoUpdateLocationUntilValidFixAsync(CancellationToken cancellationToken)
         {
             try
