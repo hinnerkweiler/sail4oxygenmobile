@@ -307,7 +307,7 @@
     <value>Coordinate Editor</value>
   </data>
   <data name="CoordinateCalculatorDescription" xml:space="preserve">
-    <value>Enter degrees and minutes, to manually set probing location.</value>
+    <value>Enter degrees and minutes to manually set probing location.</value>
   </data>
   <data name="CoordinateCalculatorDegrees" xml:space="preserve">
     <value>Degrees</value>
