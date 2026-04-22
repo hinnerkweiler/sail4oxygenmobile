@@ -98,7 +98,7 @@
                     </Picker>
                 </Grid>
             </Grid>
-
+<!--
             <Border
                 Grid.Row="4"
                 Padding="10"
@@ -116,7 +116,7 @@
                         TextColor="{StaticResource CalculatorTextColor}" />
                 </Grid>
             </Border>
-
+-->
             <Grid Grid.Row="5" RowDefinitions="Auto,Auto" RowSpacing="8">
                 <Label
                     Grid.Row="0"
