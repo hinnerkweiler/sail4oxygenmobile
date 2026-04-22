@@ -143,8 +143,27 @@ public partial class MainPage : ContentPage
 
     async void GetPdfManualButton_Clicked(System.Object sender, System.EventArgs e)
     {
-        await Shell.Current.GoToAsync("ManualPage");
+#if ANDROID
+        var fileName = Models.FaqHelper.PdfManualFileName;
+        var filePath = Path.Combine(FileSystem.Current.AppDataDirectory, fileName);
+
+        if (!File.Exists(filePath))
+            await Models.FaqHelper.CopyReleaseItemToAppFolder(fileName);
+
+        if (!File.Exists(filePath))
+        {
+            await DisplayAlert("Error", "Manual file not found.", "OK");
+            return;
+        }
+
+        await Launcher.Default.OpenAsync(new OpenFileRequest(
+            "Manual",
+            new ReadOnlyFile(filePath)));
+#else
+    await Shell.Current.GoToAsync("ManualPage");
+#endif
     }
+
 
 }
 

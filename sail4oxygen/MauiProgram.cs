@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
-using Syncfusion.Maui.Core.Hosting;
 
 namespace sail4oxygen;
 
@@ -22,12 +21,9 @@ public static class MauiProgram
             {
                      essentials.AddAppAction(new AppAction("id1", "Takeover Sonde", icon: "calendar"));
             });
-		builder.ConfigureSyncfusionCore();
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
-		Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Models.PrivatData.SyncfusionKey);
         return builder.Build();
 	}
 }
-

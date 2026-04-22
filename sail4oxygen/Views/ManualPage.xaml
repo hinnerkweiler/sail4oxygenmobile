@@ -1,19 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:sail4oxygen"
-             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.PdfViewer;assembly=Syncfusion.Maui.PdfViewer"
              x:Class="sail4oxygen.Views.ManualPage"
              Title="ManualPage">
 
     <Shell.TitleView>
-        <HorizontalStackLayout
-            HorizontalOptions="End">
-            <Label
-                Text=""
-                VerticalOptions="Center"
-                FontFamily="LucidaGrande" />
-
+        <HorizontalStackLayout HorizontalOptions="End">
+            <Label Text=""
+                   VerticalOptions="Center"
+                   FontFamily="LucidaGrande" />
             <Image Source="s4ob.png"
                    x:Name="s4oLogo"
                    VerticalOptions="Center"
@@ -23,6 +18,8 @@
         </HorizontalStackLayout>
     </Shell.TitleView>
 
-    <syncfusion:SfPdfViewer DocumentSource="{Binding PdfDocumentStream}"/>
-    
+    <WebView x:Name="PdfWebView"
+             HorizontalOptions="Fill"
+             VerticalOptions="Fill" />
+
 </ContentPage>
